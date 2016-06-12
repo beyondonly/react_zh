@@ -1,0 +1,30 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.jsx",
+  "scripts": {
+    "start": "webpack-dev-server --progress",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-loader": "*",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "jsx-loader": "*",
+    "css-loader": "*",
+    "less-loader": "*",
+    "react": "*",
+    "react-dom": "*",
+    "webpack": "*",
+    "style-loader": "*"
+  },
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "css-selector-tokenizer": "^0.5.4",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "open-browser-webpack-plugin": "0.0.2",
+    "webpack-dev-server": "~1.10.1"
+  }
+}
