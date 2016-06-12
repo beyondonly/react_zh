@@ -9,7 +9,14 @@ var ReactTopbar = React.createClass({
 	render: function() {
 		return (
 			<div className = "ReactTopbar-box">
-				<p>点撒打算</p>
+				<a className ="ReactTopbar-box-logo icon-ic_zhihu_logo"></a>
+				<div className="ReactTopbar-box-slidedown">
+					<i className = "icon-ic_nav_more"></i>
+					<ul>
+						<li><a>草稿</a></li>
+						<li><a>我的文章</a></li>
+					</ul>
+				</div>
 			</div>
 		)
 	}

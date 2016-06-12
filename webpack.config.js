@@ -6,7 +6,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: './index.jsx',
   output: {
-    filename: 'bundle.js'
+    filename: './aset/bundle.js'
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
@@ -16,11 +16,13 @@ module.exports = {
       { test: /\.jsx$/, exclude: /node_modules/, loader: 'jsx-loader' },
       { test: /\.js$/, exclude:/node_modules/, loader: 'babel-loader'},
       {test: /\.css$/, loader:  ExtractTextPlugin.extract("style-loader", "css-loader")},
+      { test: /\.png|.svg$/, loader: "file-loader?name=/aset/[hash:8].[name].[ext]" }
     ]
   },
   plugins: [
-    new CommonsChunkPlugin('app.js'),
+    new CommonsChunkPlugin('./aset/app.js'),
     new OpenBrowserPlugin({ url: 'http://127.0.0.1:8080' }),
-    new ExtractTextPlugin("app.css")
+    new ExtractTextPlugin("./aset/app.css"),
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
