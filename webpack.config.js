@@ -4,7 +4,7 @@ var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  entry: ['webpack/hot/dev-server','./index.jsx'],
+  entry: ['webpack/hot/dev-server','./approuter.jsx'],
   output: {
     filename: './aset/bundle.js'
   },

@@ -2,9 +2,9 @@
   "name": "react_zh",
   "version": "1.0.0",
   "description": "",
-  "main": "index.jsx",
+  "main": "./approuter.jsx",
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --host(127.0.0.1)",
+    "start": "webpack-dev-server --host 127.0.0.1",
     "watch": "webpack --progress --colors --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,16 +12,19 @@
   "license": "ISC",
   "dependencies": {
     "babel-loader": "*",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "jsx-loader": "*",
     "css-loader": "*",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "*",
+    "jsx-loader": "*",
     "less-loader": "*",
+    "object-assign": "*",
     "react": "*",
     "react-dom": "*",
-    "webpack": "*",
+    "react-router": "^2.4.1",
     "style-loader": "*",
-    "object-assign": "*",
-    "file-loader":"*"
+    "webpack": "*",
+    "react-addons-css-transition-group":"*",
+    "react-addons":"*"
   },
   "devDependencies": {
     "css-loader": "^0.23.1",

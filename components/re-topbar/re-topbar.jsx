@@ -3,7 +3,10 @@
  */
 
 var React = require('react');
+
 require('./re-topbar.css');
+var Link = require('react-router').Link;
+
 
 var ReactTopbar = React.createClass({
 	getInitialState: function() {
@@ -20,8 +23,8 @@ var ReactTopbar = React.createClass({
 				<div className="ReactTopbar-box-slidedown">
 					<i className = "icon-ic_nav_more" onClick={this.handleClick}></i>
 					<ul className = {toggerShow}>
-						<li><a>草稿</a></li>
-						<li><a>我的文章</a></li>
+						<li><Link to="/users">草稿</Link></li>
+						<li><Link to="/zhuanlan">我的文章</Link></li>
 					</ul>
 				</div>
 			</div>
