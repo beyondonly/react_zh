@@ -1,0 +1,45 @@
+.Reactrecommend-box {
+    font-size: 16px;
+}
+.Reactrecommend-box h2 {
+	margin: 0 auto 30px;
+	font-size: 14px;
+	position: relative;
+    padding: 0 16px;
+}
+.Reactrecommend-box h2:after {
+	content: '';
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 0.13rem;
+    left: 82px;
+    background: #d9d9d9;
+}
+.Reactrecommend-box-list {
+    font-size: 16px;
+    padding: 0 16px;
+}
+.Reactrecommend-box-listone {
+    clear: both;
+    margin-bottom: 24px;
+}
+.Reactrecommend-box-listone img {
+    width: 88px;
+    height: 88px;
+    float: left;
+    border-radius: 8px;
+}
+.Reactrecommend-box-listone-isolate {
+    margin-left: 100px;
+}
+.Reactrecommend-box-listone-isolate-title {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+.Reactrecommend-box-list p {
+    font-size: 14px;
+    color: gray;
+}

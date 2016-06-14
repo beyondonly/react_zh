@@ -1,0 +1,47 @@
+.re-zhuanlanlist-box h2 {
+	margin: 0 auto 30px;
+	font-size: 14px;
+	position: relative;
+	margin-left: 16px;
+}
+.re-zhuanlanlist-box h2:after {
+	content: '';
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 0.13rem;
+    left: 0.48rem;
+    background: #d9d9d9;
+}
+.re-zhuanlanlist-listone {
+	padding: 0 16px;
+	margin-bottom: 0.28rem
+}
+.re-zhuanlanlist-listone-titleimg {
+	width: 100%;
+}
+.re-zhuanlanlist-listone h1  {
+	font-size: 20px;
+    line-height: 1.5;
+    font-weight: 700;
+    padding-top: 10px;
+}
+.re-zhuanlanlist-listone-post {
+	color: #666;
+	font-size: 16px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.re-zhuanlanlist-listone-footer {
+    font-size: 14px;
+    color: gray;
+    position: relative;
+}
+.re-zhuanlanlist-listone-footer span {
+	margin-right: 5px;
+}
+.re-zhuanlanlist-listone-footer-func {
+	 position: absolute;
+	 top: 0px;
+	 right: 0px;
+}

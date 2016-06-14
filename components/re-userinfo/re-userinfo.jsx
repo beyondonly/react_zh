@@ -32,6 +32,9 @@ var ReactUserinfo = React.createClass({
 						</ul>
 					</div> 
 				</div>
+				<div className = "re-userinfo-box-followers">
+					<span>1846</span> 人关注
+				</div>
 			</div>
 		)
 	}

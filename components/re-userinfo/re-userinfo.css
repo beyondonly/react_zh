@@ -43,6 +43,7 @@
     margin: 0;
     cursor: pointer;
     background: none;
+    margin-bottom: 18px;
 }
 .re-userinfo-box-slidedown {
 	position: absolute;
@@ -68,5 +69,8 @@
 	line-height: 54px;
     font-size: 14px;
 }
-
-
+.re-userinfo-box-followers {
+    color: gray;
+    text-align: center;
+    font-size: 14px;
+}

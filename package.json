@@ -4,7 +4,7 @@
   "description": "",
   "main": "./approuter.jsx",
   "scripts": {
-    "start": "webpack-dev-server --host 127.0.0.1",
+    "start": "webpack-dev-server --host 127.0.0.1 --port 1234",
     "watch": "webpack --progress --colors --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

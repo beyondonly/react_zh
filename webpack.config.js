@@ -21,7 +21,7 @@ module.exports = {
   },
   plugins: [
     new CommonsChunkPlugin('./aset/app.js'),
-    new OpenBrowserPlugin({ url: 'http://127.0.0.1:8080' }),
+    new OpenBrowserPlugin({ url: 'http://127.0.0.1:1234' }),
     new ExtractTextPlugin("./aset/app.css"),
     new webpack.HotModuleReplacementPlugin()
   ]

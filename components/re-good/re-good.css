@@ -1,0 +1,37 @@
+.ReactGood-box {
+	font-size: 16px;
+	padding: 0 16px;
+	margin: 40px 0;
+}
+.ReactGood-box-votesbox {
+    display: inline-block;
+    color: #50C87E;
+    border: 1px solid #50C87E;
+    height: 34px;
+    line-height: 34px;
+    padding: 0 20px;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.ReactGood-box-votesbox i{
+    margin-right: 6px;
+}
+.ReactGood-box-votesboxsection{
+	float: right;
+}
+.ReactGood-box-votesboxsection span {
+	margin-left: 15px;
+}
+.ReactGood-box-votespeople{
+	display: block;
+    margin-top: 16px;
+    height: 25px;
+    clear: both;
+}
+.ReactGood-box-votespeople img {
+	width: 26px;
+    height: 26px;
+    border-radius: 100%;
+    margin: 0 8px 8px 0;
+}

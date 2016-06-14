@@ -624,4 +624,374 @@ html {
 .Indexfooter-box-bottom-bar a{
 	margin-right: 20px;
     color: gray;
+}.ReactZhuan-box-pagetip {
+	width: 100%;
+}
+.ReactZhuan-box-text {
+	font-size: 16px;
+	padding-left: 16px;
+    padding-right: 16px;
+    margin: 30px 0;
+    line-height: 1.7;
+    font-weight: 300;
+    font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+}
+.ReactZhuan-box-text p{
+	    margin: 20px 0;
+}
+.ReactZhuan-box-multiline2 {
+	font-size: 32px;
+    line-height: 45px;
+    font-weight: 700;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin: 10px;
+    color: #333;
+    font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+}
+.ReactZhuan-box-meta {
+	margin: 22px 0 0;
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.ReactZhuan-box-meta span {
+	margin-left: 10px;
+}
+.ReactZhuan-box-meta img {
+	width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+.ReactZhuan-box-target {
+	line-height: 30px;
+    font-size: 14px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.ReactZhuan-box-target span {
+	display: inline-block;
+    margin: 0 16px 16px 0;
+    text-align: center;
+    height: 30px;
+    padding: 0 15px;
+    color: gray;
+    border-radius: 15px;
+    background: rgba(0,0,0,.06);
+    max-width: 100%;
+    box-sizing: border-box;
+}.ReactGood-box {
+	font-size: 16px;
+	padding: 0 16px;
+	margin: 40px 0;
+}
+.ReactGood-box-votesbox {
+    display: inline-block;
+    color: #50C87E;
+    border: 1px solid #50C87E;
+    height: 34px;
+    line-height: 34px;
+    padding: 0 20px;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.ReactGood-box-votesbox i{
+    margin-right: 6px;
+}
+.ReactGood-box-votesboxsection{
+	float: right;
+}
+.ReactGood-box-votesboxsection span {
+	margin-left: 15px;
+}
+.ReactGood-box-votespeople{
+	display: block;
+    margin-top: 16px;
+    height: 25px;
+    clear: both;
+}
+.ReactGood-box-votespeople img {
+	width: 26px;
+    height: 26px;
+    border-radius: 100%;
+    margin: 0 8px 8px 0;
+}.re-comments-box {
+    font-size: 16px;
+    padding: 0 16px;
+}
+.re-comments-box h2 {
+	margin: 0 auto 30px;
+	font-size: 14px;
+	position: relative;
+    padding: 0 16px 0 0;
+}
+.re-comments-box h2:after {
+	content: '';
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 0.13rem;
+    left: 94px;
+    background: #d9d9d9;
+}
+.re-comments-box-commentbox {
+    margin-bottom: 32px;
+}
+.re-comments-box-commentbox img{
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    float: left;
+    vertical-align: middle;
+}
+.re-comments-box-commentbox-form {
+    padding: 9px 13px;
+    font-size: 15px;
+    min-height: 26px;
+    line-height: 26px;
+    white-space: pre-wrap;
+    cursor: text;
+    border: 1px solid rgba(0,0,0,.16);
+    border-radius: 4px;
+    margin-left: 60px;
+}
+.re-comments-box-comment-listone {
+    margin-bottom: 32px;
+}
+.re-comments-box-comment-listone  img{
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+}
+.re-comments-box-comment-listone span {
+   margin: 0 0 0 10px;
+   color: #333;
+   font-weight: 700
+}
+.re-comments-box-comment-listone-text{
+    margin: 8px 0;
+    font-size: 15px
+}
+.re-comments-box-comment-listono-footer span {
+    margin-left: 0px;
+    margin-right: 8px;
+    color: gray;
+    font-size: 14px;
+}.ReactIncluded-box {
+	font-size: 16px;
+}
+.ReactIncluded-box h2 {
+	margin: 0 auto 30px;
+	font-size: 14px;
+	position: relative;
+    padding: 0 16px;
+}
+.ReactIncluded-box h2:after {
+	content: '';
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 0.13rem;
+    left: 160px;
+    background: #d9d9d9;
+}
+.ReactIncluded-box-list {
+	padding: 0 16px;
+}
+.ReactIncluded-box-listbox {
+	position: relative;
+	margin: 20px 0; 
+}
+.ReactIncluded-box-listbox img {
+	width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.ReactIncluded-box-title {
+	margin: 0 0 0 60px;
+}
+.ReactIncluded-box-intro {
+   margin: 0 0 0 60px;
+   margin-right: 100px;
+   font-size: 14px;
+   color: gray;
+}
+.ReactIncluded-box-link {
+	position: absolute;
+    top: 7px;
+    right: 0;
+    color: #50C87E;
+    font-size: 14px;
+}.Reactrecommend-box {
+    font-size: 16px;
+}
+.Reactrecommend-box h2 {
+	margin: 0 auto 30px;
+	font-size: 14px;
+	position: relative;
+    padding: 0 16px;
+}
+.Reactrecommend-box h2:after {
+	content: '';
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 0.13rem;
+    left: 82px;
+    background: #d9d9d9;
+}
+.Reactrecommend-box-list {
+    font-size: 16px;
+    padding: 0 16px;
+}
+.Reactrecommend-box-listone {
+    clear: both;
+    margin-bottom: 24px;
+}
+.Reactrecommend-box-listone img {
+    width: 88px;
+    height: 88px;
+    float: left;
+    border-radius: 8px;
+}
+.Reactrecommend-box-listone-isolate {
+    margin-left: 100px;
+}
+.Reactrecommend-box-listone-isolate-title {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+.Reactrecommend-box-list p {
+    font-size: 14px;
+    color: gray;
+}.re-userinfo-box-headerlink {
+	margin: 20px auto 0px;
+	text-align: center;
+}
+.re-userinfo-box-headerlink img{
+	width: 0.76rem;
+    height: 0.76rem;
+    border-radius: 100%;
+}
+.re-userinfo-box-title {
+	margin-bottom: 0.12rem;
+	padding-left: 0.16rem;
+    padding-right: 0.16rem;
+    font-size: 20px;
+    line-height: 0.28rem;
+    display: block;
+    text-align: center;
+}
+.re-userinfo-box-description {
+	padding-left: 0.16rem;
+    padding-right: 0.16rem;
+    font-size: 16px;
+    white-space: pre-wrap;
+    line-height: 0.24rem;
+    margin: 0 auto 0.18rem;
+    text-align: center;
+    font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+}
+.re-userinfo-box-foucs {
+	text-align: center;
+    position: relative;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+.re-userinfo-box-foucsbutton {
+	width: 90px;
+    height: 36px;
+    line-height: 34px;
+    border-color: #50C87E;
+    color: #50C87E;
+    border: 1px solid;
+    border-radius: 4px;
+    margin: 0;
+    cursor: pointer;
+    background: none;
+    margin-bottom: 18px;
+}
+.re-userinfo-box-slidedown {
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -16px 0 0 70px;
+    color: #333;
+    font-size: 16px;
+    line-height: 1;
+}
+.re-userinfo-box-muen {
+	width: 128px;
+    margin-top: 8px!important;
+    right: -20px;
+	position: absolute;
+	border: 1px solid rgba(0,0,0,.08);
+    border-radius: 4px;
+    box-shadow: 0 8px 18px rgba(0,0,0,.05);
+    background: #fff;
+    display: none;
+}
+.re-userinfo-box-muen a{
+	line-height: 54px;
+    font-size: 14px;
+}
+.re-userinfo-box-followers {
+    color: gray;
+    text-align: center;
+    font-size: 14px;
+}
+.re-zhuanlanlist-box h2 {
+	margin: 0 auto 30px;
+	font-size: 14px;
+	position: relative;
+	margin-left: 16px;
+}
+.re-zhuanlanlist-box h2:after {
+	content: '';
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 0.13rem;
+    left: 0.48rem;
+    background: #d9d9d9;
+}
+.re-zhuanlanlist-listone {
+	padding: 0 16px;
+	margin-bottom: 0.28rem
+}
+.re-zhuanlanlist-listone-titleimg {
+	width: 100%;
+}
+.re-zhuanlanlist-listone h1  {
+	font-size: 20px;
+    line-height: 1.5;
+    font-weight: 700;
+    padding-top: 10px;
+}
+.re-zhuanlanlist-listone-post {
+	color: #666;
+	font-size: 16px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.re-zhuanlanlist-listone-footer {
+    font-size: 14px;
+    color: gray;
+    position: relative;
+}
+.re-zhuanlanlist-listone-footer span {
+	margin-right: 5px;
+}
+.re-zhuanlanlist-listone-footer-func {
+	 position: absolute;
+	 top: 0px;
+	 right: 0px;
 }
