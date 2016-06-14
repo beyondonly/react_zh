@@ -23,8 +23,8 @@ var ReactTopbar = React.createClass({
 				<div className="ReactTopbar-box-slidedown">
 					<i className = "icon-ic_nav_more" onClick={this.handleClick}></i>
 					<ul className = {toggerShow}>
-						<li><Link to="/users">草稿</Link></li>
-						<li><Link to="/zhuanlan">我的文章</Link></li>
+						<li><Link to="users">草稿</Link></li>
+						<li><Link to="zhuanlan">我的文章</Link></li>
 					</ul>
 				</div>
 			</div>

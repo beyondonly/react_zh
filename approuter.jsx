@@ -2,7 +2,7 @@
 var Router = require('react-router').Router
 var Route = require('react-router').Route
 var Link = require('react-router').Link
-var browserHistory = require('react-router').browserHistory
+var hashHistory = require('react-router').hashHistory
 
 var React = require("react");
 var ReactDOM = require('react-dom');
@@ -14,9 +14,9 @@ var Wenzhang = require("./app/wenzhang.jsx")
 var Zhuanlan = require("./app/zhuanlan.jsx")
 
 ReactDOM.render((
-  <Router history={browserHistory}>
+  <Router history={hashHistory}>
     <Route path="/" component={ IndexPage } />
-    <Route path="/users" component={ Wenzhang } />
-     <Route path="/zhuanlan" component={ Zhuanlan } />
+    <Route path="users" component={ Wenzhang } handler = "users"/>
+    <Route path="zhuanlan" component={ Zhuanlan } handler = "zhuanlan"/>
   </Router>
 ), document.getElementById('zh-react'));
