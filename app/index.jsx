@@ -17,7 +17,7 @@ var IndexPage = React.createClass({
 	render: function() {
 		return (
           <div className = {this.state.animateClass} ref = "page">
-			 	<ReactTopbar />
+          		<ReactTopbar />
 			 	<Index_bg />
 			 	<Reactariticlist />
 			 	<Reactariticlist1 />

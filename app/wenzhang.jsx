@@ -14,7 +14,6 @@ var Wenzhang = React.createClass({
 	render: function() {
 	 return (
 		<div>
-			<ReactTopbar />
 		 	<ReactZhuan  source="http://127.0.0.1:3000"/>
 		 	<ReactIncluded />
 		 	<Reactrecommend />

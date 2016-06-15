@@ -124,6 +124,8 @@ webpackJsonp([0,1],[
 	var IndexPage = __webpack_require__(236)
 	var Wenzhang = __webpack_require__(258)
 	var Zhuanlan = __webpack_require__(392)
+	var Topbar = __webpack_require__(237)
+
 
 	ReactDOM.render((
 	  React.createElement(Router, {history: hashHistory}, 
@@ -25950,7 +25952,7 @@ webpackJsonp([0,1],[
 		render: function() {
 			return (
 	          React.createElement("div", {className: this.state.animateClass, ref: "page"}, 
-				 	React.createElement(ReactTopbar, null), 
+	          		React.createElement(ReactTopbar, null), 
 				 	React.createElement(Index_bg, null), 
 				 	React.createElement(Reactariticlist, null), 
 				 	React.createElement(Reactariticlist1, null), 

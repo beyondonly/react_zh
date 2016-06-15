@@ -9,7 +9,6 @@ var Zhuanlan = React.createClass({
 	render: function() {
 		return (
 			<div className = "Reactzhuanlan">
-			 	<ReactTopbar />
 			 	<ReactUserinfo />
 			 	<ReactZhuanlanlist />
 			</div>
