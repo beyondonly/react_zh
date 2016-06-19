@@ -1,31 +1,39 @@
-var React = require('react');
+/*引入路由*/
+var Router = require('react-router').Router
+var Route = require('react-router').Route
+var Link = require('react-router').Link
+var hashHistory = require('react-router').hashHistory
+var IndexRoute = require('react-router').IndexRoute;
+
+var React = require("react");
 var ReactDOM = require('react-dom');
 
-var ReactTopbar = require('../components/re-topbar/re-topbar.jsx');
-var Index_bg = require('../other/index_bg/index_bg.jsx');
-var Reactariticlist = require("../components/re-articlist/re-articlist.jsx");
-var Reactariticlist1 = require("../components/re-articlist1/re-articlist1.jsx");
-var Indexfooter = require("../other/index_footer/index_footer.jsx");
+require("./iframe/public/reset.css");
 
-var IndexPage = React.createClass({
-	getInitialState: function() {
-    	return {animateClass:"animation"};
-  	},
-	componentDidUpdate: function() {
-		 this.setState({animateClass: "animationout"});
-	},
+var IndexPage = require("./containers/index.jsx")
+var Wenzhang = require("./containers/wenzhang.jsx")
+var Zhuanlan = require("./containers/zhuanlan.jsx")
+var Topbar = require("./components/re-topbar/re-topbar.jsx")
+
+
+var App = React.createClass({
 	render: function() {
-		return (
-          <div className = {this.state.animateClass} ref = "page">
-          		<ReactTopbar />
-			 	<Index_bg />
-			 	<Reactariticlist />
-			 	<Reactariticlist1 />
-			 	<Indexfooter />
+		return(
+			<div className = "AppBox">
+				<Topbar />
+				{this.props.children}
 			</div>
 		)
 	}
 })
 
-module.exports = IndexPage;
-
+ReactDOM.render((
+ <Router history={hashHistory}>
+	<Route  path="/" component={App} >
+	    <IndexRoute component={IndexPage}/>
+		<Route path="index" component={ IndexPage } />
+		<Route path="users" component={ Wenzhang } />
+		<Route path="zhuanlan" component={ Zhuanlan }/>
+	</Route>
+ </Router>
+), document.getElementById('zh-react'));

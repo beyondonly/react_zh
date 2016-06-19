@@ -2,9 +2,9 @@
   "name": "react_zh",
   "version": "1.0.0",
   "description": "",
-  "main": "./approuter.jsx",
+  "main":"app/index.jsx",
   "scripts": {
-    "start": "webpack-dev-server --host 127.0.0.1 --port 1234",
+    "start": "webpack-dev-server --host 0.0.0.0 --port 1234",
     "watch": "webpack --progress --colors --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,12 +19,13 @@
     "less-loader": "*",
     "object-assign": "*",
     "react": "*",
+    "react-addons": "*",
+    "react-addons-css-transition-group": "*",
     "react-dom": "*",
+    "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
     "style-loader": "*",
-    "webpack": "*",
-    "react-addons-css-transition-group":"*",
-    "react-addons":"*"
+    "webpack": "*"
   },
   "devDependencies": {
     "css-loader": "^0.23.1",

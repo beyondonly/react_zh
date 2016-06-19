@@ -4,9 +4,9 @@ var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  entry: ['webpack/hot/dev-server','./approuter.jsx'],
+  entry: ['webpack/hot/dev-server','./app/index.jsx'],
   output: {
-    filename: './aset/bundle.js'
+    filename: './dist/bundle.js'
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
@@ -20,9 +20,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new CommonsChunkPlugin('./aset/app.js'),
+    new CommonsChunkPlugin('./dist/Commons.js'),
     new OpenBrowserPlugin({ url: 'http://127.0.0.1:1234' }),
-    new ExtractTextPlugin("./aset/app.css"),
+    new ExtractTextPlugin("./dist/style.css"),
     new webpack.HotModuleReplacementPlugin()
   ]
 };

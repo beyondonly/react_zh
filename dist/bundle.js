@@ -115,6 +115,7 @@ webpackJsonp([0,1],[
 	var Route = __webpack_require__(4).Route
 	var Link = __webpack_require__(4).Link
 	var hashHistory = __webpack_require__(4).hashHistory
+	var IndexRoute = __webpack_require__(4).IndexRoute;
 
 	var React = __webpack_require__(7);
 	var ReactDOM = __webpack_require__(102);
@@ -127,12 +128,26 @@ webpackJsonp([0,1],[
 	var Topbar = __webpack_require__(237)
 
 
+	var App = React.createClass({displayName: "App",
+		render: function() {
+			return(
+				React.createElement("div", {className: "AppBox"}, 
+					React.createElement(Topbar, null), 
+					this.props.children
+				)
+			)
+		}
+	})
+
 	ReactDOM.render((
-	  React.createElement(Router, {history: hashHistory}, 
-	    React.createElement(Route, {path: "/", component:  IndexPage }), 
-	    React.createElement(Route, {path: "users", component:  Wenzhang, handler: "users"}), 
-	    React.createElement(Route, {path: "zhuanlan", component:  Zhuanlan, handler: "zhuanlan"})
-	  )
+	 React.createElement(Router, {history: hashHistory}, 
+		React.createElement(Route, {path: "/", component: App}, 
+		    React.createElement(IndexRoute, {component: IndexPage}), 
+			React.createElement(Route, {path: "index", component:  IndexPage }), 
+			React.createElement(Route, {path: "users", component:  Wenzhang }), 
+			React.createElement(Route, {path: "zhuanlan", component:  Zhuanlan })
+		)
+	 )
 	), document.getElementById('zh-react'));
 
 
@@ -25933,6 +25948,12 @@ webpackJsonp([0,1],[
 /* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/**
+	 * pagename {首屏页面}
+	 * form {我叫代小星}
+	 * email {fengchuantao@baidu.com}
+	 */
+
 	var React = __webpack_require__(7);
 	var ReactDOM = __webpack_require__(102);
 
@@ -25942,17 +25963,12 @@ webpackJsonp([0,1],[
 	var Reactariticlist1 = __webpack_require__(252);
 	var Indexfooter = __webpack_require__(255);
 
+
 	var IndexPage = React.createClass({displayName: "IndexPage",
-		getInitialState: function() {
-	    	return {animateClass:"animation"};
-	  	},
-		componentDidUpdate: function() {
-			 this.setState({animateClass: "animationout"});
-		},
+
 		render: function() {
 			return (
-	          React.createElement("div", {className: this.state.animateClass, ref: "page"}, 
-	          		React.createElement(ReactTopbar, null), 
+	          React.createElement("div", null, 
 				 	React.createElement(Index_bg, null), 
 				 	React.createElement(Reactariticlist, null), 
 				 	React.createElement(Reactariticlist1, null), 
@@ -25995,8 +26011,8 @@ webpackJsonp([0,1],[
 					React.createElement("div", {className: "ReactTopbar-box-slidedown"}, 
 						React.createElement("i", {className: "icon-ic_nav_more", onClick: this.handleClick}), 
 						React.createElement("ul", {className: toggerShow}, 
-							React.createElement("li", null, React.createElement(Link, {to: "users"}, "草稿")), 
-							React.createElement("li", null, React.createElement(Link, {to: "zhuanlan"}, "我的文章"))
+							React.createElement("li", null, React.createElement(Link, {to: "/users"}, "草稿")), 
+							React.createElement("li", null, React.createElement(Link, {to: "/zhuanlan"}, "我的文章"))
 						)
 					)
 				)
@@ -26270,7 +26286,6 @@ webpackJsonp([0,1],[
 		render: function() {
 		 return (
 			React.createElement("div", null, 
-				React.createElement(ReactTopbar, null), 
 			 	React.createElement(ReactZhuan, {source: "http://127.0.0.1:3000"}), 
 			 	React.createElement(ReactIncluded, null), 
 			 	React.createElement(Reactrecommend, null)
@@ -41980,7 +41995,6 @@ webpackJsonp([0,1],[
 		render: function() {
 			return (
 				React.createElement("div", {className: "Reactzhuanlan"}, 
-				 	React.createElement(ReactTopbar, null), 
 				 	React.createElement(ReactUserinfo, null), 
 				 	React.createElement(ReactZhuanlanlist, null)
 				)
