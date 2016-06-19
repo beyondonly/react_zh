@@ -25,7 +25,8 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
     "style-loader": "*",
-    "webpack": "*"
+    "webpack": "*",
+    "redux":"*"
   },
   "devDependencies": {
     "css-loader": "^0.23.1",

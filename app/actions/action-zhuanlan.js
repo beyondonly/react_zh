@@ -1,22 +1,16 @@
 /**
- * pagename {首页推荐列表}
- * form {我叫代小星}
- * email {fengchuantao@baidu.com}
+ * 数据action
  */
 
-export const INIT_DATA = 'INIT_DATA'; //初始化数据
-export const CHANGE_DATA = 'CHANGE_DATA'; //更改数据
+var API = require("../api/Index_zhuanlan.js");
 
+var ACTION_ZHUANLAN  = {};
 
-/*
- * action 创建函数
- */
-
-export function initdata(text) {
-  return { type: INIT_DATA, text }
+ACTION_ZHUANLAN.getdata = function(dispatch, getState) {
+	API.getZhuanlan(8,8,function(data) {
+		dispatch({
+            type: 'DONE_Getlist',
+            payload: data
+        }); 
+	})
 }
-
-export function changedata(index) {
-  return { type: CHANGE_DATA, index }
-}
-
