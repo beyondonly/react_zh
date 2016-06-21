@@ -1,5 +1,5 @@
 /**
- * 首页推荐专栏action
+ * get list data action 
  */
 
 function ACTION_zhuanlan(data) {
@@ -8,7 +8,6 @@ function ACTION_zhuanlan(data) {
 		data:data
 	}
 }
-
 module.exports = ACTION_zhuanlan;
 
 

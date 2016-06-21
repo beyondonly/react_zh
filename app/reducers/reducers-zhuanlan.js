@@ -1,7 +1,6 @@
 var combineReducers = require("redux").combineReducers;
 var ACTION_zhuanlan = require("../actions/action-zhuanlan.js");
 var ReduxThunk = require('redux-thunk').default;
-var API = require("../api/Index_zhuanlan.js")
 
 const ZHUANLANDATE = []
 
