@@ -4,17 +4,16 @@ var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  entry: ['webpack/hot/dev-server','./app/index.jsx'],
+  entry: ['webpack/hot/dev-server','./app/index.js'],
   output: {
     filename: './dist/bundle.js'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['','.js'],
   },
   module: {
     loaders:[
-      { test: /\.jsx$/, exclude: /node_modules/, loader: 'jsx-loader' },
-      { test: /\.js$/, exclude:/node_modules/, loader: 'babel-loader'},
+      { test: /\.js$/, exclude:/node_modules/,loader: 'babel',query: {presets: ['react', 'es2015']}},
       {test: /\.css$/, loader:  ExtractTextPlugin.extract("style-loader", "css-loader")},
       { test: /\.png|.svg$/, loader: "file-loader?name=/aset/[hash:8].[name].[ext]" }
     ]

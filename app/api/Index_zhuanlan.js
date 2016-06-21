@@ -1,12 +1,16 @@
 /**
  * 首页专栏数据接口
  */
-var API = {};
+var action = require("../actions/action-zhuanlan.js");
 
-API.getZhuanlan = function(limit,offset,callback) {
-	$.get("http://127.0.0.1:3000/indexListgetZhuanlan",{"limit":limit,"offset":offset},function(data){
-		callback(data)
-	})
+function fetchDataAsync() {
+  return function (dispatch) {
+  	$.getJSON('http://127.0.0.1:3000/indexListgetZhuanlan?limit=8&offset=8',function(json, textStatus) {
+  	   dispatch(action(json));
+  	});
+  }
 }
+module.exports = fetchDataAsync;
 
-module.exports = API;
+
+

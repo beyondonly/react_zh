@@ -1,16 +1,15 @@
 /**
- * 数据action
+ * 首页推荐专栏action
  */
 
-var API = require("../api/Index_zhuanlan.js");
-
-var ACTION_ZHUANLAN  = {};
-
-ACTION_ZHUANLAN.getdata = function(dispatch, getState) {
-	API.getZhuanlan(8,8,function(data) {
-		dispatch({
-            type: 'DONE_Getlist',
-            payload: data
-        }); 
-	})
+function ACTION_zhuanlan(data) {
+	return {
+		type:"GETLIST",
+		data:data
+	}
 }
+
+module.exports = ACTION_zhuanlan;
+
+
+ 

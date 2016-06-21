@@ -1,24 +1,23 @@
-/**
- * 获取列表
- *
- */
-function getlist() {
-  return {
-    "dsada":"dsada",
-    "dsadaa":"dsada"
-  }
+var combineReducers = require("redux").combineReducers;
+var ACTION_zhuanlan = require("../actions/action-zhuanlan.js");
+var ReduxThunk = require('redux-thunk').default;
+var API = require("../api/Index_zhuanlan.js")
+
+const ZHUANLANDATE = []
+
+function REDUCERS_zhuanlan(state = [], action) {
+   switch (action.type) {
+      case "GETLIST": 
+        return Object.assign({}, state, {
+            ZHUANLANDATE : action.data
+        })
+      default:
+       return state
+   }
 }
 
-/**
- * Reducer
- *
- * @param State
- * @param Action
- *
- * @return new State
- */
-function reducer(state, action) {
-  return "dsadad"
-}
+const ZHUANLANApp = combineReducers({
+  REDUCERS_zhuanlan
+})
 
-module.exports = reducer;
+module.exports = ZHUANLANApp; 
