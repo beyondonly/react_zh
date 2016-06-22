@@ -1,25 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 
+import IndexPage from './containers/index.js';
 
-var App = React.createClass({
-	render: function() {
-		return (
-		    <div className="AppBox">
-				<Topbar />
-				{this.props.children}
-			</div>
-		)
-	}
-})
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import todoApp from './reducers/reducers-zhuanlan.js'
 
-ReactDOM.render((
- <Router history={hashHistory}>
-	<Route  path="/" component={App} >
-	    <IndexRoute component={IndexPage}/>
-		<Route path="index" component={ IndexPage } />
-		<Route path="users" component={ Wenzhang } />
-		<Route path="zhuanlan" component={ Zhuanlan }/>
-	</Route>
- </Router>
-), document.getElementById('zh-react'));
+let store = createStore(todoApp);
+
+let rootElement = document.getElementById('zh-react')
+ReactDOM.render(
+  <Provider store={store}>
+    <IndexPage />
+  </Provider>,
+  rootElement
+)
+
+
+
