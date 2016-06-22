@@ -2,13 +2,22 @@
  * get list data action 
  */
 
-function ACTION_zhuanlan(data) {
+ var $json = require("../api/Index_zhuanlan.js");
+ 
+function receivelist(list) {
 	return {
-		type:"GETLIST",
-		data:data
+	    type: "GETLIST",
+	    list: list
 	}
 }
-module.exports = ACTION_zhuanlan;
 
+function getAllList() {
+  return dispatch => {
+    $json(list => {
+      dispatch(receivelist(list))
+    })
+  }
+}
 
+module.exports = getAllList
  

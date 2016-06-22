@@ -32,7 +32,8 @@
     "redux-router": "^2.0.0",
     "redux-thunk": "^2.1.0",
     "style-loader": "*",
-    "webpack": "*"
+    "webpack": "*",
+    "redux-logger":"*"
   },
   "devDependencies": {
     "babel-core": "^6.3.15",

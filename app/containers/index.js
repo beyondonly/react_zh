@@ -19,11 +19,11 @@ var Indexfooter = require("../components/index_footer/index_footer.js");
 import Reactariticlist from '../components/re-articlist/re-articlist'
 var IndexPage = React.createClass({
 	render: function() {
-		const { dispatch} = this.props
+		const { dispatch,array } = this.props;
 		return (
 	        <div>
 			 	<Index_bg />
-			 	<Reactariticlist array={this.props.array}/>
+			 	<Reactariticlist array={array}/>
 			 	<Reactariticlist1 />
 			 	<Indexfooter />
 			</div>
@@ -31,5 +31,16 @@ var IndexPage = React.createClass({
 	}
 })
 
-export default connect()(IndexPage);
+
+function mapStateToProps(state) {
+  return {
+    array: state.REDUCERS_zhuanlan.ZHUANLANDATE?state.REDUCERS_zhuanlan.ZHUANLANDATE:[]
+  };
+}
+
+export default connect(
+  mapStateToProps
+)(IndexPage);
+
+
 
