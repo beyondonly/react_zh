@@ -18,7 +18,7 @@ import { Router, Route, Link,hashHistory,IndexRoute } from 'react-router'
 
 var getAllList = require("./actions/action-zhuanlan.js")
 
-import css from "./iframe/public/reset.css"
+import css from "./iframe/public/reset.less"
 
 const middleware = process.env.NODE_ENV === 'production' ?
   [ thunk ] :

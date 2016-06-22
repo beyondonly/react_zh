@@ -1,5 +1,5 @@
 var React = require('React');
-require("./re-wenzhang.css")
+require("./re-wenzhang.less")
 var ReactGood = require("../re-good/re-good.js")
 var Reactcomment = require("../re-comments/re-comments.js")
 var ReactZhuan = React.createClass({

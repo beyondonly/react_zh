@@ -3,7 +3,7 @@
  */
 
 var React = require('react');
-require('./re-articlist1.css');
+require('./re-articlist1.less');
 var ReactchangeButton = require("../re-changebuttn/re-changebuttn.js");
 
 var Reactariticlist1 = React.createClass({

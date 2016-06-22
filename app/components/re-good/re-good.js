@@ -1,5 +1,5 @@
 var React = require("React");
-require("./re-good.css")
+require("./re-good.less")
 
 var ReactGood = React.createClass({
 	render: function() {

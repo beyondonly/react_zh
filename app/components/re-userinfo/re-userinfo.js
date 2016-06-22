@@ -5,7 +5,7 @@
 var React = require('React');
 var Link = require('react-router').Link;
 
-require('./re-userinfo.css');
+require('./re-userinfo.less');
 
 var ReactUserinfo = React.createClass({
 	render: function() {

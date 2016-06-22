@@ -4,7 +4,7 @@
 
 var React = require('react');
 
-require('./re-recommend.css');
+require('./re-recommend.less');
 
 var Reactrecommend = React.createClass({
 	render: function() {

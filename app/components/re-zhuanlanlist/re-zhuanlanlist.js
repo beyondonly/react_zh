@@ -1,5 +1,5 @@
 var React = require("React");
-require("./re-zhuanlanlist.css")
+require("./re-zhuanlanlist.less")
 
 var ReactZhuanlanlist = React.createClass({
 	render: function() {

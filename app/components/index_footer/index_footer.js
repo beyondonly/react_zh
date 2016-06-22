@@ -3,7 +3,7 @@
  */
 
 var React = require('react');
-require('./index_footer.css');
+require('./index_footer.less');
 
 var Indexfooter = React.createClass({
 	render: function() {

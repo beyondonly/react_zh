@@ -3,7 +3,7 @@
  */
 
 var React = require('react');
-require('./index_bg.css');
+require('./index_bg.less');
 
 var Index_bg = React.createClass({
 	render: function() {

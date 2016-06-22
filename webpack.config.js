@@ -9,12 +9,12 @@ module.exports = {
     filename: './dist/bundle.js'
   },
   resolve: {
-    extensions: ['','.js'],
+    extensions: ['','.js', '.less','.css'],
   },
   module: {
     loaders:[
       { test: /\.js$/, exclude:/node_modules/,loader: 'babel',query: {presets: ['react', 'es2015']}},
-      {test: /\.css$/, loader:  ExtractTextPlugin.extract("style-loader", "css-loader")},
+      {test: /\.less$/, loader: ExtractTextPlugin.extract("style-loader","css-loader!less-loader")},
       { test: /\.png|.svg$/, loader: "file-loader?name=/aset/[hash:8].[name].[ext]" }
     ]
   },

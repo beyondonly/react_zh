@@ -5,7 +5,7 @@
 import React, { Component, PropTypes } from 'react';
 var ReactchangeButton = require("../re-changebuttn/re-changebuttn.js");
 
-require('./re-articlist.css');
+require('./re-articlist.less');
 
 
 export default class Reactariticlist extends Component {

@@ -1,17 +1,20 @@
 /**
- * 头部组件 by 代小星 
+ * 组件名称: 顶部bar
+ * 功能项: [1.承载页面到导航 2.界面标题显示]
+ * 交互像: 页面向上滑动消失向下滑动显示
+ * by 代小星 
  */
 
 /**
  * 引入业务基本模板包
  */
-import React , { Component } from "react";
-var Link = require('react-router').Link;
+import React , { Component } from 'react';
+import Link from 'react-router';
 
 /**
  * 引入对应less
  */
-import Stylesheets from "./re-topbar.css";
+import Stylesheets from './re-topbar.less';
 
 /**
  * 引入业务相关文件包

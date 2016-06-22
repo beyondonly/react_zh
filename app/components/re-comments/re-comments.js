@@ -1,6 +1,6 @@
 var React = require("React");
 
-require("./re-comments.css")
+require("./re-comments.less")
 
 var Reactcomment = React.createClass({
 	render: function() {

@@ -3,7 +3,7 @@
  */
 
 var React = require('react');
-require('./re-changebuttn.css');
+require('./re-changebuttn.less');
 
 var Reactchangebuttn = React.createClass({
 	render: function() {

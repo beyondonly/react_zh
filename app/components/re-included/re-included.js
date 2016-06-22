@@ -1,6 +1,6 @@
 var React = require('react');
 
-require('./re-included.css');
+require('./re-included.less');
 
 var ReactIncluded = React.createClass({
 	render: function(){
