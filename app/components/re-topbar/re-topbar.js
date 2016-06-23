@@ -1,15 +1,19 @@
 /**
  * 组件名称: 顶部bar
- * 功能项: [1.承载页面到导航 2.界面标题显示]
+ * 功能项: [1.承载页面导航 2.界面标题显示]
  * 交互像: 页面向上滑动消失向下滑动显示
  * by 代小星 
+ */
+
+/**
+ * 更改日志:
  */
 
 /**
  * 引入业务基本模板包
  */
 import React , { Component } from 'react';
-import Link from 'react-router';
+import { Link } from 'react-router';
 
 /**
  * 引入对应less
@@ -24,7 +28,7 @@ import Stylesheets from './re-topbar.less';
 /**
  * 组件开发
  */
-class ReactTopbar extends Component {
+export default class ReactTopbar extends Component {
 	constructor(props) {
 	    super(props)
 	    this.state = {showMuen: false};
@@ -51,4 +55,3 @@ class ReactTopbar extends Component {
 	}
 }
 
-export default ReactTopbar
