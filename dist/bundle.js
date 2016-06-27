@@ -162,12 +162,9 @@ webpackJsonp([0,1],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var getAllList = __webpack_require__(202);
-
 	var middleware = process.env.NODE_ENV === 'production' ? [_reduxThunk2.default] : [_reduxThunk2.default, (0, _reduxLogger2.default)()];
 
 	var store = (0, _redux.createStore)(_reducersZhuanlan2.default, _redux.applyMiddleware.apply(undefined, middleware));
-	store.dispatch(getAllList());
 
 	var rootElement = document.getElementById('zh-react');
 
@@ -20495,6 +20492,10 @@ webpackJsonp([0,1],[
 
 	var _reArticlist2 = _interopRequireDefault(_reArticlist);
 
+	var _actionZhuanlan = __webpack_require__(202);
+
+	var _actionZhuanlan2 = _interopRequireDefault(_actionZhuanlan);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/**
@@ -20515,13 +20516,17 @@ webpackJsonp([0,1],[
 	var Reactariticlist1 = __webpack_require__(273);
 	var Indexfooter = __webpack_require__(276);
 
+
 	var IndexPage = React.createClass({
 		displayName: 'IndexPage',
 
+		componentDidMount: function componentDidMount() {
+			var dispatch = this.props.dispatch;
+
+			dispatch((0, _actionZhuanlan2.default)()); //页面加载完成数据拉取
+		},
 		render: function render() {
-			var _props = this.props;
-			var dispatch = _props.dispatch;
-			var array = _props.array;
+			var array = this.props.array;
 
 			return React.createElement(
 				'div',
@@ -22134,6 +22139,9 @@ webpackJsonp([0,1],[
 		}
 
 		_createClass(Reactariticlist, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -22250,22 +22258,24 @@ webpackJsonp([0,1],[
 
 	"use strict";
 
-	/**
-	 * get list data action 
-	 */
+	var _Index_Async = __webpack_require__(203);
 
-	var $json = __webpack_require__(203);
+	var _Index_Async2 = _interopRequireDefault(_Index_Async);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function receivelist(list) {
 	  return {
 	    type: "GETLIST",
 	    list: list
 	  };
-	}
+	} /**
+	   * 专栏接口
+	   */
 
 	function getAllList() {
 	  return function (dispatch) {
-	    $json(function (list) {
+	    (0, _Index_Async2.default)(function (list) {
 	      dispatch(receivelist(list));
 	    });
 	  };
@@ -22275,22 +22285,29 @@ webpackJsonp([0,1],[
 
 /***/ },
 /* 203 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	/**
 	 * 首页专栏数据接口
 	 */
-	var action = __webpack_require__(202);
 
-	function fetchDataAsync(callback) {
+	//首页文章专栏接口
+	function fetchDataAsynczhuanlanIndex(callback) {
 	  $.getJSON('http://127.0.0.1:3000/indexListgetZhuanlan?limit=8&offset=8', function (json, textStatus) {
 	    callback(json);
 	  });
 	}
 
-	module.exports = fetchDataAsync;
+	//首页文章数据接口
+	function fetchDataAsyncwenzhangIndex(callback) {
+	  $.getJSON('http://127.0.0.1:3000/indexListWenzhang?limit=8&offset=8', function (json, textStatus) {
+	    callback(json);
+	  });
+	}
+
+	module.exports = fetchDataAsynczhuanlanIndex;
 
 /***/ },
 /* 204 */
@@ -28141,7 +28158,7 @@ webpackJsonp([0,1],[
 					React.createElement(
 						'a',
 						null,
-						'关于专栏'
+						'关于'
 					),
 					React.createElement(
 						'span',

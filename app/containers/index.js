@@ -16,15 +16,22 @@ var ReactTopbar = require('../components/re-topbar/re-topbar.js');
 var Index_bg = require('../components/index_bg/index_bg.js');
 var Reactariticlist1 = require("../components/re-articlist1/re-articlist1.js");
 var Indexfooter = require("../components/index_footer/index_footer.js");
-import Reactariticlist from '../components/re-articlist/re-articlist'
+import Reactariticlist from '../components/re-articlist/re-articlist';
+
+import getAllList from "../actions/action-zhuanlan.js";
+
 var IndexPage = React.createClass({
+	componentDidMount: function(){
+		const {dispatch } = this.props;
+		dispatch(getAllList()) //页面加载完成数据拉取
+	},
 	render: function() {
-		const { dispatch,array } = this.props;
+		const {array } = this.props;
 		return (
 	        <div>
 			 	<Index_bg />
 			 	<Reactariticlist array={array}/>
-			 	<Reactariticlist1 />
+			 	<Reactariticlist1/>
 			 	<Indexfooter />
 			</div>
 		)
@@ -34,7 +41,7 @@ var IndexPage = React.createClass({
 
 function mapStateToProps(state) {
   return {
-    array: state.REDUCERS_zhuanlan.ZHUANLANDATE?state.REDUCERS_zhuanlan.ZHUANLANDATE:[]
+    array: state.ReIndexzhuanlan.ZHUANLANDATE?state.ReIndexzhuanlan.ZHUANLANDATE:[]
   };
 }
 

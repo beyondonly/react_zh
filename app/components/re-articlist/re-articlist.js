@@ -9,6 +9,9 @@ require('./re-articlist.less');
 
 
 export default class Reactariticlist extends Component {
+  componentDidMount() {
+  	
+  }
   render() {
     return (
 			<div className = "re-articlist-box">

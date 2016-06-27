@@ -1,8 +1,8 @@
 /**
- * 专栏接口
+ * get list data action 
  */
 
- import $json from "../api/Index_Async.js"
+ var $json = require("../api/Index_zhuanlan.js");
  
 function receivelist(list) {
 	return {

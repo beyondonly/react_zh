@@ -11,7 +11,7 @@ var Indexfooter = React.createClass({
 			<div className="Indexfooter-box">
 				<h3>在知乎创作</h3>
 				<p className = "Indexfooter-box-bottom-bar">
-					<a>关于专栏</a>
+					<a>关于</a>
 					<span>©2016 知乎</span>
 				</p>
 			</div>

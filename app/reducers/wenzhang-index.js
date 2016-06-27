@@ -1,10 +1,10 @@
 var combineReducers = require("redux").combineReducers;
 
 const initialState = {
-	ZHUANLANDATE:[]
+	WENZHANG:[]
 }
 
-export function REDUCERS_zhuanlan(state = [], action) {
+function ReIndexwenzhang(state = [], action) {
    switch (action.type) {
       case "GETLIST": 
         return Object.assign({}, state, {
@@ -15,7 +15,4 @@ export function REDUCERS_zhuanlan(state = [], action) {
    }
 }
 
-export default combineReducers({
-  REDUCERS_zhuanlan
-})
-
+module.exports = ReIndexwenzhang
