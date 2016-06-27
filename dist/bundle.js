@@ -22328,6 +22328,10 @@ webpackJsonp([0,1],[
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 	/**
+	 * 更改日志:
+	 */
+
+	/**
 	 * 引入业务基本模板包
 	 */
 
@@ -22365,18 +22369,52 @@ webpackJsonp([0,1],[
 		}, {
 			key: 'render',
 			value: function render() {
-				var toggerShow = this.state.showMuen ? "ReactTopbar-animationshow" : "";
 				return _react2.default.createElement(
 					'div',
-					{ className: 'ReactTopbar-box' },
-					_react2.default.createElement('a', { className: 'ReactTopbar-box-logo icon-ic_zhihu_logo' }),
+					{ className: 'Rt-topbar' },
+					_react2.default.createElement(
+						'a',
+						{ className: 'logo-link' },
+						_react2.default.createElement('i', { className: 'icon-ic_zhihu_logo' })
+					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'ReactTopbar-box-slidedown' },
-						_react2.default.createElement('i', { className: 'icon-ic_nav_more', onClick: this.handleClick }),
+						{ className: 'titlename' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'titleName-one' },
+							_react2.default.createElement(
+								'p',
+								null,
+								'草稿'
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'titleName-tow' },
+							_react2.default.createElement(
+								'p',
+								{ className: 'bigfont' },
+								'首发于'
+							),
+							_react2.default.createElement(
+								'p',
+								null,
+								'星海航迹'
+							)
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'slidebox' },
+						_react2.default.createElement(
+							'p',
+							{ className: 'slidebox-icon' },
+							_react2.default.createElement('i', { className: 'icon-ic_nav_more', onClick: this.handleClick })
+						),
 						_react2.default.createElement(
 							'ul',
-							{ className: toggerShow },
+							{ className: 'list-box' },
 							_react2.default.createElement(
 								'li',
 								null,

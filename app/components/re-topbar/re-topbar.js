@@ -34,18 +34,30 @@ export default class ReactTopbar extends Component {
 	    this.state = {showMuen: false};
 	}
     
-    handleClick() { 
+    handleClick() {
 		this.setState({showMuen: !this.state.showMuen})
 	}
-    
+
     render() {
-		var toggerShow = this.state.showMuen? "ReactTopbar-animationshow":"";
 		return (
-			<div className = "ReactTopbar-box">
-				<a className ="ReactTopbar-box-logo icon-ic_zhihu_logo"></a>
-				<div className="ReactTopbar-box-slidedown">
-					<i className = "icon-ic_nav_more" onClick={this.handleClick}></i>
-					<ul className = {toggerShow}>
+			<div className = "Rt-topbar">
+				<a className ="logo-link">
+					<i className = "icon-ic_zhihu_logo"></i>
+				</a>
+				<div className = "titlename">
+					<div className = "titleName-one">
+						<p>草稿</p>
+					</div>
+					<div className = "titleName-tow">
+						<p className = "bigfont">首发于</p>
+						<p>星海航迹</p>
+					</div>
+				</div>
+				<div className="slidebox">
+					<p className = "slidebox-icon">
+					   <i className = "icon-ic_nav_more" onClick={this.handleClick}></i>
+					</p>
+					<ul className = "list-box">
 						<li><Link to="/users">草稿</Link></li>
 						<li><Link to="/zhuanlan">我的文章</Link></li>
 					</ul>
