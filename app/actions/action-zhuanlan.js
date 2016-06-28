@@ -12,7 +12,7 @@ function gitZhuanlanList_index(list) {
 	}
 }
 
-export let getAllList = function() {
+export let getzhuanlanlist = function() {
   return dispatch => {
     fetchDataAsynczhuanlanIndex(list => {
       dispatch(gitZhuanlanList_index(list))

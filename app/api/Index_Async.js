@@ -16,6 +16,13 @@ export let fetchDataAsyncwenzhangIndex = function(callback) {
   	});
 }
 
+//文章内容获取
+export let fetchDataAsyncwenzhangcontent = function(callback) {
+	$.getJSON('http://127.0.0.1:3000/getWenzhangText?query=20808659',function(json, textStatus) {
+  	   callback(json);
+  	});
+}
+
 
 
 
