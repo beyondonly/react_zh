@@ -9,21 +9,31 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom'
+import { connect } from 'react-redux';
 
 /**
  * 导入各种组件
  */
-import ReactZhuan from "../components/re-wenzhang/re-wenzhang.js";
+import Reactwenzhang from "../components/re-wenzhang/re-wenzhang.js";
 import ReactIncluded from "../components/re-included/re-included.js";
 import Reactrecommend from "../components/re-recommend/re-recommend.js";
 
+/**
+ * 导入业务模块
+ */
+
+import { getzhuanlanlist } from "../actions/action-webzhanginfo.js";
 
 var Wenzhang = React.createClass({
+	componentDidMount: function(){
+		const {dispatch } = this.props;
+		dispatch(getzhuanlanlist()) //页面加载完成数据拉取
+		dispatch(getwenzhangList()) //页面加载完成数据拉取
+	},
 	render: function() {
 	 return (
 		<div>
-		 	<ReactZhuan/>
+		 	<Reactwenzhang />
 		 	<ReactIncluded />
 		 	<Reactrecommend />
 		</div>
@@ -31,5 +41,5 @@ var Wenzhang = React.createClass({
 	}
 })
 
-module.exports = Wenzhang;
+export default connect()(Wenzhang);
 

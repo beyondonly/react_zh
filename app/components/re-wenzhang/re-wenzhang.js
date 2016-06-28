@@ -1,26 +1,29 @@
 /**
  * 组件名称: 文章内容
- * 功能项: [1.承载页面导航 2.界面标题显示]
- * 交互像: 页面向上滑动消失向下滑动显示
+ * 功能项: 承载文章内容
  * by 代小星 
  */
 
-var React = require('React');
-require("./re-wenzhang.less")
-var ReactGood = require("../re-good/re-good.js")
-var Reactcomment = require("../re-comments/re-comments.js")
+/**
+ * 引入业务基本模板包
+ */
+ import React from 'React';
+ import { connect } from 'react-redux';
+
+ /**
+ * 引入对应less
+ */
+import Styleless from "./re-wenzhang.less"
+
+
+/**
+ * 导入业务模块
+ */
+
+import ReactGood from "../re-good/re-good.js";
+import Reactcomment from "../re-comments/re-comments.js";
+
 var Reactwenzhang = React.createClass({
-	getInitialState: function() {
-    	return {"html":""}
-  	},
-  	componentDidMount: function() {
-  		var that = this;
-		 $.get(that.props.source, function(result) {
-	      	that.setState({
-	      		"html":result.html
-	      	})
-	      })
-	},
 	render: function() {
 		 var ajaxjson= this.state.html.content;
 		 var title = this.state.html.title;
@@ -47,4 +50,4 @@ var Reactwenzhang = React.createClass({
 	}
 })
 
-module.exports = Reactwenzhang;
+export default connect()(Reactwenzhang);
