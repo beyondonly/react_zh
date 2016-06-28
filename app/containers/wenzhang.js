@@ -22,12 +22,12 @@ import Reactrecommend from "../components/re-recommend/re-recommend.js";
  * 导入业务模块
  */
 
-import { getfasycwenzhangcontent } from "../actions/action-wenzhangcontent.js";
+import { getDataAsyncwenzhangcontent } from "../actions/action-wenzhangcontent.js";
 
 var Wenzhang = React.createClass({
 	componentDidMount: function(){
 		const {dispatch } = this.props;
-		dispatch(getfasycwenzhangcontent()) //页面加载完成数据拉取
+		dispatch(getDataAsyncwenzhangcontent()) //页面加载完成数据拉取
 	},
 	render: function() {
 		const {WenzhangContent } = this.props;

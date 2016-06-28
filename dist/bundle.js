@@ -27825,8 +27825,6 @@ webpackJsonp([0,1],[
 
 	var _wenzhangContent = __webpack_require__(259);
 
-	var _wenzhangContent2 = _interopRequireDefault(_wenzhangContent);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/**
@@ -27841,7 +27839,8 @@ webpackJsonp([0,1],[
 	exports.default = (0, _redux.combineReducers)({
 	  ReIndexzhuanlan: _zhuanlanIndex2.default,
 	  ReIndexwenzhang: _wenzhangIndex2.default,
-	  ReWenzhangContent: _wenzhangContent2.default
+	  ReWenzhangContent: _wenzhangContent.ReWenzhangContent,
+	  Regetcommentlist: _wenzhangContent.Regetcommentlist
 	});
 
 	/**
@@ -27906,25 +27905,44 @@ webpackJsonp([0,1],[
 
 	"use strict";
 
-	var initialState = {
-	  WENZHANG: {}
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
+	var initialStateContent = {
+	   WENZHANG: {}
 	};
 
-	function ReIndexwenzhang() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
-	  var action = arguments[1];
+	var initialStateComment = {
+	   commentlist: []
+	};
 
-	  switch (action.type) {
-	    case "GETWENZHANGINDEX":
-	      return Object.assign({}, state, {
-	        WENZHANG: action.content
-	      });
-	    default:
-	      return state;
-	  }
-	}
+	var ReWenzhangContent = exports.ReWenzhangContent = function ReWenzhangContent() {
+	   var state = arguments.length <= 0 || arguments[0] === undefined ? initialStateContent : arguments[0];
+	   var action = arguments[1];
 
-	module.exports = ReIndexwenzhang;
+	   switch (action.type) {
+	      case "GETWENZHANGINDEX":
+	         return Object.assign({}, state, {
+	            WENZHANG: action.content
+	         });
+	      default:
+	         return state;
+	   }
+	};
+
+	var Regetcommentlist = exports.Regetcommentlist = function Regetcommentlist() {
+	   var state = arguments.length <= 0 || arguments[0] === undefined ? initialStateComment : arguments[0];
+	   var action = arguments[1];
+
+	   switch (action.type) {
+	      case "GETCOMMENTS":
+	         return Object.assign({}, state, {
+	            commentlist: action.list
+	         });
+	      default:
+	         return state;
+	   }
+	};
 
 /***/ },
 /* 260 */
@@ -28409,6 +28427,14 @@ webpackJsonp([0,1],[
 	  });
 	};
 
+	//评论数据获取
+	var ferchDatacomments = exports.ferchDatacomments = function ferchDatacomments(callback) {
+	  $.getJSON('http://127.0.0.1:3000/getWenzhangTextcomments', function (json, textStatus) {
+	    console.log(json);
+	    callback(json);
+	  });
+	};
+
 /***/ },
 /* 283 */
 /***/ function(module, exports, __webpack_require__) {
@@ -28460,15 +28486,15 @@ webpackJsonp([0,1],[
 
 	var _reWenzhang2 = _interopRequireDefault(_reWenzhang);
 
-	var _reIncluded = __webpack_require__(319);
+	var _reIncluded = __webpack_require__(320);
 
 	var _reIncluded2 = _interopRequireDefault(_reIncluded);
 
-	var _reRecommend = __webpack_require__(322);
+	var _reRecommend = __webpack_require__(323);
 
 	var _reRecommend2 = _interopRequireDefault(_reRecommend);
 
-	var _actionWenzhangcontent = __webpack_require__(325);
+	var _actionWenzhangcontent = __webpack_require__(319);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28491,7 +28517,7 @@ webpackJsonp([0,1],[
 		componentDidMount: function componentDidMount() {
 			var dispatch = this.props.dispatch;
 
-			dispatch((0, _actionWenzhangcontent.getfasycwenzhangcontent)()); //页面加载完成数据拉取
+			dispatch((0, _actionWenzhangcontent.getDataAsyncwenzhangcontent)()); //页面加载完成数据拉取
 		},
 		render: function render() {
 			var WenzhangContent = this.props.WenzhangContent;
@@ -28556,47 +28582,50 @@ webpackJsonp([0,1],[
 		displayName: 'Reactwenzhang',
 
 		render: function render() {
+			var g_data = this.props.WenzhangContent;
+			var author = g_data.author ? g_data.author.name : "";
+			var topics = g_data.topics ? g_data.topics : [];
+			var likesCount = g_data.likesCount;
+			var lastestLikers = g_data.lastestLikers ? g_data.lastestLikers : [];
+			var gooddata = { likesCount: likesCount, lastestLikers: lastestLikers };
+			var avatar = g_data.author ? g_data.author.avatar : "";
 			return _React2.default.createElement(
 				'div',
 				{ className: 'ReactZhuan-box' },
-				_React2.default.createElement('img', { src: this.props.WenzhangContent.titleImage, className: 'ReactZhuan-box-pagetip' }),
+				_React2.default.createElement('img', { src: g_data.titleImage, className: 'ReactZhuan-box-pagetip' }),
 				_React2.default.createElement(
 					'h1',
 					{ className: 'ReactZhuan-box-multiline2' },
-					this.props.WenzhangContent.title
+					g_data.title
 				),
 				_React2.default.createElement(
 					'div',
 					{ className: 'ReactZhuan-box-meta' },
-					_React2.default.createElement('img', { src: 'http://image.tianjimedia.com/uploadImages/2012/012/2YXG0J416V69.jpg' }),
-					_React2.default.createElement('span', null),
+					_React2.default.createElement('img', { src: avatar }),
 					_React2.default.createElement(
 						'span',
 						null,
-						this.props.WenzhangContent.publishedTime
+						author
+					),
+					_React2.default.createElement(
+						'span',
+						null,
+						g_data.publishedTime
 					)
 				),
-				_React2.default.createElement('div', { className: 'ReactZhuan-box-text', dangerouslySetInnerHTML: { __html: this.props.WenzhangContent.content } }),
+				_React2.default.createElement('div', { className: 'ReactZhuan-box-text', dangerouslySetInnerHTML: { __html: g_data.content } }),
 				_React2.default.createElement(
 					'div',
 					{ className: 'ReactZhuan-box-target' },
-					_React2.default.createElement(
-						'span',
-						null,
-						'零售行业'
-					),
-					_React2.default.createElement(
-						'span',
-						null,
-						'人物传记'
-					),
-					_React2.default.createElement(
-						'span',
-						null,
-						'阅读'
-					)
+					topics.map(function (alist, index) {
+						return _React2.default.createElement(
+							'span',
+							{ key: index },
+							alist.name
+						);
+					})
 				),
-				_React2.default.createElement(_reGood2.default, null),
+				_React2.default.createElement(_reGood2.default, { GoodDate: gooddata }),
 				_React2.default.createElement(_reComments2.default, null)
 			);
 		}
@@ -32153,54 +32182,72 @@ webpackJsonp([0,1],[
 
 	"use strict";
 
-	var React = __webpack_require__(286);
-	__webpack_require__(314);
+	var _React = __webpack_require__(286);
 
-	var ReactGood = React.createClass({
+	var _React2 = _interopRequireDefault(_React);
+
+	var _reGood = __webpack_require__(314);
+
+	var _reGood2 = _interopRequireDefault(_reGood);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * 点赞列表
+	 * by 代小星
+	 */
+
+	/**
+	 * 引入业务基础包
+	 */
+
+	var ReactGood = _React2.default.createClass({
 		displayName: "ReactGood",
 
 		render: function render() {
-			return React.createElement(
+			return _React2.default.createElement(
 				"div",
 				{ className: "ReactGood-box" },
-				React.createElement(
+				_React2.default.createElement(
 					"div",
 					{ className: "ReactGood-box-votes" },
-					React.createElement(
+					_React2.default.createElement(
 						"span",
 						{ className: "ReactGood-box-votesbox" },
-						React.createElement("i", { className: "icon-ic_column_like" }),
-						"32"
+						_React2.default.createElement("i", { className: "icon-ic_column_like" }),
+						this.props.GoodDate.likesCount
 					),
-					React.createElement(
+					_React2.default.createElement(
 						"div",
 						{ className: "ReactGood-box-votesboxsection" },
-						React.createElement(
+						_React2.default.createElement(
 							"span",
 							null,
-							React.createElement("i", { className: "icon-ic_column_share" }),
+							_React2.default.createElement("i", { className: "icon-ic_column_share" }),
 							"分享"
 						),
-						React.createElement(
+						_React2.default.createElement(
 							"span",
 							null,
-							React.createElement("i", { className: "icon-ic_column_report" }),
+							_React2.default.createElement("i", { className: "icon-ic_column_report" }),
 							"举报"
 						)
 					),
-					React.createElement(
+					_React2.default.createElement(
 						"div",
 						{ className: "ReactGood-box-votespeople" },
-						React.createElement("img", { src: "http://h.hiphotos.baidu.com/zhidao/pic/item/c8177f3e6709c93d0f5f00e79b3df8dcd1005474.jpg", alt: "" }),
-						React.createElement("img", { src: "http://h.hiphotos.baidu.com/zhidao/pic/item/c8177f3e6709c93d0f5f00e79b3df8dcd1005474.jpg", alt: "" }),
-						React.createElement("img", { src: "http://h.hiphotos.baidu.com/zhidao/pic/item/c8177f3e6709c93d0f5f00e79b3df8dcd1005474.jpg", alt: "" }),
-						React.createElement("img", { src: "http://h.hiphotos.baidu.com/zhidao/pic/item/c8177f3e6709c93d0f5f00e79b3df8dcd1005474.jpg", alt: "" }),
-						React.createElement("img", { src: "http://h.hiphotos.baidu.com/zhidao/pic/item/c8177f3e6709c93d0f5f00e79b3df8dcd1005474.jpg", alt: "" })
+						this.props.GoodDate.lastestLikers.map(function (alist, index) {
+							return _React2.default.createElement("img", { src: alist.avatar });
+						})
 					)
 				)
 			);
 		}
 	});
+
+	/**
+	 * 导入样式
+	 */
 
 	module.exports = ReactGood;
 
@@ -32217,205 +32264,135 @@ webpackJsonp([0,1],[
 
 	"use strict";
 
-	var React = __webpack_require__(286);
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
 
-	__webpack_require__(317);
+	var _React = __webpack_require__(286);
 
-	var Reactcomment = React.createClass({
+	var _React2 = _interopRequireDefault(_React);
+
+	var _reactRedux = __webpack_require__(171);
+
+	var _reComments = __webpack_require__(317);
+
+	var _reComments2 = _interopRequireDefault(_reComments);
+
+	var _actionWenzhangcontent = __webpack_require__(319);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * 导入样式表
+	 */
+	/**
+	 * pagename {评论组件}
+	 * form {我叫代小星}
+	 * email {fengchuantao@baidu.com}
+	 */
+
+	/**
+	 * 引入业务基础模块
+	 */
+
+
+	var Reactcomment = _React2.default.createClass({
 		displayName: "Reactcomment",
 
+		componentDidMount: function componentDidMount() {
+			var dispatch = this.props.dispatch;
+
+			dispatch((0, _actionWenzhangcontent.getfasycwenzhangcomment)());
+		},
 		render: function render() {
-			return React.createElement(
+			return _React2.default.createElement(
 				"div",
 				{ className: "re-comments-box" },
-				React.createElement(
+				_React2.default.createElement(
 					"h2",
 					null,
-					React.createElement(
+					_React2.default.createElement(
 						"span",
 						null,
-						"文章 · 发现"
+						"9条评论"
 					)
 				),
-				React.createElement(
+				_React2.default.createElement(
 					"div",
 					{ className: "re-comments-box-commentbox" },
-					React.createElement("img", { src: "http://img4.imgtn.bdimg.com/it/u=25955219,1834836773&fm=23&gp=0.jpg" }),
-					React.createElement(
+					_React2.default.createElement("img", { src: "http://img4.imgtn.bdimg.com/it/u=25955219,1834836773&fm=23&gp=0.jpg" }),
+					_React2.default.createElement(
 						"div",
 						{ className: "re-comments-box-commentbox-form" },
-						React.createElement(
+						_React2.default.createElement(
 							"span",
 							{ "class": "holdertext", holdertext: "1", contenteditable: "false" },
 							"写下你的评论"
 						)
 					)
 				),
-				React.createElement(
+				_React2.default.createElement(
 					"div",
 					{ className: "re-comments-box-comment-list" },
-					React.createElement(
-						"div",
-						{ className: "re-comments-box-comment-listone" },
-						React.createElement("img", { src: "http://img4.imgtn.bdimg.com/it/u=25955219,1834836773&fm=23&gp=0.jpg" }),
-						React.createElement(
-							"span",
-							null,
-							"我叫代小星"
-						),
-						React.createElement(
+					this.props.Commlist.map(function (alist, index) {
+						return _React2.default.createElement(
 							"div",
-							{ className: "re-comments-box-comment-listone-text" },
-							"目前在国内的中央集权的策略导致了一些不良后果，背离了以顾客为中心的原则。"
-						),
-						React.createElement(
-							"div",
-							{ className: "re-comments-box-comment-listono-footer" },
-							React.createElement(
+							{ className: "re-comments-box-comment-listone" },
+							_React2.default.createElement("img", { src: alist.author.avatar }),
+							_React2.default.createElement(
 								"span",
 								null,
-								"8小时以前"
+								alist.author.name
 							),
-							React.createElement(
-								"span",
-								null,
-								"回复"
+							_React2.default.createElement(
+								"div",
+								{ className: "re-comments-box-comment-listone-text" },
+								_React2.default.createElement("p", { dangerouslySetInnerHTML: { __html: alist.content } })
 							),
-							React.createElement(
-								"span",
-								null,
-								"赞"
-							),
-							React.createElement(
-								"span",
-								null,
-								"举报"
+							_React2.default.createElement(
+								"div",
+								{ className: "re-comments-box-comment-listono-footer" },
+								_React2.default.createElement(
+									"span",
+									null,
+									alist.createdTime
+								),
+								_React2.default.createElement(
+									"span",
+									null,
+									"回复"
+								),
+								_React2.default.createElement(
+									"span",
+									null,
+									"赞"
+								),
+								_React2.default.createElement(
+									"span",
+									null,
+									"举报"
+								)
 							)
-						)
-					),
-					React.createElement(
-						"div",
-						{ className: "re-comments-box-comment-listone" },
-						React.createElement("img", { src: "http://img4.imgtn.bdimg.com/it/u=25955219,1834836773&fm=23&gp=0.jpg" }),
-						React.createElement(
-							"span",
-							null,
-							"我叫代小星"
-						),
-						React.createElement(
-							"div",
-							{ className: "re-comments-box-comment-listone-text" },
-							"目前在国内的中央集权的策略导致了一些不良后果，背离了以顾客为中心的原则。"
-						),
-						React.createElement(
-							"div",
-							{ className: "re-comments-box-comment-listono-footer" },
-							React.createElement(
-								"span",
-								null,
-								"8小时以前"
-							),
-							React.createElement(
-								"span",
-								null,
-								"回复"
-							),
-							React.createElement(
-								"span",
-								null,
-								"赞"
-							),
-							React.createElement(
-								"span",
-								null,
-								"举报"
-							)
-						)
-					),
-					React.createElement(
-						"div",
-						{ className: "re-comments-box-comment-listone" },
-						React.createElement("img", { src: "http://img4.imgtn.bdimg.com/it/u=25955219,1834836773&fm=23&gp=0.jpg" }),
-						React.createElement(
-							"span",
-							null,
-							"我叫代小星"
-						),
-						React.createElement(
-							"div",
-							{ className: "re-comments-box-comment-listone-text" },
-							"目前在国内的中央集权的策略导致了一些不良后果，背离了以顾客为中心的原则。"
-						),
-						React.createElement(
-							"div",
-							{ className: "re-comments-box-comment-listono-footer" },
-							React.createElement(
-								"span",
-								null,
-								"8小时以前"
-							),
-							React.createElement(
-								"span",
-								null,
-								"回复"
-							),
-							React.createElement(
-								"span",
-								null,
-								"赞"
-							),
-							React.createElement(
-								"span",
-								null,
-								"举报"
-							)
-						)
-					),
-					React.createElement(
-						"div",
-						{ className: "re-comments-box-comment-listone" },
-						React.createElement("img", { src: "http://img4.imgtn.bdimg.com/it/u=25955219,1834836773&fm=23&gp=0.jpg" }),
-						React.createElement(
-							"span",
-							null,
-							"我叫代小星"
-						),
-						React.createElement(
-							"div",
-							{ className: "re-comments-box-comment-listone-text" },
-							"目前在国内的中央集权的策略导致了一些不良后果，背离了以顾客为中心的原则。"
-						),
-						React.createElement(
-							"div",
-							{ className: "re-comments-box-comment-listono-footer" },
-							React.createElement(
-								"span",
-								null,
-								"8小时以前"
-							),
-							React.createElement(
-								"span",
-								null,
-								"回复"
-							),
-							React.createElement(
-								"span",
-								null,
-								"赞"
-							),
-							React.createElement(
-								"span",
-								null,
-								"举报"
-							)
-						)
-					)
+						);
+					})
 				)
 			);
 		}
 	});
 
-	module.exports = Reactcomment;
+	//获取全局state
+
+
+	/**
+	 * 导入业务模块
+	 */
+
+	function getWenzhangConten(state) {
+		return {
+			Commlist: state.Regetcommentlist.commentlist ? state.Regetcommentlist.commentlist : []
+		};
+	}
+	exports.default = (0, _reactRedux.connect)(getWenzhangConten)(Reactcomment);
 
 /***/ },
 /* 317 */
@@ -32428,11 +32405,62 @@ webpackJsonp([0,1],[
 /* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getfasycwenzhangcomment = exports.getDataAsyncwenzhangcontent = undefined;
+
+	var _Index_Async = __webpack_require__(282);
+
+	//获取文章主体内容
+	function getwenzhangcontent(content) {
+	  return {
+	    type: "GETWENZHANGINDEX",
+	    content: content
+	  };
+	}
+
+	//获取文章评论数据
+	/**
+	 * 首页文章列表
+	 * by 代小星
+	 */
+
+	function getcomments(list) {
+	  return {
+	    type: "GETCOMMENTS",
+	    list: list
+	  };
+	};
+
+	//获取文章主体
+	var getDataAsyncwenzhangcontent = exports.getDataAsyncwenzhangcontent = function getDataAsyncwenzhangcontent() {
+	  return function (dispatch) {
+	    (0, _Index_Async.fetchDataAsyncwenzhangcontent)(function (content) {
+	      dispatch(getwenzhangcontent(content));
+	    });
+	  };
+	};
+
+	var getfasycwenzhangcomment = exports.getfasycwenzhangcomment = function getfasycwenzhangcomment() {
+	  return function (dispatch) {
+	    (0, _Index_Async.ferchDatacomments)(function (list) {
+	      dispatch(getcomments(list));
+	    });
+	  };
+	};
+
+/***/ },
+/* 320 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	var React = __webpack_require__(4);
 
-	__webpack_require__(320);
+	__webpack_require__(321);
 
 	var ReactIncluded = React.createClass({
 		displayName: 'ReactIncluded',
@@ -32533,14 +32561,14 @@ webpackJsonp([0,1],[
 	module.exports = ReactIncluded;
 
 /***/ },
-/* 320 */
+/* 321 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 321 */,
-/* 322 */
+/* 322 */,
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32551,7 +32579,7 @@ webpackJsonp([0,1],[
 
 	var React = __webpack_require__(4);
 
-	__webpack_require__(323);
+	__webpack_require__(324);
 
 	var Reactrecommend = React.createClass({
 		displayName: 'Reactrecommend',
@@ -32637,44 +32665,13 @@ webpackJsonp([0,1],[
 	module.exports = Reactrecommend;
 
 /***/ },
-/* 323 */
+/* 324 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 324 */,
-/* 325 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.getfasycwenzhangcontent = undefined;
-
-	var _Index_Async = __webpack_require__(282);
-
-	function getwenzhangcontent(content) {
-	  return {
-	    type: "GETWENZHANGINDEX",
-	    content: content
-	  };
-	} /**
-	   * 首页文章列表
-	   * by 代小星
-	   */
-
-	var getfasycwenzhangcontent = exports.getfasycwenzhangcontent = function getfasycwenzhangcontent() {
-	  return function (dispatch) {
-	    (0, _Index_Async.fetchDataAsyncwenzhangcontent)(function (content) {
-	      dispatch(getwenzhangcontent(content));
-	    });
-	  };
-	};
-
-/***/ },
+/* 325 */,
 /* 326 */
 /***/ function(module, exports, __webpack_require__) {
 

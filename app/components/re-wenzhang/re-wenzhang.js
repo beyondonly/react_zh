@@ -25,22 +25,29 @@ import Reactcomment from "../re-comments/re-comments.js";
 
 var Reactwenzhang = React.createClass({
 	render: function() {
+		var g_data = this.props.WenzhangContent;
+		var author = g_data.author?g_data.author.name:"";
+		var topics = g_data.topics?g_data.topics:[];
+		var likesCount = g_data.likesCount;
+		var lastestLikers = g_data.lastestLikers?g_data.lastestLikers:[];
+		var gooddata = {likesCount:likesCount,lastestLikers:lastestLikers}
+		var avatar = g_data.author?g_data.author.avatar:"";
 		return (
 			<div className = "ReactZhuan-box">
-				<img src= {this.props.WenzhangContent.titleImage} className = "ReactZhuan-box-pagetip"/>
-				<h1 className="ReactZhuan-box-multiline2">{this.props.WenzhangContent.title}</h1>
+				<img src= {g_data.titleImage} className = "ReactZhuan-box-pagetip"/>
+				<h1 className="ReactZhuan-box-multiline2">{g_data.title}</h1>
 				<div className = "ReactZhuan-box-meta">
-					<img src='http://image.tianjimedia.com/uploadImages/2012/012/2YXG0J416V69.jpg' />
-					<span></span>
-					<span>{this.props.WenzhangContent.publishedTime}</span>
+					<img src={avatar}/>
+					<span>{author}</span>
+					<span>{g_data.publishedTime}</span>
 				</div>
-				<div  className = "ReactZhuan-box-text"  dangerouslySetInnerHTML={{__html: this.props.WenzhangContent.content}}/>
+				<div  className = "ReactZhuan-box-text"  dangerouslySetInnerHTML={{__html: g_data.content}}/>
 				<div className = "ReactZhuan-box-target">
-					<span>零售行业</span>
-					<span>人物传记</span>
-					<span>阅读</span>
+					{topics.map((alist, index) =>
+						<span key={index}>{alist.name}</span>
+					)}
 				</div>
-				<ReactGood />
+				<ReactGood GoodDate = {gooddata}/>
 				<Reactcomment />
 			</div>
 		)

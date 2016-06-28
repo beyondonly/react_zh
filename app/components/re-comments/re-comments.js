@@ -1,12 +1,37 @@
-var React = require("React");
+/**
+ * pagename {评论组件}
+ * form {我叫代小星}
+ * email {fengchuantao@baidu.com}
+ */
 
-require("./re-comments.less")
+/**
+ * 引入业务基础模块
+ */
+import React from "React";
+import { connect } from 'react-redux';
+
+/**
+ * 导入样式表
+ */
+import Stylesheet from "./re-comments.less";
+
+
+/**
+ * 导入业务模块
+ */
+
+import { getfasycwenzhangcomment } from "../../actions/action-wenzhangcontent.js";
+
 
 var Reactcomment = React.createClass({
+	componentDidMount: function(){
+		const { dispatch } = this.props;
+		dispatch(getfasycwenzhangcomment())
+	},
 	render: function() {
 		return(
 			<div className = "re-comments-box">
-				<h2><span>文章 · 发现</span></h2>
+				<h2><span>9条评论</span></h2>
 				<div className = "re-comments-box-commentbox">
 					<img src= "http://img4.imgtn.bdimg.com/it/u=25955219,1834836773&fm=23&gp=0.jpg" />
 					<div className = "re-comments-box-commentbox-form">
@@ -14,62 +39,31 @@ var Reactcomment = React.createClass({
 					</div>
 				</div>
 				<div className = "re-comments-box-comment-list">
-					<div className = "re-comments-box-comment-listone">
-						<img src= "http://img4.imgtn.bdimg.com/it/u=25955219,1834836773&fm=23&gp=0.jpg" />
-						<span>我叫代小星</span>
-						<div className = "re-comments-box-comment-listone-text">
-							目前在国内的中央集权的策略导致了一些不良后果，背离了以顾客为中心的原则。
+					{this.props.Commlist.map((alist, index) =>
+						<div className = "re-comments-box-comment-listone">
+							<img src= {alist.author.avatar} />
+							<span>{alist.author.name}</span>
+							<div className = "re-comments-box-comment-listone-text">
+								<p dangerouslySetInnerHTML={{__html: alist.content}}></p>
+							</div>
+							<div className = "re-comments-box-comment-listono-footer">
+								<span>{alist.createdTime}</span>
+								<span>回复</span>
+								<span>赞</span>
+								<span>举报</span>
+							</div>
 						</div>
-						<div className = "re-comments-box-comment-listono-footer">
-							<span>8小时以前</span>
-							<span>回复</span>
-							<span>赞</span>
-							<span>举报</span>
-						</div>
-					</div>
-					<div className = "re-comments-box-comment-listone">
-						<img src= "http://img4.imgtn.bdimg.com/it/u=25955219,1834836773&fm=23&gp=0.jpg" />
-						<span>我叫代小星</span>
-						<div className = "re-comments-box-comment-listone-text">
-							目前在国内的中央集权的策略导致了一些不良后果，背离了以顾客为中心的原则。
-						</div>
-						<div className = "re-comments-box-comment-listono-footer">
-							<span>8小时以前</span>
-							<span>回复</span>
-							<span>赞</span>
-							<span>举报</span>
-						</div>
-					</div>
-					<div className = "re-comments-box-comment-listone">
-						<img src= "http://img4.imgtn.bdimg.com/it/u=25955219,1834836773&fm=23&gp=0.jpg" />
-						<span>我叫代小星</span>
-						<div className = "re-comments-box-comment-listone-text">
-							目前在国内的中央集权的策略导致了一些不良后果，背离了以顾客为中心的原则。
-						</div>
-						<div className = "re-comments-box-comment-listono-footer">
-							<span>8小时以前</span>
-							<span>回复</span>
-							<span>赞</span>
-							<span>举报</span>
-						</div>
-					</div>
-					<div className = "re-comments-box-comment-listone">
-						<img src= "http://img4.imgtn.bdimg.com/it/u=25955219,1834836773&fm=23&gp=0.jpg" />
-						<span>我叫代小星</span>
-						<div className = "re-comments-box-comment-listone-text">
-							目前在国内的中央集权的策略导致了一些不良后果，背离了以顾客为中心的原则。
-						</div>
-						<div className = "re-comments-box-comment-listono-footer">
-							<span>8小时以前</span>
-							<span>回复</span>
-							<span>赞</span>
-							<span>举报</span>
-						</div>
-					</div>
+					)}
 				</div>
 			</div>
 		) 
 	}
 })
 
-module.exports = Reactcomment;
+//获取全局state
+function getWenzhangConten(state) {
+	return {
+		Commlist: state.Regetcommentlist.commentlist?state.Regetcommentlist.commentlist:[]
+	}
+}
+export default connect(getWenzhangConten)(Reactcomment);

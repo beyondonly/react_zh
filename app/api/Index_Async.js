@@ -7,14 +7,14 @@ export let fetchDataAsynczhuanlanIndex = function(callback) {
     $.getJSON('http://127.0.0.1:3000/indexListgetZhuanlan?limit=8&offset=8',function(json, textStatus) {
   	   callback(json);
   	});
-}
+};
 
 //首页文章数据接口
 export let fetchDataAsyncwenzhangIndex = function(callback) {
     $.getJSON('http://127.0.0.1:3000/indexListWenzhang?limit=8&offset=8',function(json, textStatus) {
   	   callback(json);
   	});
-}
+};
 
 //文章内容获取
 export let fetchDataAsyncwenzhangcontent = function(callback) {
@@ -23,6 +23,13 @@ export let fetchDataAsyncwenzhangcontent = function(callback) {
   	});
 }
 
+//评论数据获取
+export let ferchDatacomments = function(callback) {
+	$.getJSON('http://127.0.0.1:3000/getWenzhangTextcomments',function(json, textStatus) {
+       console.log(json)
+  	   callback(json);
+  	});
+}
 
 
 
