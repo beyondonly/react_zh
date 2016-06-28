@@ -1,8 +1,15 @@
+/**
+ * 组件名称: 文章内容
+ * 功能项: [1.承载页面导航 2.界面标题显示]
+ * 交互像: 页面向上滑动消失向下滑动显示
+ * by 代小星 
+ */
+
 var React = require('React');
 require("./re-wenzhang.less")
 var ReactGood = require("../re-good/re-good.js")
 var Reactcomment = require("../re-comments/re-comments.js")
-var ReactZhuan = React.createClass({
+var Reactwenzhang = React.createClass({
 	getInitialState: function() {
     	return {"html":""}
   	},
@@ -40,4 +47,4 @@ var ReactZhuan = React.createClass({
 	}
 })
 
-module.exports = ReactZhuan;
+module.exports = Reactwenzhang;
