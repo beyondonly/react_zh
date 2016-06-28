@@ -17,7 +17,7 @@ export default class Reactariticlist extends Component {
 			<div className = "re-articlist-box">
 				<h2><span>专栏 · 发现</span></h2>
 				<div className= "re-articlist-box-list">
-					{this.props.array.map((alist, index) =>
+					{this.props.zhuanlanarray.map((alist, index) =>
 				        <div className = "re-articlist-box-listone" key={index}>
 							<p className = "re-articlist-box-header"><img src={alist.avatar} /></p>
 							<p className = "re-articlist-box-title">{alist.name}</p>

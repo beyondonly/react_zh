@@ -6,9 +6,9 @@ const initialState = {
 
 function ReIndexwenzhang(state = [], action) {
    switch (action.type) {
-      case "GETLIST": 
+      case "GETWENZHANGINDEX": 
         return Object.assign({}, state, {
-	        ZHUANLANDATE:action.list
+	        WENZHANG:action.list
 	      })
       default:
        return state

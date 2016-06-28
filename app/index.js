@@ -24,7 +24,7 @@ import store from "./stores/stores.configureStore.js"
  */
 import IndexPage from './containers/index.js';
 import Wenzhang from './containers/wenzhang.js';
-import Zhuanlane from './containers/zhuanlan.js';
+import Zhuanlan from './containers/zhuanlan.js';
 import Topbar from "./components/re-topbar/re-topbar.js";
 
 /**
@@ -61,8 +61,8 @@ ReactDOM.render(
  	  <Router history={hashHistory}>
 	    <Route path="/" component={App}>
 	      <IndexRoute component={IndexPage} />
-	      <Route path="users" component={Zhuanlane} />
-		  <Route path="zhuanlan" component={Wenzhang} />
+	      <Route path="Zhuanlan" component={Zhuanlan} />
+		  <Route path="wenzhang" component={Wenzhang} />
 	    </Route>
 	  </Router>
 	</div>

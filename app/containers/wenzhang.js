@@ -1,20 +1,29 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+/**
+ * pagename {文章详细页}
+ * form {我叫代小星}
+ * email {fengchuantao@baidu.com}
+ */
 
-var ReactTopbar = require('../components/re-topbar/re-topbar.js');
-var ReactZhuan = require("../components/re-wenzhang/re-wenzhang.js");
-var ReactIncluded =  require("../components/re-included/re-included.js")
-var Reactrecommend = require("../components/re-recommend/re-recommend.js");
+/**
+ * 引入业务基础模块
+ */
 
-var addons = require('react-addons');
+import React from 'react';
+import ReactDOM from 'react-dom'
 
-var ReactCSSTransitionGroup = addons.CSSTransitionGroup;
+/**
+ * 导入各种组件
+ */
+import ReactZhuan from "../components/re-wenzhang/re-wenzhang.js";
+import ReactIncluded from "../components/re-included/re-included.js";
+import Reactrecommend from "../components/re-recommend/re-recommend.js";
+
 
 var Wenzhang = React.createClass({
 	render: function() {
 	 return (
 		<div>
-		 	<ReactZhuan  source="http://127.0.0.1:3000"/>
+		 	<ReactZhuan/>
 		 	<ReactIncluded />
 		 	<Reactrecommend />
 		</div>
