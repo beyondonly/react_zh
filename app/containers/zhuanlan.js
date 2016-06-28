@@ -1,9 +1,20 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+/**
+ * 专栏页面
+ * by 代小型
+ */
 
-var ReactTopbar = require('../components/re-topbar/re-topbar.js');
-var ReactUserinfo =  require("../components/re-userinfo/re-userinfo.js")
-var ReactZhuanlanlist  =  require("../components/re-zhuanlanlist/re-zhuanlanlist.js")
+/**
+ * 引入基础业务模块
+ */
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+/**
+ * 引入各个页面组件
+ */
+import ReactUserinfo from "../components/re-userinfo/re-userinfo.js";
+import ReactZhuanlanlist from "../components/re-zhuanlanlist/re-zhuanlanlist.js"
 
 var Zhuanlan = React.createClass({
 	render: function() {

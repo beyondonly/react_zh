@@ -16,12 +16,17 @@ import {combineReducers} from "redux"
 
 import ReIndexzhuanlan from "./zhuanlan-index.js";
 import ReIndexwenzhang from "./wenzhang-index.js";
-import {ReWenzhangContent,Regetcommentlist} from "./wenzhang-content.js";
-
+import {ReWenzhangContent,Regetcommentlist,Regetcommentshoulu,Rerecommendations} from "./wenzhang-content.js";
+import { Rezhuanlaninfo ,Rezhuanlanwenzhang} from "./zhuanlanone.js"
+ 
 
 export default combineReducers({
   ReIndexzhuanlan,
   ReIndexwenzhang,
   ReWenzhangContent,
-  Regetcommentlist
+  Regetcommentlist,
+  Regetcommentshoulu,
+  Rerecommendations,
+  Rezhuanlaninfo,
+  Rezhuanlanwenzhang
 })

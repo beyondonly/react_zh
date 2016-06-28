@@ -61,7 +61,7 @@ ReactDOM.render(
  	  <Router history={hashHistory}>
 	    <Route path="/" component={App}>
 	      <IndexRoute component={IndexPage} />
-	      <Route path="Zhuanlan" component={Zhuanlan} />
+	      <Route path="zhuanlan" component={Zhuanlan} />
 		  <Route path="wenzhang" component={Wenzhang} />
 	    </Route>
 	  </Router>

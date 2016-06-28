@@ -1,24 +1,44 @@
 /**
- * 专栏用户信息展现
+ * 专栏用户信息展示组件
+ * by 代小星
  */
 
-var React = require('React');
-var Link = require('react-router').Link;
+/**
+ * 引入业务基础模块
+ */
 
-require('./re-userinfo.less');
+import React from "React";
+import { connect } from 'react-redux';
+
+/**
+ * 导入样式表
+ */
+
+import	Stylesheet from './re-userinfo.less';
+
+/**
+ * 导入业务模块
+ */
+import { getwenzhangList } from "../../actions/action-zhuanlanone.js";
+
 
 var ReactUserinfo = React.createClass({
+	componentDidMount: function(){
+		const { dispatch } = this.props;
+		dispatch(getwenzhangList())
+	},
 	render: function() {
+		const { UserInfo } = this.props;
 		return (
 			<div className = "re-userinfo-box">
 				<div className = "re-userinfo-box-headerlink">
-					<img src= "http://www.bz55.com/uploads/allimg/130524/1-1305241FZ8.jpg" />
+					<img src= {UserInfo.avatar} />
 				</div>
 				<div className = "re-userinfo-box-title">
-					知乎日报
+					{UserInfo.name}
 				</div>
 				<div className = "re-userinfo-box-description">
-					知乎日报启动画面接受所有摄影师朋友们的投稿，将作…
+					{UserInfo.description}
 				</div>
 				<div className = "re-userinfo-box-foucs">
 					<button className = "re-userinfo-box-foucsbutton">关注专栏</button>
@@ -27,17 +47,23 @@ var ReactUserinfo = React.createClass({
 						   <i className = "icon-ic_unfold"></i>
 						</span>
 						<ul className = "re-userinfo-box-muen">
-							<li><Link to = "/nciai">关于</Link></li>
-							<li><Link to = "/nicai">投稿到该专栏</Link></li>
+							<li>关于</li>
+							<li>投稿到该专栏</li>
 						</ul>
 					</div> 
 				</div>
 				<div className = "re-userinfo-box-followers">
-					<span>1846</span> 人关注
+					<span>{UserInfo.followersCount}</span> 人关注
 				</div>
 			</div>
 		)
 	}
 })
 
-module.exports = ReactUserinfo;
+//获取全局state
+function getReactUserinfo(state) {
+	return {
+		UserInfo: state.Rezhuanlaninfo.zhualaninfo?state.Rezhuanlaninfo.zhualaninfo:[]
+	}
+}
+export default connect(getReactUserinfo)(ReactUserinfo);

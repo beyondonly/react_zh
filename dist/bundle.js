@@ -128,23 +128,23 @@ webpackJsonp([0,1],[
 
 	var _storesConfigureStore2 = _interopRequireDefault(_storesConfigureStore);
 
-	var _index = __webpack_require__(260);
+	var _index = __webpack_require__(261);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _wenzhang = __webpack_require__(284);
+	var _wenzhang = __webpack_require__(285);
 
 	var _wenzhang2 = _interopRequireDefault(_wenzhang);
 
-	var _zhuanlan = __webpack_require__(326);
+	var _zhuanlan = __webpack_require__(327);
 
 	var _zhuanlan2 = _interopRequireDefault(_zhuanlan);
 
-	var _reTopbar = __webpack_require__(327);
+	var _reTopbar = __webpack_require__(335);
 
 	var _reTopbar2 = _interopRequireDefault(_reTopbar);
 
-	var _reset = __webpack_require__(336);
+	var _reset = __webpack_require__(338);
 
 	var _reset2 = _interopRequireDefault(_reset);
 
@@ -209,7 +209,7 @@ webpackJsonp([0,1],[
 	        _reactRouter.Route,
 	        { path: '/', component: App },
 	        _react2.default.createElement(_reactRouter.IndexRoute, { component: _index2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: 'Zhuanlan', component: _zhuanlan2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: 'zhuanlan', component: _zhuanlan2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: 'wenzhang', component: _wenzhang2.default })
 	      )
 	    )
@@ -27825,26 +27825,31 @@ webpackJsonp([0,1],[
 
 	var _wenzhangContent = __webpack_require__(259);
 
+	var _zhuanlanone = __webpack_require__(260);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/**
-	 * reducer集合处理
-	 * by 代小星 
-	 * 所有的组件的reducer放在这里
+	 * 导入所有的reducers
 	 */
 
-	/**
-	 * 引入业务基础包
-	 */
 	exports.default = (0, _redux.combineReducers)({
 	  ReIndexzhuanlan: _zhuanlanIndex2.default,
 	  ReIndexwenzhang: _wenzhangIndex2.default,
 	  ReWenzhangContent: _wenzhangContent.ReWenzhangContent,
-	  Regetcommentlist: _wenzhangContent.Regetcommentlist
-	});
+	  Regetcommentlist: _wenzhangContent.Regetcommentlist,
+	  Regetcommentshoulu: _wenzhangContent.Regetcommentshoulu,
+	  Rerecommendations: _wenzhangContent.Rerecommendations,
+	  Rezhuanlaninfo: _zhuanlanone.Rezhuanlaninfo,
+	  Rezhuanlanwenzhang: _zhuanlanone.Rezhuanlanwenzhang
+	}); /**
+	     * reducer集合处理
+	     * by 代小星 
+	     * 所有的组件的reducer放在这里
+	     */
 
 	/**
-	 * 导入所有的reducers
+	 * 引入业务基础包
 	 */
 
 /***/ },
@@ -27906,46 +27911,134 @@ webpackJsonp([0,1],[
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	   value: true
+	  value: true
 	});
 	var initialStateContent = {
-	   WENZHANG: {}
+	  WENZHANG: {}
 	};
 
 	var initialStateComment = {
-	   commentlist: []
+	  commentlist: []
 	};
 
+	var initialStateShoulu = {
+	  Shoulu: []
+	};
+
+	var initialStaterecommenlist = {
+	  recommenlist: []
+	};
+
+	//文章内容
 	var ReWenzhangContent = exports.ReWenzhangContent = function ReWenzhangContent() {
-	   var state = arguments.length <= 0 || arguments[0] === undefined ? initialStateContent : arguments[0];
-	   var action = arguments[1];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialStateContent : arguments[0];
+	  var action = arguments[1];
 
-	   switch (action.type) {
-	      case "GETWENZHANGINDEX":
-	         return Object.assign({}, state, {
-	            WENZHANG: action.content
-	         });
-	      default:
-	         return state;
-	   }
+	  switch (action.type) {
+	    case "GETWENZHANGINDEX":
+	      return Object.assign({}, state, {
+	        WENZHANG: action.content
+	      });
+	    default:
+	      return state;
+	  }
 	};
 
+	//评论列表
 	var Regetcommentlist = exports.Regetcommentlist = function Regetcommentlist() {
-	   var state = arguments.length <= 0 || arguments[0] === undefined ? initialStateComment : arguments[0];
-	   var action = arguments[1];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialStateComment : arguments[0];
+	  var action = arguments[1];
 
-	   switch (action.type) {
-	      case "GETCOMMENTS":
-	         return Object.assign({}, state, {
-	            commentlist: action.list
-	         });
-	      default:
-	         return state;
-	   }
+	  switch (action.type) {
+	    case "GETCOMMENTS":
+	      return Object.assign({}, state, {
+	        commentlist: action.list
+	      });
+	    default:
+	      return state;
+	  }
+	};
+
+	//文章被专栏收录
+	var Regetcommentshoulu = exports.Regetcommentshoulu = function Regetcommentshoulu() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialStateShoulu : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case "GETshoulu":
+	      return Object.assign({}, state, {
+	        Shoulu: action.list
+	      });
+	    default:
+	      return state;
+	  }
+	};
+
+	//相关推荐
+	var Rerecommendations = exports.Rerecommendations = function Rerecommendations() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialStaterecommenlist : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case "RECOMMENT":
+	      return Object.assign({}, state, {
+	        recommenlist: action.list
+	      });
+	    default:
+	      return state;
+	  }
 	};
 
 /***/ },
 /* 260 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * 专栏个人信息
+	 * @type {Object}
+	 */
+	var initialStatezhualaninfo = {
+	  zhualaninfo: {}
+	};
+
+	var initialStatezhualanwenzhang = {
+	  zhualanwenzhang: []
+	};
+	var Rezhuanlaninfo = exports.Rezhuanlaninfo = function Rezhuanlaninfo() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialStatezhualaninfo : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case "GETZHUANLANUSER":
+	      return Object.assign({}, state, {
+	        zhualaninfo: action.content
+	      });
+	    default:
+	      return state;
+	  }
+	};
+
+	var Rezhuanlanwenzhang = exports.Rezhuanlanwenzhang = function Rezhuanlanwenzhang() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialStatezhualanwenzhang : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case "GETZHUANLANWENZHANG":
+	      return Object.assign({}, state, {
+	        zhualanwenzhang: action.list
+	      });
+	    default:
+	      return state;
+	  }
+	};
+
+/***/ },
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27960,25 +28053,25 @@ webpackJsonp([0,1],[
 
 	var _reactRedux = __webpack_require__(171);
 
-	var _index_bg = __webpack_require__(261);
+	var _index_bg = __webpack_require__(262);
 
 	var _index_bg2 = _interopRequireDefault(_index_bg);
 
-	var _reArticlist = __webpack_require__(269);
+	var _reArticlist = __webpack_require__(270);
 
 	var _reArticlist2 = _interopRequireDefault(_reArticlist);
 
-	var _index_footer = __webpack_require__(275);
+	var _index_footer = __webpack_require__(276);
 
 	var _index_footer2 = _interopRequireDefault(_index_footer);
 
-	var _reArticlist3 = __webpack_require__(278);
+	var _reArticlist3 = __webpack_require__(279);
 
 	var _reArticlist4 = _interopRequireDefault(_reArticlist3);
 
-	var _actionZhuanlan = __webpack_require__(281);
+	var _actionZhuanlan = __webpack_require__(282);
 
-	var _actionWenzhang = __webpack_require__(283);
+	var _actionWenzhang = __webpack_require__(284);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28034,7 +28127,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(IndexPage);
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28044,7 +28137,7 @@ webpackJsonp([0,1],[
 	 */
 
 	var React = __webpack_require__(4);
-	__webpack_require__(262);
+	__webpack_require__(263);
 
 	var Index_bg = React.createClass({
 		displayName: 'Index_bg',
@@ -28070,19 +28163,19 @@ webpackJsonp([0,1],[
 	module.exports = Index_bg;
 
 /***/ },
-/* 262 */
+/* 263 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 263 */,
 /* 264 */,
 /* 265 */,
 /* 266 */,
 /* 267 */,
 /* 268 */,
-/* 269 */
+/* 269 */,
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28092,8 +28185,8 @@ webpackJsonp([0,1],[
 	 */
 
 	var React = __webpack_require__(4);
-	__webpack_require__(270);
-	var ReactchangeButton = __webpack_require__(272);
+	__webpack_require__(271);
+	var ReactchangeButton = __webpack_require__(273);
 
 	var Reactariticlist1 = React.createClass({
 		displayName: 'Reactariticlist1',
@@ -28153,14 +28246,14 @@ webpackJsonp([0,1],[
 	module.exports = Reactariticlist1;
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 271 */,
-/* 272 */
+/* 272 */,
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28170,7 +28263,7 @@ webpackJsonp([0,1],[
 	 */
 
 	var React = __webpack_require__(4);
-	__webpack_require__(273);
+	__webpack_require__(274);
 
 	var Reactchangebuttn = React.createClass({
 		displayName: 'Reactchangebuttn',
@@ -28196,14 +28289,14 @@ webpackJsonp([0,1],[
 	module.exports = Reactchangebuttn;
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 274 */,
-/* 275 */
+/* 275 */,
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28213,7 +28306,7 @@ webpackJsonp([0,1],[
 	 */
 
 	var React = __webpack_require__(4);
-	__webpack_require__(276);
+	__webpack_require__(277);
 
 	var Indexfooter = React.createClass({
 		displayName: 'Indexfooter',
@@ -28248,14 +28341,14 @@ webpackJsonp([0,1],[
 	module.exports = Indexfooter;
 
 /***/ },
-/* 276 */
+/* 277 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 277 */,
-/* 278 */
+/* 278 */,
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28280,9 +28373,9 @@ webpackJsonp([0,1],[
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 文章列表 by fengchuatao 
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
-	var ReactchangeButton = __webpack_require__(272);
+	var ReactchangeButton = __webpack_require__(273);
 
-	__webpack_require__(279);
+	__webpack_require__(280);
 
 	var Reactariticlist = function (_Component) {
 		_inherits(Reactariticlist, _Component);
@@ -28356,14 +28449,14 @@ webpackJsonp([0,1],[
 	exports.default = Reactariticlist;
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 280 */,
-/* 281 */
+/* 281 */,
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28373,7 +28466,7 @@ webpackJsonp([0,1],[
 	});
 	exports.getzhuanlanlist = undefined;
 
-	var _Index_Async = __webpack_require__(282);
+	var _Index_Async = __webpack_require__(283);
 
 	function gitZhuanlanList_index(list) {
 	  return {
@@ -28385,6 +28478,7 @@ webpackJsonp([0,1],[
 	   * by 代小星
 	   */
 
+
 	var getzhuanlanlist = exports.getzhuanlanlist = function getzhuanlanlist() {
 	  return function (dispatch) {
 	    (0, _Index_Async.fetchDataAsynczhuanlanIndex)(function (list) {
@@ -28394,7 +28488,7 @@ webpackJsonp([0,1],[
 	};
 
 /***/ },
-/* 282 */
+/* 283 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28430,13 +28524,40 @@ webpackJsonp([0,1],[
 	//评论数据获取
 	var ferchDatacomments = exports.ferchDatacomments = function ferchDatacomments(callback) {
 	  $.getJSON('http://127.0.0.1:3000/getWenzhangTextcomments', function (json, textStatus) {
-	    console.log(json);
+	    callback(json);
+	  });
+	};
+
+	//获取文章收录数据
+	var fetchDataAsyncwenzhangshoulu = exports.fetchDataAsyncwenzhangshoulu = function fetchDataAsyncwenzhangshoulu(callback) {
+	  $.getJSON('http://127.0.0.1:3000/getWenzhangTextcontributed', function (json, textStatus) {
+	    callback(json);
+	  });
+	};
+
+	//推荐阅读
+	var ferchDatarecommendations = exports.ferchDatarecommendations = function ferchDatarecommendations(callback) {
+	  $.getJSON('http://127.0.0.1:3000/recommendations', function (json, textStatus) {
+	    callback(json);
+	  });
+	};
+
+	//专栏信息获取
+	var getzhuanlaninfo = exports.getzhuanlaninfo = function getzhuanlaninfo(callback) {
+	  $.getJSON('http://127.0.0.1:3000/getZhuanlanInfo', function (json, textStatus) {
+	    callback(json);
+	  });
+	};
+
+	//获取专栏文章
+	var getzhuanlanwenzhang = exports.getzhuanlanwenzhang = function getzhuanlanwenzhang(callback) {
+	  $.getJSON('http://127.0.0.1:3000/getZhuanlanposts', function (json, textStatus) {
 	    callback(json);
 	  });
 	};
 
 /***/ },
-/* 283 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28446,7 +28567,7 @@ webpackJsonp([0,1],[
 	});
 	exports.getwenzhangList = undefined;
 
-	var _Index_Async = __webpack_require__(282);
+	var _Index_Async = __webpack_require__(283);
 
 	function getwenzhangindex(list) {
 	  return {
@@ -28467,7 +28588,7 @@ webpackJsonp([0,1],[
 	};
 
 /***/ },
-/* 284 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28482,19 +28603,19 @@ webpackJsonp([0,1],[
 
 	var _reactRedux = __webpack_require__(171);
 
-	var _reWenzhang = __webpack_require__(285);
+	var _reWenzhang = __webpack_require__(286);
 
 	var _reWenzhang2 = _interopRequireDefault(_reWenzhang);
 
-	var _reIncluded = __webpack_require__(320);
+	var _reIncluded = __webpack_require__(321);
 
 	var _reIncluded2 = _interopRequireDefault(_reIncluded);
 
-	var _reRecommend = __webpack_require__(323);
+	var _reRecommend = __webpack_require__(324);
 
 	var _reRecommend2 = _interopRequireDefault(_reRecommend);
 
-	var _actionWenzhangcontent = __webpack_require__(319);
+	var _actionWenzhangcontent = __webpack_require__(320);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28549,26 +28670,26 @@ webpackJsonp([0,1],[
 	exports.default = (0, _reactRedux.connect)(getWenzhangConten)(Wenzhang);
 
 /***/ },
-/* 285 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _React = __webpack_require__(286);
+	var _React = __webpack_require__(287);
 
 	var _React2 = _interopRequireDefault(_React);
 
 	var _reactRedux = __webpack_require__(171);
 
-	var _reWenzhang = __webpack_require__(311);
+	var _reWenzhang = __webpack_require__(312);
 
 	var _reWenzhang2 = _interopRequireDefault(_reWenzhang);
 
-	var _reGood = __webpack_require__(313);
+	var _reGood = __webpack_require__(314);
 
 	var _reGood2 = _interopRequireDefault(_reGood);
 
-	var _reComments = __webpack_require__(316);
+	var _reComments = __webpack_require__(317);
 
 	var _reComments2 = _interopRequireDefault(_reComments);
 
@@ -28648,16 +28769,16 @@ webpackJsonp([0,1],[
 	module.exports = Reactwenzhang;
 
 /***/ },
-/* 286 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(287);
+	module.exports = __webpack_require__(288);
 
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -28675,16 +28796,16 @@ webpackJsonp([0,1],[
 
 	var _assign = __webpack_require__(7);
 
-	var ReactChildren = __webpack_require__(288);
-	var ReactComponent = __webpack_require__(296);
-	var ReactClass = __webpack_require__(303);
-	var ReactDOMFactories = __webpack_require__(306);
-	var ReactElement = __webpack_require__(290);
-	var ReactElementValidator = __webpack_require__(307);
-	var ReactPropTypes = __webpack_require__(308);
-	var ReactVersion = __webpack_require__(309);
+	var ReactChildren = __webpack_require__(289);
+	var ReactComponent = __webpack_require__(297);
+	var ReactClass = __webpack_require__(304);
+	var ReactDOMFactories = __webpack_require__(307);
+	var ReactElement = __webpack_require__(291);
+	var ReactElementValidator = __webpack_require__(308);
+	var ReactPropTypes = __webpack_require__(309);
+	var ReactVersion = __webpack_require__(310);
 
-	var onlyChild = __webpack_require__(310);
+	var onlyChild = __webpack_require__(311);
 	var warning = __webpack_require__(13);
 
 	var createElement = ReactElement.createElement;
@@ -28750,7 +28871,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -28766,11 +28887,11 @@ webpackJsonp([0,1],[
 
 	'use strict';
 
-	var PooledClass = __webpack_require__(289);
-	var ReactElement = __webpack_require__(290);
+	var PooledClass = __webpack_require__(290);
+	var ReactElement = __webpack_require__(291);
 
 	var emptyFunction = __webpack_require__(14);
-	var traverseAllChildren = __webpack_require__(293);
+	var traverseAllChildren = __webpack_require__(294);
 
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
 	var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -28946,7 +29067,7 @@ webpackJsonp([0,1],[
 	module.exports = ReactChildren;
 
 /***/ },
-/* 289 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29071,7 +29192,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 290 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29089,10 +29210,10 @@ webpackJsonp([0,1],[
 
 	var _assign = __webpack_require__(7);
 
-	var ReactCurrentOwner = __webpack_require__(291);
+	var ReactCurrentOwner = __webpack_require__(292);
 
 	var warning = __webpack_require__(13);
-	var canDefineProperty = __webpack_require__(292);
+	var canDefineProperty = __webpack_require__(293);
 
 	// The Symbol used to tag the ReactElement type. If there is no native Symbol
 	// nor polyfill, then a plain number is used for performance.
@@ -29390,7 +29511,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports) {
 
 	/**
@@ -29426,7 +29547,7 @@ webpackJsonp([0,1],[
 	module.exports = ReactCurrentOwner;
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29456,7 +29577,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29472,12 +29593,12 @@ webpackJsonp([0,1],[
 
 	'use strict';
 
-	var ReactCurrentOwner = __webpack_require__(291);
-	var ReactElement = __webpack_require__(290);
+	var ReactCurrentOwner = __webpack_require__(292);
+	var ReactElement = __webpack_require__(291);
 
-	var getIteratorFn = __webpack_require__(294);
+	var getIteratorFn = __webpack_require__(295);
 	var invariant = __webpack_require__(10);
-	var KeyEscapeUtils = __webpack_require__(295);
+	var KeyEscapeUtils = __webpack_require__(296);
 	var warning = __webpack_require__(13);
 
 	var SEPARATOR = '.';
@@ -29620,7 +29741,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 294 */
+/* 295 */
 /***/ function(module, exports) {
 
 	/**
@@ -29665,7 +29786,7 @@ webpackJsonp([0,1],[
 	module.exports = getIteratorFn;
 
 /***/ },
-/* 295 */
+/* 296 */
 /***/ function(module, exports) {
 
 	/**
@@ -29728,7 +29849,7 @@ webpackJsonp([0,1],[
 	module.exports = KeyEscapeUtils;
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29744,10 +29865,10 @@ webpackJsonp([0,1],[
 
 	'use strict';
 
-	var ReactNoopUpdateQueue = __webpack_require__(297);
-	var ReactInstrumentation = __webpack_require__(298);
+	var ReactNoopUpdateQueue = __webpack_require__(298);
+	var ReactInstrumentation = __webpack_require__(299);
 
-	var canDefineProperty = __webpack_require__(292);
+	var canDefineProperty = __webpack_require__(293);
 	var emptyObject = __webpack_require__(29);
 	var invariant = __webpack_require__(10);
 	var warning = __webpack_require__(13);
@@ -29855,7 +29976,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 297 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29956,7 +30077,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 298 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -29972,12 +30093,12 @@ webpackJsonp([0,1],[
 
 	'use strict';
 
-	var ReactDebugTool = __webpack_require__(299);
+	var ReactDebugTool = __webpack_require__(300);
 
 	module.exports = { debugTool: ReactDebugTool };
 
 /***/ },
-/* 299 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -30217,9 +30338,9 @@ webpackJsonp([0,1],[
 	};
 
 	if (process.env.NODE_ENV !== 'production') {
-	  var ReactInvalidSetStateWarningDevTool = __webpack_require__(300);
-	  var ReactNativeOperationHistoryDevtool = __webpack_require__(301);
-	  var ReactComponentTreeDevtool = __webpack_require__(302);
+	  var ReactInvalidSetStateWarningDevTool = __webpack_require__(301);
+	  var ReactNativeOperationHistoryDevtool = __webpack_require__(302);
+	  var ReactComponentTreeDevtool = __webpack_require__(303);
 	  ReactDebugTool.addDevtool(ReactInvalidSetStateWarningDevTool);
 	  ReactDebugTool.addDevtool(ReactComponentTreeDevtool);
 	  ReactDebugTool.addDevtool(ReactNativeOperationHistoryDevtool);
@@ -30233,7 +30354,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 300 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -30275,7 +30396,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 301 */
+/* 302 */
 /***/ function(module, exports) {
 
 	/**
@@ -30317,7 +30438,7 @@ webpackJsonp([0,1],[
 	module.exports = ReactNativeOperationHistoryDevtool;
 
 /***/ },
-/* 302 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -30468,7 +30589,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 303 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -30486,11 +30607,11 @@ webpackJsonp([0,1],[
 
 	var _assign = __webpack_require__(7);
 
-	var ReactComponent = __webpack_require__(296);
-	var ReactElement = __webpack_require__(290);
-	var ReactPropTypeLocations = __webpack_require__(304);
-	var ReactPropTypeLocationNames = __webpack_require__(305);
-	var ReactNoopUpdateQueue = __webpack_require__(297);
+	var ReactComponent = __webpack_require__(297);
+	var ReactElement = __webpack_require__(291);
+	var ReactPropTypeLocations = __webpack_require__(305);
+	var ReactPropTypeLocationNames = __webpack_require__(306);
+	var ReactNoopUpdateQueue = __webpack_require__(298);
 
 	var emptyObject = __webpack_require__(29);
 	var invariant = __webpack_require__(10);
@@ -31198,7 +31319,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 304 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -31225,7 +31346,7 @@ webpackJsonp([0,1],[
 	module.exports = ReactPropTypeLocations;
 
 /***/ },
-/* 305 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -31255,7 +31376,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 306 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -31271,8 +31392,8 @@ webpackJsonp([0,1],[
 
 	'use strict';
 
-	var ReactElement = __webpack_require__(290);
-	var ReactElementValidator = __webpack_require__(307);
+	var ReactElement = __webpack_require__(291);
+	var ReactElementValidator = __webpack_require__(308);
 
 	var mapObject = __webpack_require__(37);
 
@@ -31437,7 +31558,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 307 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -31460,13 +31581,13 @@ webpackJsonp([0,1],[
 
 	'use strict';
 
-	var ReactElement = __webpack_require__(290);
-	var ReactPropTypeLocations = __webpack_require__(304);
-	var ReactPropTypeLocationNames = __webpack_require__(305);
-	var ReactCurrentOwner = __webpack_require__(291);
+	var ReactElement = __webpack_require__(291);
+	var ReactPropTypeLocations = __webpack_require__(305);
+	var ReactPropTypeLocationNames = __webpack_require__(306);
+	var ReactCurrentOwner = __webpack_require__(292);
 
-	var canDefineProperty = __webpack_require__(292);
-	var getIteratorFn = __webpack_require__(294);
+	var canDefineProperty = __webpack_require__(293);
+	var getIteratorFn = __webpack_require__(295);
 	var invariant = __webpack_require__(10);
 	var warning = __webpack_require__(13);
 
@@ -31724,7 +31845,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 308 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -31740,11 +31861,11 @@ webpackJsonp([0,1],[
 
 	'use strict';
 
-	var ReactElement = __webpack_require__(290);
-	var ReactPropTypeLocationNames = __webpack_require__(305);
+	var ReactElement = __webpack_require__(291);
+	var ReactPropTypeLocationNames = __webpack_require__(306);
 
 	var emptyFunction = __webpack_require__(14);
-	var getIteratorFn = __webpack_require__(294);
+	var getIteratorFn = __webpack_require__(295);
 
 	/**
 	 * Collection of methods that allow declaration and validation of props that are
@@ -32109,7 +32230,7 @@ webpackJsonp([0,1],[
 	module.exports = ReactPropTypes;
 
 /***/ },
-/* 309 */
+/* 310 */
 /***/ function(module, exports) {
 
 	/**
@@ -32128,7 +32249,7 @@ webpackJsonp([0,1],[
 	module.exports = '15.1.0';
 
 /***/ },
-/* 310 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -32143,7 +32264,7 @@ webpackJsonp([0,1],[
 	 */
 	'use strict';
 
-	var ReactElement = __webpack_require__(290);
+	var ReactElement = __webpack_require__(291);
 
 	var invariant = __webpack_require__(10);
 
@@ -32170,23 +32291,23 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 311 */
+/* 312 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 312 */,
-/* 313 */
+/* 313 */,
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _React = __webpack_require__(286);
+	var _React = __webpack_require__(287);
 
 	var _React2 = _interopRequireDefault(_React);
 
-	var _reGood = __webpack_require__(314);
+	var _reGood = __webpack_require__(315);
 
 	var _reGood2 = _interopRequireDefault(_reGood);
 
@@ -32252,14 +32373,14 @@ webpackJsonp([0,1],[
 	module.exports = ReactGood;
 
 /***/ },
-/* 314 */
+/* 315 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 315 */,
-/* 316 */
+/* 316 */,
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -32268,17 +32389,17 @@ webpackJsonp([0,1],[
 		value: true
 	});
 
-	var _React = __webpack_require__(286);
+	var _React = __webpack_require__(287);
 
 	var _React2 = _interopRequireDefault(_React);
 
 	var _reactRedux = __webpack_require__(171);
 
-	var _reComments = __webpack_require__(317);
+	var _reComments = __webpack_require__(318);
 
 	var _reComments2 = _interopRequireDefault(_reComments);
 
-	var _actionWenzhangcontent = __webpack_require__(319);
+	var _actionWenzhangcontent = __webpack_require__(320);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32395,14 +32516,14 @@ webpackJsonp([0,1],[
 	exports.default = (0, _reactRedux.connect)(getWenzhangConten)(Reactcomment);
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 318 */,
-/* 319 */
+/* 319 */,
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -32410,9 +32531,9 @@ webpackJsonp([0,1],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.getfasycwenzhangcomment = exports.getDataAsyncwenzhangcontent = undefined;
+	exports.actionrecommendations = exports.getwenzhangShoulu = exports.getfasycwenzhangcomment = exports.getDataAsyncwenzhangcontent = undefined;
 
-	var _Index_Async = __webpack_require__(282);
+	var _Index_Async = __webpack_require__(283);
 
 	//获取文章主体内容
 	function getwenzhangcontent(content) {
@@ -32435,6 +32556,22 @@ webpackJsonp([0,1],[
 	  };
 	};
 
+	//文章收录action
+	function getcommentsShoulu(list) {
+	  return {
+	    type: "GETshoulu",
+	    list: list
+	  };
+	};
+
+	//推荐阅读
+	function recommendations(list) {
+	  return {
+	    type: "RECOMMENT",
+	    list: list
+	  };
+	}
+
 	//获取文章主体
 	var getDataAsyncwenzhangcontent = exports.getDataAsyncwenzhangcontent = function getDataAsyncwenzhangcontent() {
 	  return function (dispatch) {
@@ -32444,6 +32581,7 @@ webpackJsonp([0,1],[
 	  };
 	};
 
+	//获取评论数据
 	var getfasycwenzhangcomment = exports.getfasycwenzhangcomment = function getfasycwenzhangcomment() {
 	  return function (dispatch) {
 	    (0, _Index_Async.ferchDatacomments)(function (list) {
@@ -32452,247 +32590,295 @@ webpackJsonp([0,1],[
 	  };
 	};
 
+	//获取收录数据
+	var getwenzhangShoulu = exports.getwenzhangShoulu = function getwenzhangShoulu() {
+	  return function (dispatch) {
+	    (0, _Index_Async.fetchDataAsyncwenzhangshoulu)(function (list) {
+	      dispatch(getcommentsShoulu(list));
+	    });
+	  };
+	};
+
+	//推荐文档数据
+	var actionrecommendations = exports.actionrecommendations = function actionrecommendations() {
+	  return function (dispatch) {
+	    (0, _Index_Async.ferchDatarecommendations)(function (list) {
+	      dispatch(recommendations(list));
+	    });
+	  };
+	};
+
 /***/ },
-/* 320 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	var React = __webpack_require__(4);
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
 
-	__webpack_require__(321);
+	var _React = __webpack_require__(287);
 
-	var ReactIncluded = React.createClass({
-		displayName: 'ReactIncluded',
+	var _React2 = _interopRequireDefault(_React);
 
+	var _reactRedux = __webpack_require__(171);
+
+	var _reIncluded = __webpack_require__(322);
+
+	var _reIncluded2 = _interopRequireDefault(_reIncluded);
+
+	var _actionWenzhangcontent = __webpack_require__(320);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * 导入样式表
+	 */
+	/**
+	 * pagename {收录组件}
+	 * form {我叫代小星}
+	 * email {fengchuantao@baidu.com}
+	 */
+
+	/**
+	 * 引入业务基础模块
+	 */
+
+
+	var ReactIncluded = _React2.default.createClass({
+		displayName: "ReactIncluded",
+
+		componentDidMount: function componentDidMount() {
+			var dispatch = this.props.dispatch;
+
+			dispatch((0, _actionWenzhangcontent.getwenzhangShoulu)());
+		},
 		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'ReactIncluded-box' },
-				React.createElement(
-					'h2',
+			var Shoulu = this.props.Shoulu;
+			return _React2.default.createElement(
+				"div",
+				{ className: "ReactIncluded-box" },
+				_React2.default.createElement(
+					"h2",
 					null,
-					React.createElement(
-						'span',
+					_React2.default.createElement(
+						"span",
 						null,
-						'文章被以下专栏收录'
+						"文章被以下专栏收录"
 					)
 				),
-				React.createElement(
-					'div',
-					{ className: 'ReactIncluded-box-list' },
-					React.createElement(
-						'div',
-						{ className: 'ReactIncluded-box-listbox' },
-						React.createElement(
-							'p',
-							{ className: 'ReactIncluded-box-header' },
-							React.createElement('img', { src: 'http://img5.imgtn.bdimg.com/it/u=2012368586,3454035391&fm=23&gp=0.jpg' })
-						),
-						React.createElement(
-							'p',
-							{ className: 'ReactIncluded-box-title' },
-							'求智集'
-						),
-						React.createElement(
-							'p',
-							{ className: 'ReactIncluded-box-intro' },
-							'每天临睡前比清晨醒来时更智慧一点。'
-						),
-						React.createElement(
-							'a',
-							{ className: 'ReactIncluded-box-link' },
-							'进入专栏'
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'ReactIncluded-box-listbox' },
-						React.createElement(
-							'p',
-							{ className: 'ReactIncluded-box-header' },
-							React.createElement('img', { src: 'http://img5.imgtn.bdimg.com/it/u=2012368586,3454035391&fm=23&gp=0.jpg' })
-						),
-						React.createElement(
-							'p',
-							{ className: 'ReactIncluded-box-title' },
-							'求智集'
-						),
-						React.createElement(
-							'p',
-							{ className: 'ReactIncluded-box-intro' },
-							'每天临睡前比清晨醒来时更智慧一点。'
-						),
-						React.createElement(
-							'a',
-							{ className: 'ReactIncluded-box-link' },
-							'进入专栏'
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'ReactIncluded-box-listbox' },
-						React.createElement(
-							'p',
-							{ className: 'ReactIncluded-box-header' },
-							React.createElement('img', { src: 'http://img5.imgtn.bdimg.com/it/u=2012368586,3454035391&fm=23&gp=0.jpg' })
-						),
-						React.createElement(
-							'p',
-							{ className: 'ReactIncluded-box-title' },
-							'求智集'
-						),
-						React.createElement(
-							'p',
-							{ className: 'ReactIncluded-box-intro' },
-							'每天临睡前比清晨醒来时更智慧一点。'
-						),
-						React.createElement(
-							'a',
-							{ className: 'ReactIncluded-box-link' },
-							'进入专栏'
-						)
-					)
+				_React2.default.createElement(
+					"div",
+					{ className: "ReactIncluded-box-list" },
+					Shoulu.map(function (alist, index) {
+						return _React2.default.createElement(
+							"div",
+							{ className: "ReactIncluded-box-listbox", key: index },
+							_React2.default.createElement(
+								"p",
+								{ className: "ReactIncluded-box-header" },
+								_React2.default.createElement("img", { src: alist.sourceColumn.image_url })
+							),
+							_React2.default.createElement(
+								"p",
+								{ className: "ReactIncluded-box-title" },
+								alist.sourceColumn.name
+							),
+							_React2.default.createElement(
+								"p",
+								{ className: "ReactIncluded-box-intro" },
+								alist.sourceColumn.description
+							),
+							_React2.default.createElement(
+								"a",
+								{ className: "ReactIncluded-box-link" },
+								"进入专栏"
+							)
+						);
+					})
 				)
 			);
 		}
 	});
 
-	module.exports = ReactIncluded;
+	//获取全局state
+
+
+	/**
+	 * 导入业务模块
+	 */
+
+	function getWenzhangContenShoulu(state) {
+		return {
+			Shoulu: state.Regetcommentshoulu.Shoulu ? state.Regetcommentshoulu.Shoulu : []
+		};
+	}
+	exports.default = (0, _reactRedux.connect)(getWenzhangContenShoulu)(ReactIncluded);
 
 /***/ },
-/* 321 */
+/* 322 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 322 */,
-/* 323 */
+/* 323 */,
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(4);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(171);
+
+	var _reRecommend = __webpack_require__(325);
+
+	var _reRecommend2 = _interopRequireDefault(_reRecommend);
+
+	var _actionWenzhangcontent = __webpack_require__(320);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	/**
-	 * 头部组件 by fengchuatao 
+	 * 导入样式表
 	 */
 
-	var React = __webpack_require__(4);
+	/**
+	 * 推荐阅读组件
+	 * by 代小星
+	 */
 
-	__webpack_require__(324);
+	/**
+	 * 引入业务基础库
+	 */
 
-	var Reactrecommend = React.createClass({
+
+	var Reactrecommend = _react2.default.createClass({
 		displayName: 'Reactrecommend',
 
+		componentDidMount: function componentDidMount() {
+			var dispatch = this.props.dispatch;
+
+			dispatch((0, _actionWenzhangcontent.actionrecommendations)());
+		},
 		render: function render() {
-			return React.createElement(
+			var RECOMMENT = this.props.RECOMMENT;
+
+			return _react2.default.createElement(
 				'div',
 				{ className: 'Reactrecommend-box' },
-				React.createElement(
+				_react2.default.createElement(
 					'h2',
 					null,
-					React.createElement(
+					_react2.default.createElement(
 						'span',
 						null,
 						'推荐阅读'
 					)
 				),
-				React.createElement(
+				_react2.default.createElement(
 					'div',
 					{ className: 'Reactrecommend-box-list' },
-					React.createElement(
-						'div',
-						{ className: 'Reactrecommend-box-listone' },
-						React.createElement('img', { src: 'http://www.bz55.com/uploads/allimg/130524/1-1305241FZ8.jpg' }),
-						React.createElement(
+					RECOMMENT.map(function (alist, index) {
+						return _react2.default.createElement(
 							'div',
-							{ className: 'Reactrecommend-box-listone-isolate' },
-							React.createElement(
-								'h1',
-								{ className: 'Reactrecommend-box-listone-isolate-title' },
-								'假冒侵权品作促销赠品？属其他商标侵权行为！'
-							),
-							React.createElement(
-								'p',
-								null,
-								'璞琳说法'
+							{ className: 'Reactrecommend-box-listone' },
+							_react2.default.createElement('img', { src: alist.image_url }),
+							_react2.default.createElement(
+								'div',
+								{ className: 'Reactrecommend-box-listone-isolate' },
+								_react2.default.createElement(
+									'h1',
+									{ className: 'Reactrecommend-box-listone-isolate-title' },
+									alist.title
+								),
+								_react2.default.createElement(
+									'p',
+									null,
+									'编辑精选'
+								)
 							)
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'Reactrecommend-box-listone' },
-						React.createElement('img', { src: 'http://www.bz55.com/uploads/allimg/130524/1-1305241FZ8.jpg' }),
-						React.createElement(
-							'div',
-							{ className: 'Reactrecommend-box-listone-isolate' },
-							React.createElement(
-								'h1',
-								{ className: 'Reactrecommend-box-listone-isolate-title' },
-								'假冒侵权品作促销赠品？属其他商标侵权行为！'
-							),
-							React.createElement(
-								'p',
-								null,
-								'璞琳说法'
-							)
-						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'Reactrecommend-box-listone' },
-						React.createElement('img', { src: 'http://www.bz55.com/uploads/allimg/130524/1-1305241FZ8.jpg' }),
-						React.createElement(
-							'div',
-							{ className: 'Reactrecommend-box-listone-isolate' },
-							React.createElement(
-								'h1',
-								{ className: 'Reactrecommend-box-listone-isolate-title' },
-								'假冒侵权品作促销赠品？属其他商标侵权行为！'
-							),
-							React.createElement(
-								'p',
-								null,
-								'璞琳说法'
-							)
-						)
-					)
+						);
+					})
 				)
 			);
 		}
 	});
 
-	module.exports = Reactrecommend;
+	//获取全局state
+
+
+	/**
+	 * 导入业务模块
+	 */
+
+	function getReactcommentstore(state) {
+		return {
+			RECOMMENT: state.Rerecommendations.recommenlist ? state.Rerecommendations.recommenlist : []
+		};
+	}
+	exports.default = (0, _reactRedux.connect)(getReactcommentstore)(Reactrecommend);
 
 /***/ },
-/* 324 */
+/* 325 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 325 */,
-/* 326 */
+/* 326 */,
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var React = __webpack_require__(4);
-	var ReactDOM = __webpack_require__(41);
+	var _react = __webpack_require__(4);
 
-	var ReactTopbar = __webpack_require__(327);
-	var ReactUserinfo = __webpack_require__(330);
-	var ReactZhuanlanlist = __webpack_require__(333);
+	var _react2 = _interopRequireDefault(_react);
 
-	var Zhuanlan = React.createClass({
+	var _reactDom = __webpack_require__(41);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _reUserinfo = __webpack_require__(328);
+
+	var _reUserinfo2 = _interopRequireDefault(_reUserinfo);
+
+	var _reZhuanlanlist = __webpack_require__(332);
+
+	var _reZhuanlanlist2 = _interopRequireDefault(_reZhuanlanlist);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * 引入各个页面组件
+	 */
+	/**
+	 * 专栏页面
+	 * by 代小型
+	 */
+
+	/**
+	 * 引入基础业务模块
+	 */
+
+	var Zhuanlan = _react2.default.createClass({
 		displayName: 'Zhuanlan',
 
 		render: function render() {
-			return React.createElement(
+			return _react2.default.createElement(
 				'div',
 				{ className: 'Reactzhuanlan' },
-				React.createElement(ReactUserinfo, null),
-				React.createElement(ReactZhuanlanlist, null)
+				_react2.default.createElement(_reUserinfo2.default, null),
+				_react2.default.createElement(_reZhuanlanlist2.default, null)
 			);
 		}
 	});
@@ -32700,7 +32886,329 @@ webpackJsonp([0,1],[
 	module.exports = Zhuanlan;
 
 /***/ },
-/* 327 */
+/* 328 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _React = __webpack_require__(287);
+
+	var _React2 = _interopRequireDefault(_React);
+
+	var _reactRedux = __webpack_require__(171);
+
+	var _reUserinfo = __webpack_require__(329);
+
+	var _reUserinfo2 = _interopRequireDefault(_reUserinfo);
+
+	var _actionZhuanlanone = __webpack_require__(331);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * 导入样式表
+	 */
+
+	/**
+	 * 专栏用户信息展示组件
+	 * by 代小星
+	 */
+
+	/**
+	 * 引入业务基础模块
+	 */
+
+	var ReactUserinfo = _React2.default.createClass({
+		displayName: 'ReactUserinfo',
+
+		componentDidMount: function componentDidMount() {
+			var dispatch = this.props.dispatch;
+
+			dispatch((0, _actionZhuanlanone.getwenzhangList)());
+		},
+		render: function render() {
+			var UserInfo = this.props.UserInfo;
+
+			return _React2.default.createElement(
+				'div',
+				{ className: 're-userinfo-box' },
+				_React2.default.createElement(
+					'div',
+					{ className: 're-userinfo-box-headerlink' },
+					_React2.default.createElement('img', { src: UserInfo.avatar })
+				),
+				_React2.default.createElement(
+					'div',
+					{ className: 're-userinfo-box-title' },
+					UserInfo.name
+				),
+				_React2.default.createElement(
+					'div',
+					{ className: 're-userinfo-box-description' },
+					UserInfo.description
+				),
+				_React2.default.createElement(
+					'div',
+					{ className: 're-userinfo-box-foucs' },
+					_React2.default.createElement(
+						'button',
+						{ className: 're-userinfo-box-foucsbutton' },
+						'关注专栏'
+					),
+					_React2.default.createElement(
+						'div',
+						{ className: 're-userinfo-box-slidedown' },
+						_React2.default.createElement(
+							'span',
+							null,
+							_React2.default.createElement('i', { className: 'icon-ic_unfold' })
+						),
+						_React2.default.createElement(
+							'ul',
+							{ className: 're-userinfo-box-muen' },
+							_React2.default.createElement(
+								'li',
+								null,
+								'关于'
+							),
+							_React2.default.createElement(
+								'li',
+								null,
+								'投稿到该专栏'
+							)
+						)
+					)
+				),
+				_React2.default.createElement(
+					'div',
+					{ className: 're-userinfo-box-followers' },
+					_React2.default.createElement(
+						'span',
+						null,
+						UserInfo.followersCount
+					),
+					' 人关注'
+				)
+			);
+		}
+	});
+
+	//获取全局state
+
+
+	/**
+	 * 导入业务模块
+	 */
+	function getReactUserinfo(state) {
+		return {
+			UserInfo: state.Rezhuanlaninfo.zhualaninfo ? state.Rezhuanlaninfo.zhualaninfo : []
+		};
+	}
+	exports.default = (0, _reactRedux.connect)(getReactUserinfo)(ReactUserinfo);
+
+/***/ },
+/* 329 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 330 */,
+/* 331 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getwenzhangwenzhangfn = exports.getwenzhangList = undefined;
+
+	var _Index_Async = __webpack_require__(283);
+
+	//获取专栏信息
+	function getzhuanlanoneinfo(content) {
+	  return {
+	    type: "GETZHUANLANUSER",
+	    content: content
+	  };
+	}
+
+	//获取专栏文章
+	/**
+	 * 个人专栏action
+	 * by 代小星
+	 */
+
+	function getwenzhangwenzhangaction(list) {
+	  return {
+	    type: "GETZHUANLANWENZHANG",
+	    list: list
+	  };
+	}
+
+	//获取专栏信息
+	var getwenzhangList = exports.getwenzhangList = function getwenzhangList() {
+	  return function (dispatch) {
+	    (0, _Index_Async.getzhuanlaninfo)(function (content) {
+	      dispatch(getzhuanlanoneinfo(content));
+	    });
+	  };
+	};
+
+	//获取专栏文章
+	var getwenzhangwenzhangfn = exports.getwenzhangwenzhangfn = function getwenzhangwenzhangfn() {
+	  return function (dispatch) {
+	    (0, _Index_Async.getzhuanlanwenzhang)(function (content) {
+	      dispatch(getwenzhangwenzhangaction(content));
+	    });
+	  };
+	};
+
+/***/ },
+/* 332 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _React = __webpack_require__(287);
+
+	var _React2 = _interopRequireDefault(_React);
+
+	var _reactRedux = __webpack_require__(171);
+
+	var _reZhuanlanlist = __webpack_require__(333);
+
+	var _reZhuanlanlist2 = _interopRequireDefault(_reZhuanlanlist);
+
+	var _actionZhuanlanone = __webpack_require__(331);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * 导入样式表
+	 */
+
+	/**
+	 * 专栏文章列表组件
+	 * by 代小星
+	 */
+
+	/**
+	 * 引入业务基础模块
+	 */
+
+	var ReactZhuanlanlist = _React2.default.createClass({
+		displayName: 'ReactZhuanlanlist',
+
+		componentDidMount: function componentDidMount() {
+			var dispatch = this.props.dispatch;
+
+			dispatch((0, _actionZhuanlanone.getwenzhangwenzhangfn)());
+		},
+		render: function render() {
+			var wenzhanglist = this.props.wenzhanglist;
+
+			return _React2.default.createElement(
+				'div',
+				{ className: 're-zhuanlanlist-box' },
+				_React2.default.createElement(
+					'h2',
+					null,
+					_React2.default.createElement(
+						'span',
+						null,
+						'最新文章'
+					)
+				),
+				_React2.default.createElement(
+					'div',
+					{ className: 're-zhuanlanlist-list' },
+					wenzhanglist.map(function (alist, index) {
+						return _React2.default.createElement(
+							'div',
+							{ className: 're-zhuanlanlist-listone' },
+							_React2.default.createElement('img', { src: alist.titleImage, className: 're-zhuanlanlist-listone-titleimg' }),
+							_React2.default.createElement(
+								'h1',
+								null,
+								alist.title
+							),
+							_React2.default.createElement(
+								'p',
+								{ className: 're-zhuanlanlist-listone-post' },
+								_React2.default.createElement('p', { max: 'truncateMax', dangerouslySetInnerHTML: { __html: alist.content } })
+							),
+							_React2.default.createElement(
+								'div',
+								{ className: 're-zhuanlanlist-listone-footer' },
+								_React2.default.createElement(
+									'div',
+									{ className: 're-zhuanlanlist-listone-footer-authoer' },
+									_React2.default.createElement(
+										'span',
+										null,
+										alist.author.name
+									),
+									_React2.default.createElement(
+										'span',
+										null,
+										alist.publishedTime
+									)
+								),
+								_React2.default.createElement(
+									'div',
+									{ className: 're-zhuanlanlist-listone-footer-func' },
+									_React2.default.createElement(
+										'span',
+										null,
+										alist.likesCount,
+										'赞'
+									),
+									_React2.default.createElement(
+										'span',
+										null,
+										alist.commentsCount,
+										'评论'
+									)
+								)
+							)
+						);
+					})
+				)
+			);
+		}
+	});
+
+	/**
+	 * 导入业务模块
+	 */
+
+
+	function getReactZhuanlanlist(state) {
+		return {
+			wenzhanglist: state.Rezhuanlanwenzhang.zhualanwenzhang ? state.Rezhuanlanwenzhang.zhualanwenzhang : []
+		};
+	}
+	exports.default = (0, _reactRedux.connect)(getReactZhuanlanlist)(ReactZhuanlanlist);
+
+/***/ },
+/* 333 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 334 */,
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32717,7 +33225,7 @@ webpackJsonp([0,1],[
 
 	var _reactRouter = __webpack_require__(193);
 
-	var _reTopbar = __webpack_require__(328);
+	var _reTopbar = __webpack_require__(336);
 
 	var _reTopbar2 = _interopRequireDefault(_reTopbar);
 
@@ -32852,344 +33360,14 @@ webpackJsonp([0,1],[
 	exports.default = ReactTopbar;
 
 /***/ },
-/* 328 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 329 */,
-/* 330 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	/**
-	 * 专栏用户信息展现
-	 */
-
-	var React = __webpack_require__(286);
-	var Link = __webpack_require__(193).Link;
-
-	__webpack_require__(331);
-
-	var ReactUserinfo = React.createClass({
-		displayName: 'ReactUserinfo',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 're-userinfo-box' },
-				React.createElement(
-					'div',
-					{ className: 're-userinfo-box-headerlink' },
-					React.createElement('img', { src: 'http://www.bz55.com/uploads/allimg/130524/1-1305241FZ8.jpg' })
-				),
-				React.createElement(
-					'div',
-					{ className: 're-userinfo-box-title' },
-					'知乎日报'
-				),
-				React.createElement(
-					'div',
-					{ className: 're-userinfo-box-description' },
-					'知乎日报启动画面接受所有摄影师朋友们的投稿，将作…'
-				),
-				React.createElement(
-					'div',
-					{ className: 're-userinfo-box-foucs' },
-					React.createElement(
-						'button',
-						{ className: 're-userinfo-box-foucsbutton' },
-						'关注专栏'
-					),
-					React.createElement(
-						'div',
-						{ className: 're-userinfo-box-slidedown' },
-						React.createElement(
-							'span',
-							null,
-							React.createElement('i', { className: 'icon-ic_unfold' })
-						),
-						React.createElement(
-							'ul',
-							{ className: 're-userinfo-box-muen' },
-							React.createElement(
-								'li',
-								null,
-								React.createElement(
-									Link,
-									{ to: '/nciai' },
-									'关于'
-								)
-							),
-							React.createElement(
-								'li',
-								null,
-								React.createElement(
-									Link,
-									{ to: '/nicai' },
-									'投稿到该专栏'
-								)
-							)
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 're-userinfo-box-followers' },
-					React.createElement(
-						'span',
-						null,
-						'1846'
-					),
-					' 人关注'
-				)
-			);
-		}
-	});
-
-	module.exports = ReactUserinfo;
-
-/***/ },
-/* 331 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 332 */,
-/* 333 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(286);
-	__webpack_require__(334);
-
-	var ReactZhuanlanlist = React.createClass({
-		displayName: "ReactZhuanlanlist",
-
-		render: function render() {
-			return React.createElement(
-				"div",
-				{ className: "re-zhuanlanlist-box" },
-				React.createElement(
-					"h2",
-					null,
-					React.createElement(
-						"span",
-						null,
-						"最新文章"
-					)
-				),
-				React.createElement(
-					"div",
-					{ className: "re-zhuanlanlist-list" },
-					React.createElement(
-						"div",
-						{ className: "re-zhuanlanlist-listone" },
-						React.createElement("img", { src: "http://img4.imgtn.bdimg.com/it/u=3445377427,2645691367&fm=21&gp=0.jpg", className: "re-zhuanlanlist-listone-titleimg" }),
-						React.createElement(
-							"h1",
-							null,
-							"动机在杭州的知乎live——敏感和内向者的幸福课"
-						),
-						React.createElement(
-							"p",
-							{ className: "re-zhuanlanlist-listone-post" },
-							"知乎live报名入口在此：App 打开引导大家好，我是动机在杭州，动机在杭州是我。我将于2016年6月8日晚间8点，与大家聊聊…"
-						),
-						React.createElement(
-							"div",
-							{ className: "re-zhuanlanlist-listone-footer" },
-							React.createElement(
-								"div",
-								{ className: "re-zhuanlanlist-listone-footer-authoer" },
-								React.createElement(
-									"span",
-									null,
-									"动机在杭州"
-								),
-								React.createElement(
-									"span",
-									null,
-									"9天以前"
-								)
-							),
-							React.createElement(
-								"div",
-								{ className: "re-zhuanlanlist-listone-footer-func" },
-								React.createElement(
-									"span",
-									null,
-									"806赞"
-								),
-								React.createElement(
-									"span",
-									null,
-									"518条评论"
-								)
-							)
-						)
-					),
-					React.createElement(
-						"div",
-						{ className: "re-zhuanlanlist-listone" },
-						React.createElement("img", { src: "http://img4.imgtn.bdimg.com/it/u=3445377427,2645691367&fm=21&gp=0.jpg", className: "re-zhuanlanlist-listone-titleimg" }),
-						React.createElement(
-							"h1",
-							null,
-							"动机在杭州的知乎live——敏感和内向者的幸福课"
-						),
-						React.createElement(
-							"p",
-							{ className: "re-zhuanlanlist-listone-post" },
-							"知乎live报名入口在此：App 打开引导大家好，我是动机在杭州，动机在杭州是我。我将于2016年6月8日晚间8点，与大家聊聊…"
-						),
-						React.createElement(
-							"div",
-							{ className: "re-zhuanlanlist-listone-footer" },
-							React.createElement(
-								"div",
-								{ className: "re-zhuanlanlist-listone-footer-authoer" },
-								React.createElement(
-									"span",
-									null,
-									"动机在杭州"
-								),
-								React.createElement(
-									"span",
-									null,
-									"9天以前"
-								)
-							),
-							React.createElement(
-								"div",
-								{ className: "re-zhuanlanlist-listone-footer-func" },
-								React.createElement(
-									"span",
-									null,
-									"806赞"
-								),
-								React.createElement(
-									"span",
-									null,
-									"518条评论"
-								)
-							)
-						)
-					),
-					React.createElement(
-						"div",
-						{ className: "re-zhuanlanlist-listone" },
-						React.createElement("img", { src: "http://img4.imgtn.bdimg.com/it/u=3445377427,2645691367&fm=21&gp=0.jpg", className: "re-zhuanlanlist-listone-titleimg" }),
-						React.createElement(
-							"h1",
-							null,
-							"动机在杭州的知乎live——敏感和内向者的幸福课"
-						),
-						React.createElement(
-							"p",
-							{ className: "re-zhuanlanlist-listone-post" },
-							"知乎live报名入口在此：App 打开引导大家好，我是动机在杭州，动机在杭州是我。我将于2016年6月8日晚间8点，与大家聊聊…"
-						),
-						React.createElement(
-							"div",
-							{ className: "re-zhuanlanlist-listone-footer" },
-							React.createElement(
-								"div",
-								{ className: "re-zhuanlanlist-listone-footer-authoer" },
-								React.createElement(
-									"span",
-									null,
-									"动机在杭州"
-								),
-								React.createElement(
-									"span",
-									null,
-									"9天以前"
-								)
-							),
-							React.createElement(
-								"div",
-								{ className: "re-zhuanlanlist-listone-footer-func" },
-								React.createElement(
-									"span",
-									null,
-									"806赞"
-								),
-								React.createElement(
-									"span",
-									null,
-									"518条评论"
-								)
-							)
-						)
-					),
-					React.createElement(
-						"div",
-						{ className: "re-zhuanlanlist-listone" },
-						React.createElement("img", { src: "http://img4.imgtn.bdimg.com/it/u=3445377427,2645691367&fm=21&gp=0.jpg", className: "re-zhuanlanlist-listone-titleimg" }),
-						React.createElement(
-							"h1",
-							null,
-							"动机在杭州的知乎live——敏感和内向者的幸福课"
-						),
-						React.createElement(
-							"p",
-							{ className: "re-zhuanlanlist-listone-post" },
-							"知乎live报名入口在此：App 打开引导大家好，我是动机在杭州，动机在杭州是我。我将于2016年6月8日晚间8点，与大家聊聊…"
-						),
-						React.createElement(
-							"div",
-							{ className: "re-zhuanlanlist-listone-footer" },
-							React.createElement(
-								"div",
-								{ className: "re-zhuanlanlist-listone-footer-authoer" },
-								React.createElement(
-									"span",
-									null,
-									"动机在杭州"
-								),
-								React.createElement(
-									"span",
-									null,
-									"9天以前"
-								)
-							),
-							React.createElement(
-								"div",
-								{ className: "re-zhuanlanlist-listone-footer-func" },
-								React.createElement(
-									"span",
-									null,
-									"806赞"
-								),
-								React.createElement(
-									"span",
-									null,
-									"518条评论"
-								)
-							)
-						)
-					)
-				)
-			);
-		}
-	});
-
-	module.exports = ReactZhuanlanlist;
-
-/***/ },
-/* 334 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 335 */,
 /* 336 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 337 */,
+/* 338 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
