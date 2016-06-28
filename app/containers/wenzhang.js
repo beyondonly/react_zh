@@ -22,24 +22,32 @@ import Reactrecommend from "../components/re-recommend/re-recommend.js";
  * 导入业务模块
  */
 
-import { getzhuanlanlist } from "../actions/action-webzhanginfo.js";
+import { getfasycwenzhangcontent } from "../actions/action-wenzhangcontent.js";
 
 var Wenzhang = React.createClass({
 	componentDidMount: function(){
 		const {dispatch } = this.props;
-		dispatch(getzhuanlanlist()) //页面加载完成数据拉取
-		dispatch(getwenzhangList()) //页面加载完成数据拉取
+		dispatch(getfasycwenzhangcontent()) //页面加载完成数据拉取
 	},
 	render: function() {
-	 return (
-		<div>
-		 	<Reactwenzhang />
-		 	<ReactIncluded />
-		 	<Reactrecommend />
-		</div>
-		)
+		const {WenzhangContent } = this.props;
+		return (
+			<div>
+			 	<Reactwenzhang WenzhangContent = {WenzhangContent}/>
+			 	<ReactIncluded />
+			 	<Reactrecommend />
+			</div>
+	    )
 	}
 })
 
-export default connect()(Wenzhang);
+//获取全局state
+function getWenzhangConten(state) {
+	console.log(state)
+	return {
+		 WenzhangContent: state.ReWenzhangContent.WENZHANG?state.ReWenzhangContent.WENZHANG:{},
+	}
+}
+
+export default connect(getWenzhangConten)(Wenzhang);
 

@@ -25,19 +25,16 @@ import Reactcomment from "../re-comments/re-comments.js";
 
 var Reactwenzhang = React.createClass({
 	render: function() {
-		 var ajaxjson= this.state.html.content;
-		 var title = this.state.html.title;
-		 var name = "我叫代小星";
 		return (
 			<div className = "ReactZhuan-box">
-				<img src= "http://image.tianjimedia.com/uploadImages/2012/012/2YXG0J416V69.jpg" className = "ReactZhuan-box-pagetip"/>
-				<h1 className="ReactZhuan-box-multiline2">{title}</h1>
+				<img src= {this.props.WenzhangContent.titleImage} className = "ReactZhuan-box-pagetip"/>
+				<h1 className="ReactZhuan-box-multiline2">{this.props.WenzhangContent.title}</h1>
 				<div className = "ReactZhuan-box-meta">
 					<img src='http://image.tianjimedia.com/uploadImages/2012/012/2YXG0J416V69.jpg' />
-					<span>{name}</span>
-					<span>两个月前</span>
+					<span></span>
+					<span>{this.props.WenzhangContent.publishedTime}</span>
 				</div>
-				<div  className = "ReactZhuan-box-text" dangerouslySetInnerHTML={{__html: ajaxjson}} />
+				<div  className = "ReactZhuan-box-text"  dangerouslySetInnerHTML={{__html: this.props.WenzhangContent.content}}/>
 				<div className = "ReactZhuan-box-target">
 					<span>零售行业</span>
 					<span>人物传记</span>
@@ -50,4 +47,4 @@ var Reactwenzhang = React.createClass({
 	}
 })
 
-export default connect()(Reactwenzhang);
+module.exports = Reactwenzhang;

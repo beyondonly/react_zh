@@ -7,7 +7,7 @@ import { fetchDataAsyncwenzhangcontent } from "../api/Index_Async.js";
  
 function getwenzhangcontent(content) {
 	return {
-	    type: "GETWENZHANGCONTENT",
+	    type: "GETWENZHANGINDEX",
 	    content: content
 	}
 }

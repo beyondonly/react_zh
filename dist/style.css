@@ -16,7 +16,7 @@
   height: 450px;
   text-align: center;
   z-index: 0;
-  background: url(/aset/6a263d8b.patterns.svg) center no-repeat;
+  background: url(/aset/92c3394b.patterns.svg) center no-repeat;
 }
 .index_bg h1 {
   width: 129px;
@@ -24,7 +24,7 @@
   padding-top: 179px;
   overflow: hidden;
   margin: 0;
-  background: url(/aset/f6fbb429.logo.svg) center no-repeat;
+  background: url(/aset/f3724273.logo.svg) center no-repeat;
   background-size: 129px 179px;
   position: absolute;
   left: 50%;
@@ -260,110 +260,6 @@
 .re-articlist-box-link a {
   font-size: 14px;
   color: #50C87E;
-}
-/* 
-* topbar样式表
-* by 代小星
- */
-.Rt-topbar {
-  width: 100%;
-  height: 0.59rem;
-  font-size: 12px;
-  background-color: #fff;
-  border-bottom: solid 1px #eee;
-}
-.Rt-topbar > .logo-link {
-  display: block;
-  float: left;
-  width: 0.58rem;
-  height: 0.58rem;
-  line-height: 0.58rem;
-  text-align: center;
-  font-size: 24px;
-  color: #808080;
-}
-.Rt-topbar > .titlename {
-  float: left;
-  position: relative;
-  margin-top: 0.1rem;
-  padding-left: 0.15rem;
-}
-.Rt-topbar > .titlename :before {
-  content: '';
-  height: 0.24rem;
-  width: 1px;
-  background: rgba(0, 0, 0, 0.16);
-  position: absolute;
-  left: 0px;
-  top: 0.08rem;
-}
-.Rt-topbar > .titlename .titleName-one {
-  display: none;
-}
-.Rt-topbar > .titlename .titleName-tow {
-  line-height: 0.18rem;
-  font-size: 14px;
-  color: #333;
-}
-.Rt-topbar > .titlename .titleName-tow > .bigfont {
-  font-size: 13px;
-  color: #808080;
-}
-.Rt-topbar > .slidebox {
-  float: right;
-  position: relative;
-}
-.Rt-topbar > .slidebox .slidebox-icon {
-  width: 0.66rem;
-  height: 0.59rem;
-  line-height: 0.59rem;
-}
-.Rt-topbar > .slidebox .slidebox-icon .icon-ic_nav_more {
-  font-size: 24px;
-  margin-left: 0.26rem;
-}
-.Rt-topbar > .slidebox .list-box {
-  position: absolute;
-  top: 0.53rem;
-  z-index: 9;
-  right: 0.16rem;
-  width: 2.2rem;
-  background-color: #fff;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  border: solid 1px #eee;
-}
-.Rt-topbar > .slidebox .list-box li {
-  line-height: 0.54rem;
-}
-.Rt-topbar > .slidebox .list-box li a {
-  padding-left: 0.16rem;
-  font-size: 14px;
-  color: #333;
-}
-.Rt-topbar > .slidebox .list-box:before {
-  content: "";
-  position: absolute;
-  top: -0.1rem;
-  right: 0.1rem;
-  width: 0;
-  height: 0;
-  font-size: 0;
-  border-bottom: 9px solid rgba(0, 0, 0, 0.08);
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-}
-.Rt-topbar > .slidebox .list-box:after {
-  content: "";
-  position: absolute;
-  top: -0.09rem;
-  right: 0.1rem;
-  width: 0;
-  height: 0;
-  font-size: 0;
-  border-bottom: 9px solid #FFF;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
 }
 .ReactZhuan-box-pagetip {
   width: 100%;
@@ -617,6 +513,110 @@
 .Reactrecommend-box-list p {
   font-size: 14px;
   color: gray;
+}
+/* 
+* topbar样式表
+* by 代小星
+ */
+.Rt-topbar {
+  width: 100%;
+  height: 0.59rem;
+  font-size: 12px;
+  background-color: #fff;
+  border-bottom: solid 1px #eee;
+}
+.Rt-topbar > .logo-link {
+  display: block;
+  float: left;
+  width: 0.58rem;
+  height: 0.58rem;
+  line-height: 0.58rem;
+  text-align: center;
+  font-size: 24px;
+  color: #808080;
+}
+.Rt-topbar > .titlename {
+  float: left;
+  position: relative;
+  margin-top: 0.1rem;
+  padding-left: 0.15rem;
+}
+.Rt-topbar > .titlename :before {
+  content: '';
+  height: 0.24rem;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.16);
+  position: absolute;
+  left: 0px;
+  top: 0.08rem;
+}
+.Rt-topbar > .titlename .titleName-one {
+  display: none;
+}
+.Rt-topbar > .titlename .titleName-tow {
+  line-height: 0.18rem;
+  font-size: 14px;
+  color: #333;
+}
+.Rt-topbar > .titlename .titleName-tow > .bigfont {
+  font-size: 13px;
+  color: #808080;
+}
+.Rt-topbar > .slidebox {
+  float: right;
+  position: relative;
+}
+.Rt-topbar > .slidebox .slidebox-icon {
+  width: 0.66rem;
+  height: 0.59rem;
+  line-height: 0.59rem;
+}
+.Rt-topbar > .slidebox .slidebox-icon .icon-ic_nav_more {
+  font-size: 24px;
+  margin-left: 0.26rem;
+}
+.Rt-topbar > .slidebox .list-box {
+  position: absolute;
+  top: 0.53rem;
+  z-index: 9;
+  right: 0.16rem;
+  width: 2.2rem;
+  background-color: #fff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border: solid 1px #eee;
+}
+.Rt-topbar > .slidebox .list-box li {
+  line-height: 0.54rem;
+}
+.Rt-topbar > .slidebox .list-box li a {
+  padding-left: 0.16rem;
+  font-size: 14px;
+  color: #333;
+}
+.Rt-topbar > .slidebox .list-box:before {
+  content: "";
+  position: absolute;
+  top: -0.1rem;
+  right: 0.1rem;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border-bottom: 9px solid rgba(0, 0, 0, 0.08);
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+}
+.Rt-topbar > .slidebox .list-box:after {
+  content: "";
+  position: absolute;
+  top: -0.09rem;
+  right: 0.1rem;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border-bottom: 9px solid #FFF;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
 }
 .re-userinfo-box-headerlink {
   margin: 20px auto 0px;

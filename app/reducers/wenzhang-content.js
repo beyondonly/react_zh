@@ -1,12 +1,12 @@
 const initialState = {
-	WENZHANG:[]
+	WENZHANG:{}
 }
 
-function ReIndexwenzhang(state = [], action) {
+function ReIndexwenzhang(state = initialState, action) {
    switch (action.type) {
       case "GETWENZHANGINDEX": 
         return Object.assign({}, state, {
-	        WENZHANG:action.list
+	        WENZHANG:action.content
 	      })
       default:
        return state
