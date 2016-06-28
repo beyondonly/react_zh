@@ -6,7 +6,7 @@ const initialState = {
 
 function ReIndexzhuanlan(state = [], action) {
    switch (action.type) {
-      case "GETLIST": 
+      case "GETZHUANLAN": 
         return Object.assign({}, state, {
 	        ZHUANLANDATE:action.list
 	      })

@@ -1,23 +1,23 @@
 /**
- * 专栏接口
+ * 专栏action
+ * by 代小星
  */
 
- import $json from "../api/Index_Async.js"
+ import {fetchDataAsynczhuanlanIndex} from "../api/Index_Async.js"
  
-function receivelist(list) {
+function gitZhuanlanList_index(list) {
 	return {
-	    type: "GETLIST",
+	    type: "GETZHUANLAN",
 	    list: list
 	}
 }
 
-function getAllList() {
+export let getAllList = function() {
   return dispatch => {
-    $json(list => {
-      dispatch(receivelist(list))
+    fetchDataAsynczhuanlanIndex(list => {
+      dispatch(gitZhuanlanList_index(list))
     })
   }
 }
 
-module.exports = getAllList
  
