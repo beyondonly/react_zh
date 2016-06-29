@@ -1,4 +1,3 @@
-var combineReducers = require("redux").combineReducers;
 
 const initialState = {
 	WENZHANG:[]

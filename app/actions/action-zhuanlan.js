@@ -2,8 +2,7 @@
  * 专栏action
  * by 代小星
  */
-
- import {fetchDataAsynczhuanlanIndex} from "../api/Index_Async.js"
+import {fetchDataAsynczhuanlanIndex} from "../api/Index_Async.js"
  
 function gitZhuanlanList_index(list) {
 	return {

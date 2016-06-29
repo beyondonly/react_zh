@@ -12,6 +12,7 @@ function getwenzhangindex(list) {
 	}
 }
 
+
 export let getwenzhangList = function() {
   return dispatch => {
     fetchDataAsyncwenzhangIndex(list => {

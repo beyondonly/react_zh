@@ -9,27 +9,45 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom'
+import { connect } from 'react-redux';
 
 /**
  * 导入各种组件
  */
-import ReactZhuan from "../components/re-wenzhang/re-wenzhang.js";
+import Reactwenzhang from "../components/re-wenzhang/re-wenzhang.js";
 import ReactIncluded from "../components/re-included/re-included.js";
 import Reactrecommend from "../components/re-recommend/re-recommend.js";
 
+/**
+ * 导入业务模块
+ */
+
+import { getDataAsyncwenzhangcontent } from "../actions/action-wenzhangcontent.js";
 
 var Wenzhang = React.createClass({
+	componentDidMount: function(){
+		const {dispatch } = this.props;
+		dispatch(getDataAsyncwenzhangcontent()) //页面加载完成数据拉取
+	},
 	render: function() {
-	 return (
-		<div>
-		 	<ReactZhuan/>
-		 	<ReactIncluded />
-		 	<Reactrecommend />
-		</div>
-		)
+		const {WenzhangContent } = this.props;
+		return (
+			<div>
+			 	<Reactwenzhang WenzhangContent = {WenzhangContent}/>
+			 	<ReactIncluded />
+			 	<Reactrecommend />
+			</div>
+	    )
 	}
 })
 
-module.exports = Wenzhang;
+//获取全局state
+function getWenzhangConten(state) {
+	console.log(state)
+	return {
+		 WenzhangContent: state.ReWenzhangContent.WENZHANG?state.ReWenzhangContent.WENZHANG:{},
+	}
+}
+
+export default connect(getWenzhangConten)(Wenzhang);
 
