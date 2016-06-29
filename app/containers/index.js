@@ -29,7 +29,7 @@ import { getwenzhangList } from "../actions/action-wenzhang.js";
 
 var IndexPage = React.createClass({
 	componentDidMount: function(){
-		const {dispatch } = this.props;
+		const { dispatch } = this.props;
 		dispatch(getzhuanlanlist()) //页面加载完成数据拉取
 		dispatch(getwenzhangList()) //页面加载完成数据拉取
 	},

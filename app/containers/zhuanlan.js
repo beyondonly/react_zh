@@ -18,10 +18,11 @@ import ReactZhuanlanlist from "../components/re-zhuanlanlist/re-zhuanlanlist.js"
 
 var Zhuanlan = React.createClass({
 	render: function() {
+		const {params} = this.props;
 		return (
 			<div className = "Reactzhuanlan">
-			 	<ReactUserinfo />
-			 	<ReactZhuanlanlist />
+			 	<ReactUserinfo slug = {params.slug} />
+			 	<ReactZhuanlanlist slug = {params.slug}/>
 			</div>
 		)
 	}

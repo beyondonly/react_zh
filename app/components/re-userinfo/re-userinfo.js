@@ -24,8 +24,8 @@ import { getwenzhangList } from "../../actions/action-zhuanlanone.js";
 
 var ReactUserinfo = React.createClass({
 	componentDidMount: function(){
-		const { dispatch } = this.props;
-		dispatch(getwenzhangList())
+		const { dispatch,slug } = this.props;
+		dispatch(getwenzhangList(slug))
 	},
 	render: function() {
 		const { UserInfo } = this.props;

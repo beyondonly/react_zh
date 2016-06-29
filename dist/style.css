@@ -660,6 +660,8 @@
   font-size: 12px;
   background-color: #fff;
   border-bottom: solid 1px #eee;
+  position: relative;
+  top: 0;
 }
 .Rt-topbar > .logo-link {
   display: block;
@@ -721,6 +723,7 @@
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   border: solid 1px #eee;
+  display: none;
 }
 .Rt-topbar > .slidebox .list-box li {
   line-height: 0.54rem;
@@ -753,6 +756,60 @@
   border-bottom: 9px solid #FFF;
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
+}
+.Rt-topbar .animation_slidedown {
+  -webkit-animation: fadeInDown 1s .2s ease both;
+  display: block !important;
+}
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+.Rt-topbar .animation_slideup {
+  -webkit-animation: fadeOutUp 1s .2s ease both;
+}
+@-webkit-keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-20px);
+  }
+}
+.Rt-topbar-ui-fexd {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.96);
+  z-index: 99;
+}
+.Rt-topbar-ui-hide {
+  -webkit-animation: fadeOutUpuihide  .5s .2s ease both;
+}
+@-webkit-keyframes fadeOutUpuihide {
+  0% {
+    -webkit-transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(-60px);
+  }
+}
+.Rt-topbar-ui-show {
+  -webkit-animation: fadeOutUpuiShow  .5s .2s ease both;
+}
+@-webkit-keyframes fadeOutUpuiShow {
+  0% {
+    -webkit-transform: translateY(-60px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+  }
 }
 html {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;
