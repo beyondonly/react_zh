@@ -24,8 +24,8 @@ import { getwenzhangShoulu } from "../../actions/action-wenzhangcontent.js";
 
 var ReactIncluded = React.createClass({
 	componentDidMount: function(){
-		const { dispatch } = this.props;
-		dispatch(getwenzhangShoulu())
+		const { dispatch,url} = this.props;
+		dispatch(getwenzhangShoulu(url))
 	},
 	render: function(){
 		const Shoulu = this.props.Shoulu;

@@ -39,27 +39,27 @@ function recommendations(list) {
 }
 
 //获取文章主体
-export let getDataAsyncwenzhangcontent = function() {
+export let getDataAsyncwenzhangcontent = function(url) {
   return dispatch => {
-    fetchDataAsyncwenzhangcontent(content => {
+    fetchDataAsyncwenzhangcontent(url,content => {
       dispatch(getwenzhangcontent(content))
     })
   }
 }
 
 //获取评论数据
-export let getfasycwenzhangcomment = function() {
+export let getfasycwenzhangcomment = function(url) {
   return dispatch => {
-    ferchDatacomments(list => {
+    ferchDatacomments(url,list => {
       dispatch(getcomments(list))
     })
   }
 }
 
 //获取收录数据
-export let getwenzhangShoulu  = function() {
+export let getwenzhangShoulu  = function(url) {
   return dispatch => {
-    fetchDataAsyncwenzhangshoulu(list => {
+    fetchDataAsyncwenzhangshoulu(url,list => {
       dispatch(getcommentsShoulu(list))
     })
   }

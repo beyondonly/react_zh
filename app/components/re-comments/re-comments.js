@@ -25,8 +25,8 @@ import { getfasycwenzhangcomment } from "../../actions/action-wenzhangcontent.js
 
 var Reactcomment = React.createClass({
 	componentDidMount: function(){
-		const { dispatch } = this.props;
-		dispatch(getfasycwenzhangcomment())
+		const { dispatch,url } = this.props;
+		dispatch(getfasycwenzhangcomment(url))
 	},
 	render: function() {
 		return(

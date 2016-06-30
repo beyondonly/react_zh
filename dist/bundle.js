@@ -28589,22 +28589,25 @@ webpackJsonp([0,1],[
 	};
 
 	//文章内容获取
-	var fetchDataAsyncwenzhangcontent = exports.fetchDataAsyncwenzhangcontent = function fetchDataAsyncwenzhangcontent(callback) {
-	  $.getJSON('http://127.0.0.1:3000/getWenzhangText?Id=20808659', function (json, textStatus) {
+	var fetchDataAsyncwenzhangcontent = exports.fetchDataAsyncwenzhangcontent = function fetchDataAsyncwenzhangcontent(url, callback) {
+	  var getlink = IP + "getWenzhangText?Id=" + url;
+	  $.getJSON(getlink, function (json, textStatus) {
 	    callback(json);
 	  });
 	};
 
 	//评论数据获取
-	var ferchDatacomments = exports.ferchDatacomments = function ferchDatacomments(callback) {
-	  $.getJSON('http://127.0.0.1:3000/getWenzhangTextcomments', function (json, textStatus) {
+	var ferchDatacomments = exports.ferchDatacomments = function ferchDatacomments(url, callback) {
+	  var getlink = IP + "getWenzhangTextcomments?Id=" + url;
+	  $.getJSON(getlink, function (json, textStatus) {
 	    callback(json);
 	  });
 	};
 
 	//获取文章收录数据
-	var fetchDataAsyncwenzhangshoulu = exports.fetchDataAsyncwenzhangshoulu = function fetchDataAsyncwenzhangshoulu(callback) {
-	  $.getJSON('http://127.0.0.1:3000/getWenzhangTextcontributed', function (json, textStatus) {
+	var fetchDataAsyncwenzhangshoulu = exports.fetchDataAsyncwenzhangshoulu = function fetchDataAsyncwenzhangshoulu(url, callback) {
+	  var geturl = IP + "getWenzhangTextcontributed?id=" + url;
+	  $.getJSON(geturl, function (json, textStatus) {
 	    callback(json);
 	  });
 	};
@@ -28619,7 +28622,6 @@ webpackJsonp([0,1],[
 	//专栏信息获取
 	var getzhuanlaninfo = exports.getzhuanlaninfo = function getzhuanlaninfo(slug, callback) {
 	  var getlink = IP + "getZhuanlanInfo?slug=" + slug;
-	  console.log(getlink);
 	  $.getJSON(getlink, function (json, textStatus) {
 	    callback(json);
 	  });
@@ -28670,10 +28672,6 @@ webpackJsonp([0,1],[
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
 	var _react = __webpack_require__(4);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -28710,47 +28708,36 @@ webpackJsonp([0,1],[
 	 */
 
 	var Wenzhang = _react2.default.createClass({
-		displayName: 'Wenzhang',
+	  displayName: 'Wenzhang',
 
-		componentDidMount: function componentDidMount() {
-			var dispatch = this.props.dispatch;
+	  render: function render() {
+	    var params = this.props.params;
 
-			dispatch((0, _actionWenzhangcontent.getDataAsyncwenzhangcontent)()); //页面加载完成数据拉取
-		},
-		render: function render() {
-			var WenzhangContent = this.props.WenzhangContent;
-
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(_reWenzhang2.default, { WenzhangContent: WenzhangContent }),
-				_react2.default.createElement(_reIncluded2.default, null),
-				_react2.default.createElement(_reRecommend2.default, null)
-			);
-		}
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_reWenzhang2.default, { url: params.url }),
+	      _react2.default.createElement(_reIncluded2.default, { url: params.url }),
+	      _react2.default.createElement(_reRecommend2.default, { url: params.url })
+	    );
+	  }
 	});
-
-	//获取全局state
-
 
 	/**
 	 * 导入业务模块
 	 */
 
-	function getWenzhangConten(state) {
-		console.log(state);
-		return {
-			WenzhangContent: state.ReWenzhangContent.WENZHANG ? state.ReWenzhangContent.WENZHANG : {}
-		};
-	}
-
-	exports.default = (0, _reactRedux.connect)(getWenzhangConten)(Wenzhang);
+	module.exports = Wenzhang;
 
 /***/ },
 /* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
 
 	var _React = __webpack_require__(287);
 
@@ -28770,17 +28757,40 @@ webpackJsonp([0,1],[
 
 	var _reComments2 = _interopRequireDefault(_reComments);
 
+	var _actionWenzhangcontent = __webpack_require__(320);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/**
-	 * 导入业务模块
+	* 引入对应less
+	*/
+	/**
+	 * 组件名称: 文章内容
+	 * 功能项: 承载文章内容
+	 * by 代小星 
 	 */
+
+	/**
+	 * 引入业务基本模板包
+	 */
+
 
 	var Reactwenzhang = _React2.default.createClass({
 		displayName: 'Reactwenzhang',
 
+		componentDidMount: function componentDidMount() {
+			var _props = this.props;
+			var dispatch = _props.dispatch;
+			var url = _props.url;
+
+			dispatch((0, _actionWenzhangcontent.getDataAsyncwenzhangcontent)(url)); //页面加载完成数据拉取
+		},
 		render: function render() {
-			var g_data = this.props.WenzhangContent;
+			var _props2 = this.props;
+			var WenzhangContent = _props2.WenzhangContent;
+			var url = _props2.url;
+
+			var g_data = WenzhangContent;
 			var author = g_data.author ? g_data.author.name : "";
 			var topics = g_data.topics ? g_data.topics : [];
 			var likesCount = g_data.likesCount;
@@ -28824,26 +28834,29 @@ webpackJsonp([0,1],[
 					})
 				),
 				_React2.default.createElement(_reGood2.default, { GoodDate: gooddata }),
-				_React2.default.createElement(_reComments2.default, null)
+				_React2.default.createElement(_reComments2.default, { url: url })
 			);
 		}
 	});
 
+	//获取全局state
+
+
 	/**
-	* 引入对应less
-	*/
-	/**
-	 * 组件名称: 文章内容
-	 * 功能项: 承载文章内容
-	 * by 代小星 
+	 * 导入业务模块
 	 */
 
 	/**
-	 * 引入业务基本模板包
+	 * 导入业务组件
 	 */
 
+	function getWenzhangConten(state) {
+		return {
+			WenzhangContent: state.ReWenzhangContent.WENZHANG ? state.ReWenzhangContent.WENZHANG : {}
+		};
+	}
 
-	module.exports = Reactwenzhang;
+	exports.default = (0, _reactRedux.connect)(getWenzhangConten)(Reactwenzhang);
 
 /***/ },
 /* 287 */
@@ -32498,9 +32511,11 @@ webpackJsonp([0,1],[
 		displayName: "Reactcomment",
 
 		componentDidMount: function componentDidMount() {
-			var dispatch = this.props.dispatch;
+			var _props = this.props;
+			var dispatch = _props.dispatch;
+			var url = _props.url;
 
-			dispatch((0, _actionWenzhangcontent.getfasycwenzhangcomment)());
+			dispatch((0, _actionWenzhangcontent.getfasycwenzhangcomment)(url));
 		},
 		render: function render() {
 			return _React2.default.createElement(
@@ -32650,27 +32665,27 @@ webpackJsonp([0,1],[
 	}
 
 	//获取文章主体
-	var getDataAsyncwenzhangcontent = exports.getDataAsyncwenzhangcontent = function getDataAsyncwenzhangcontent() {
+	var getDataAsyncwenzhangcontent = exports.getDataAsyncwenzhangcontent = function getDataAsyncwenzhangcontent(url) {
 	  return function (dispatch) {
-	    (0, _Index_Async.fetchDataAsyncwenzhangcontent)(function (content) {
+	    (0, _Index_Async.fetchDataAsyncwenzhangcontent)(url, function (content) {
 	      dispatch(getwenzhangcontent(content));
 	    });
 	  };
 	};
 
 	//获取评论数据
-	var getfasycwenzhangcomment = exports.getfasycwenzhangcomment = function getfasycwenzhangcomment() {
+	var getfasycwenzhangcomment = exports.getfasycwenzhangcomment = function getfasycwenzhangcomment(url) {
 	  return function (dispatch) {
-	    (0, _Index_Async.ferchDatacomments)(function (list) {
+	    (0, _Index_Async.ferchDatacomments)(url, function (list) {
 	      dispatch(getcomments(list));
 	    });
 	  };
 	};
 
 	//获取收录数据
-	var getwenzhangShoulu = exports.getwenzhangShoulu = function getwenzhangShoulu() {
+	var getwenzhangShoulu = exports.getwenzhangShoulu = function getwenzhangShoulu(url) {
 	  return function (dispatch) {
-	    (0, _Index_Async.fetchDataAsyncwenzhangshoulu)(function (list) {
+	    (0, _Index_Async.fetchDataAsyncwenzhangshoulu)(url, function (list) {
 	      dispatch(getcommentsShoulu(list));
 	    });
 	  };
@@ -32727,9 +32742,11 @@ webpackJsonp([0,1],[
 		displayName: "ReactIncluded",
 
 		componentDidMount: function componentDidMount() {
-			var dispatch = this.props.dispatch;
+			var _props = this.props;
+			var dispatch = _props.dispatch;
+			var url = _props.url;
 
-			dispatch((0, _actionWenzhangcontent.getwenzhangShoulu)());
+			dispatch((0, _actionWenzhangcontent.getwenzhangShoulu)(url));
 		},
 		render: function render() {
 			var Shoulu = this.props.Shoulu;

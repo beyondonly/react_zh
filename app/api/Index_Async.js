@@ -18,22 +18,25 @@ export let fetchDataAsyncwenzhangIndex = function(callback) {
 }
 
 //文章内容获取
-export let fetchDataAsyncwenzhangcontent = function(callback) {
-	$.getJSON('http://127.0.0.1:3000/getWenzhangText?Id=20808659',function(json, textStatus) {
+export let fetchDataAsyncwenzhangcontent = function(url,callback) {
+  var getlink = IP+"getWenzhangText?Id="+url;
+	$.getJSON(getlink,function(json, textStatus) {
   	   callback(json);
   	});
 }
 
 //评论数据获取
-export let ferchDatacomments = function(callback) {
-	$.getJSON('http://127.0.0.1:3000/getWenzhangTextcomments',function(json, textStatus) {
+export let ferchDatacomments = function(url,callback) {
+  var getlink = IP+"getWenzhangTextcomments?Id="+url;
+	$.getJSON(getlink,function(json, textStatus) {
   	   callback(json);
   	});
 }
 
 //获取文章收录数据
-export let fetchDataAsyncwenzhangshoulu = function(callback) {
-  $.getJSON('http://127.0.0.1:3000/getWenzhangTextcontributed',function(json, textStatus) {
+export let fetchDataAsyncwenzhangshoulu = function(url,callback) {
+  var geturl = IP+"getWenzhangTextcontributed?id="+url
+  $.getJSON(geturl,function(json, textStatus) {
        callback(json);
     });
 }
@@ -48,7 +51,6 @@ export let ferchDatarecommendations = function(callback) {
 //专栏信息获取
 export let getzhuanlaninfo = function(slug,callback) {
   var getlink = IP+"getZhuanlanInfo?slug="+slug;
-  console.log(getlink)
   $.getJSON(getlink,function(json, textStatus) {
        callback(json);
   });

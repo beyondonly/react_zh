@@ -17,15 +17,27 @@ import Styleless from "./re-wenzhang.less"
 
 
 /**
- * 导入业务模块
+ * 导入业务组件
  */
 
 import ReactGood from "../re-good/re-good.js";
 import Reactcomment from "../re-comments/re-comments.js";
 
+
+/**
+ * 导入业务模块
+ */
+
+import { getDataAsyncwenzhangcontent } from "../../actions/action-wenzhangcontent.js";
+
 var Reactwenzhang = React.createClass({
+	componentDidMount: function(){
+		const {dispatch,url} = this.props;
+		dispatch(getDataAsyncwenzhangcontent(url)) //页面加载完成数据拉取
+	},
 	render: function() {
-		var g_data = this.props.WenzhangContent;
+		const { WenzhangContent,url } = this.props;
+		var g_data = WenzhangContent;
 		var author = g_data.author?g_data.author.name:"";
 		var topics = g_data.topics?g_data.topics:[];
 		var likesCount = g_data.likesCount;
@@ -48,10 +60,17 @@ var Reactwenzhang = React.createClass({
 					)}
 				</div>
 				<ReactGood GoodDate = {gooddata}/>
-				<Reactcomment />
+				<Reactcomment url = {url}/>
 			</div>
 		)
 	}
 })
 
-module.exports = Reactwenzhang;
+//获取全局state
+function getWenzhangConten(state) {
+	return {
+		 WenzhangContent: state.ReWenzhangContent.WENZHANG?state.ReWenzhangContent.WENZHANG:{},
+	}
+}
+
+export default connect(getWenzhangConten)(Reactwenzhang);
