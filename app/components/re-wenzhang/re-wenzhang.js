@@ -34,10 +34,7 @@ var Reactwenzhang = React.createClass({
 	componentDidMount: function(){
 		const {dispatch,url} = this.props;
 		dispatch(getDataAsyncwenzhangcontent(url)) //页面加载完成数据拉取;
-		console.log($(".ReactZhuan-box").find(".ReactZhuan-box-text .origin_image"))
-		$(".ReactZhuan-box .ReactZhuan-box-text .origin_image").map(function(index,obj) {
-			console.log(obj)
-		})
+		console.log(this.refs.test)
 	},
 	render: function() {
 		const { WenzhangContent,url } = this.props;
@@ -57,7 +54,7 @@ var Reactwenzhang = React.createClass({
 					<span>{author}</span>
 					<span>{g_data.publishedTime}</span>
 				</div>
-				<div  className = "ReactZhuan-box-text"  dangerouslySetInnerHTML={{__html: g_data.content}}/>
+				<div  className = "ReactZhuan-box-text"  ref="test" dangerouslySetInnerHTML={{__html: g_data.content}}/>
 				<div className = "ReactZhuan-box-target">
 					{topics.map((alist, index) =>
 						<span key={index}>{alist.name}</span>

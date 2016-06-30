@@ -28069,10 +28069,6 @@ webpackJsonp([0,1],[
 
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
 	var _react = __webpack_require__(4);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -28087,23 +28083,15 @@ webpackJsonp([0,1],[
 
 	var _reArticlist2 = _interopRequireDefault(_reArticlist);
 
-	var _index_footer = __webpack_require__(276);
+	var _index_footer = __webpack_require__(278);
 
 	var _index_footer2 = _interopRequireDefault(_index_footer);
 
-	var _reArticlist3 = __webpack_require__(279);
+	var _reArticlist3 = __webpack_require__(281);
 
 	var _reArticlist4 = _interopRequireDefault(_reArticlist3);
 
-	var _actionZhuanlan = __webpack_require__(282);
-
-	var _actionWenzhang = __webpack_require__(284);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	/**
-	 * 导入业务模块
-	 */
 
 	/**
 	 * 导入各种组件
@@ -28121,12 +28109,6 @@ webpackJsonp([0,1],[
 	var IndexPage = _react2.default.createClass({
 		displayName: "IndexPage",
 
-		componentDidMount: function componentDidMount() {
-			var dispatch = this.props.dispatch;
-
-			dispatch((0, _actionZhuanlan.getzhuanlanlist)()); //页面加载完成数据拉取
-			dispatch((0, _actionWenzhang.getwenzhangList)()); //页面加载完成数据拉取
-		},
 		render: function render() {
 			var _props = this.props;
 			var zhuanlanarray = _props.zhuanlanarray;
@@ -28143,14 +28125,7 @@ webpackJsonp([0,1],[
 		}
 	});
 
-	function mapStateToProps(state) {
-		return {
-			wenzhangarray: state.ReIndexwenzhang.WENZHANG ? state.ReIndexwenzhang.WENZHANG : [],
-			zhuanlanarray: state.ReIndexzhuanlan.ZHUANLANDATE ? state.ReIndexzhuanlan.ZHUANLANDATE : []
-		};
-	}
-
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(IndexPage);
+	module.exports = IndexPage;
 
 /***/ },
 /* 262 */
@@ -28206,11 +28181,17 @@ webpackJsonp([0,1],[
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
 	var _react = __webpack_require__(4);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	var _reactRouter = __webpack_require__(193);
+
+	var _reactRedux = __webpack_require__(171);
 
 	var _reArticlist = __webpack_require__(271);
 
@@ -28220,11 +28201,14 @@ webpackJsonp([0,1],[
 
 	var _reChangebuttn2 = _interopRequireDefault(_reChangebuttn);
 
+	var _actionWenzhang = __webpack_require__(276);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/**
-	 * 导入样式
+	 * 导入业务组件
 	 */
+
 	/**
 	 * 文章列表 by fengchuatao 
 	 */
@@ -28236,6 +28220,11 @@ webpackJsonp([0,1],[
 	var Reactariticlist1 = _react2.default.createClass({
 		displayName: 'Reactariticlist1',
 
+		componentDidMount: function componentDidMount() {
+			var dispatch = this.props.dispatch;
+
+			dispatch((0, _actionWenzhang.getwenzhangList)()); //页面加载完成数据拉取
+		},
 		render: function render() {
 			return _react2.default.createElement(
 				'div',
@@ -28262,7 +28251,7 @@ webpackJsonp([0,1],[
 								_react2.default.createElement(
 									'p',
 									{ className: 're-articlist1-box-header' },
-									_react2.default.createElement('img', { src: alist.column.image_url })
+									_react2.default.createElement('img', { src: 'http://127.0.0.1:3000/geturl?q=' + alist.column.image_url })
 								),
 								_react2.default.createElement(
 									'p',
@@ -28293,10 +28282,21 @@ webpackJsonp([0,1],[
 	});
 
 	/**
-	 * 导入业务组件
+	 * 导入业务模块
 	 */
 
-	module.exports = Reactariticlist1;
+	/**
+	 * 导入样式
+	 */
+
+
+	function mapStateToProps(state) {
+		return {
+			wenzhangarray: state.ReIndexwenzhang.WENZHANG ? state.ReIndexwenzhang.WENZHANG : []
+		};
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Reactariticlist1);
 
 /***/ },
 /* 271 */
@@ -28352,216 +28352,35 @@ webpackJsonp([0,1],[
 /* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	/**
-	 * 首页底部by fengchuatao 
-	 */
-
-	var React = __webpack_require__(4);
-	__webpack_require__(277);
-
-	var Indexfooter = React.createClass({
-		displayName: 'Indexfooter',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'Indexfooter-box' },
-				React.createElement(
-					'h3',
-					null,
-					'在知乎创作'
-				),
-				React.createElement(
-					'p',
-					{ className: 'Indexfooter-box-bottom-bar' },
-					React.createElement(
-						'a',
-						null,
-						'关于'
-					),
-					React.createElement(
-						'span',
-						null,
-						'©2016 知乎'
-					)
-				)
-			);
-		}
-	});
-
-	module.exports = Indexfooter;
-
-/***/ },
-/* 277 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 278 */,
-/* 279 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(4);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(193);
-
-	var _reArticlist = __webpack_require__(280);
-
-	var _reArticlist2 = _interopRequireDefault(_reArticlist);
-
-	var _reChangebuttn = __webpack_require__(273);
-
-	var _reChangebuttn2 = _interopRequireDefault(_reChangebuttn);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 专栏列表 by fengchuatao 
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-	/**
-	 * 导入业务基础模块
-	 */
-
-	/**
-	 * 导入样式
-	 */
-
-
-	/**
-	 * 导入业务组件
-	 */
-
-	var Reactariticlist = function (_Component) {
-		_inherits(Reactariticlist, _Component);
-
-		function Reactariticlist() {
-			_classCallCheck(this, Reactariticlist);
-
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Reactariticlist).apply(this, arguments));
-		}
-
-		_createClass(Reactariticlist, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ className: 're-articlist-box' },
-					_react2.default.createElement(
-						'h2',
-						null,
-						_react2.default.createElement(
-							'span',
-							null,
-							'专栏 · 发现'
-						)
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 're-articlist-box-list' },
-						this.props.zhuanlanarray.map(function (alist, index) {
-							return _react2.default.createElement(
-								_reactRouter.Link,
-								{ to: '/zhuanlan/' + alist.slug },
-								_react2.default.createElement(
-									'div',
-									{ className: 're-articlist-box-listone', key: index },
-									_react2.default.createElement(
-										'p',
-										{ className: 're-articlist-box-header' },
-										_react2.default.createElement('img', { src: alist.avatar })
-									),
-									_react2.default.createElement(
-										'p',
-										{ className: 're-articlist-box-title' },
-										alist.name
-									),
-									_react2.default.createElement(
-										'p',
-										{ className: 're-articlist-box-description' },
-										alist.description
-									),
-									_react2.default.createElement(
-										'p',
-										{ className: 're-articlist-box-link ' },
-										_react2.default.createElement(
-											'a',
-											null,
-											'进入专栏'
-										)
-									)
-								)
-							);
-						})
-					),
-					_react2.default.createElement(_reChangebuttn2.default, null)
-				);
-			}
-		}]);
-
-		return Reactariticlist;
-	}(_react.Component);
-
-	exports.default = Reactariticlist;
-
-/***/ },
-/* 280 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 281 */,
-/* 282 */
-/***/ function(module, exports, __webpack_require__) {
-
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.getzhuanlanlist = undefined;
+	exports.getwenzhangList = undefined;
 
-	var _Index_Async = __webpack_require__(283);
+	var _Index_Async = __webpack_require__(277);
 
-	function gitZhuanlanList_index(list) {
+	function getwenzhangindex(list) {
 	  return {
-	    type: "GETZHUANLAN",
+	    type: "GETWENZHANGINDEX",
 	    list: list
 	  };
 	} /**
-	   * 专栏action
+	   * 首页文章列表
 	   * by 代小星
 	   */
 
-
-	var getzhuanlanlist = exports.getzhuanlanlist = function getzhuanlanlist() {
+	var getwenzhangList = exports.getwenzhangList = function getwenzhangList() {
 	  return function (dispatch) {
-	    (0, _Index_Async.fetchDataAsynczhuanlanIndex)(function (list) {
-	      dispatch(gitZhuanlanList_index(list));
+	    (0, _Index_Async.fetchDataAsyncwenzhangIndex)(function (list) {
+	      dispatch(getwenzhangindex(list));
 	    });
 	  };
 	};
 
 /***/ },
-/* 283 */
+/* 277 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28573,7 +28392,7 @@ webpackJsonp([0,1],[
 	 * 首页专栏数据接口
 	 */
 
-	var IP = "http://127.0.0.1:3000/";
+	var IP = "http://113.250.158.192:3000/";
 	//首页文章专栏接口
 	var fetchDataAsynczhuanlanIndex = exports.fetchDataAsynczhuanlanIndex = function fetchDataAsynczhuanlanIndex(callback) {
 	  $.getJSON('http://127.0.0.1:3000/indexListgetZhuanlan?limit=8&offset=8', function (json, textStatus) {
@@ -28636,6 +28455,210 @@ webpackJsonp([0,1],[
 	};
 
 /***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	/**
+	 * 首页底部by fengchuatao 
+	 */
+
+	var React = __webpack_require__(4);
+	__webpack_require__(279);
+
+	var Indexfooter = React.createClass({
+		displayName: 'Indexfooter',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'Indexfooter-box' },
+				React.createElement(
+					'h3',
+					null,
+					'在知乎创作'
+				),
+				React.createElement(
+					'p',
+					{ className: 'Indexfooter-box-bottom-bar' },
+					React.createElement(
+						'a',
+						null,
+						'关于'
+					),
+					React.createElement(
+						'span',
+						null,
+						'©2016 知乎'
+					)
+				)
+			);
+		}
+	});
+
+	module.exports = Indexfooter;
+
+/***/ },
+/* 279 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 280 */,
+/* 281 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(4);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(193);
+
+	var _reactRedux = __webpack_require__(171);
+
+	var _reArticlist = __webpack_require__(282);
+
+	var _reArticlist2 = _interopRequireDefault(_reArticlist);
+
+	var _reChangebuttn = __webpack_require__(273);
+
+	var _reChangebuttn2 = _interopRequireDefault(_reChangebuttn);
+
+	var _actionZhuanlan = __webpack_require__(284);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 专栏列表 by fengchuatao 
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+	/**
+	 * 导入业务基础模块
+	 */
+
+	/**
+	 * 导入样式
+	 */
+
+
+	/**
+	 * 导入业务组件
+	 */
+
+	/**
+	 * 导入业务模块
+	 */
+
+	var Reactariticlist = function (_Component) {
+		_inherits(Reactariticlist, _Component);
+
+		function Reactariticlist() {
+			_classCallCheck(this, Reactariticlist);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Reactariticlist).apply(this, arguments));
+		}
+
+		_createClass(Reactariticlist, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				var dispatch = this.props.dispatch;
+
+				dispatch((0, _actionZhuanlan.getzhuanlanlist)()); //页面加载完成数据拉取
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					{ className: 're-articlist-box' },
+					_react2.default.createElement(
+						'h2',
+						null,
+						_react2.default.createElement(
+							'span',
+							null,
+							'专栏 · 发现'
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 're-articlist-box-list' },
+						this.props.zhuanlanarray.map(function (alist, index) {
+							return _react2.default.createElement(
+								_reactRouter.Link,
+								{ to: '/zhuanlan/' + alist.slug },
+								_react2.default.createElement(
+									'div',
+									{ className: 're-articlist-box-listone', key: index },
+									_react2.default.createElement(
+										'p',
+										{ className: 're-articlist-box-header' },
+										_react2.default.createElement('img', { src: 'http://127.0.0.1:3000/geturl?q=' + alist.avatar })
+									),
+									_react2.default.createElement(
+										'p',
+										{ className: 're-articlist-box-title' },
+										alist.name
+									),
+									_react2.default.createElement(
+										'p',
+										{ className: 're-articlist-box-description' },
+										alist.description
+									),
+									_react2.default.createElement(
+										'p',
+										{ className: 're-articlist-box-link ' },
+										_react2.default.createElement(
+											'a',
+											null,
+											'进入专栏'
+										)
+									)
+								)
+							);
+						})
+					),
+					_react2.default.createElement(_reChangebuttn2.default, null)
+				);
+			}
+		}]);
+
+		return Reactariticlist;
+	}(_react.Component);
+
+	exports.default = Reactariticlist;
+
+
+	function mapStateToProps(state) {
+		return {
+			zhuanlanarray: state.ReIndexzhuanlan.ZHUANLANDATE ? state.ReIndexzhuanlan.ZHUANLANDATE : []
+		};
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Reactariticlist);
+
+/***/ },
+/* 282 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 283 */,
 /* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -28644,24 +28667,25 @@ webpackJsonp([0,1],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.getwenzhangList = undefined;
+	exports.getzhuanlanlist = undefined;
 
-	var _Index_Async = __webpack_require__(283);
+	var _Index_Async = __webpack_require__(277);
 
-	function getwenzhangindex(list) {
+	function gitZhuanlanList_index(list) {
 	  return {
-	    type: "GETWENZHANGINDEX",
+	    type: "GETZHUANLAN",
 	    list: list
 	  };
 	} /**
-	   * 首页文章列表
+	   * 专栏action
 	   * by 代小星
 	   */
 
-	var getwenzhangList = exports.getwenzhangList = function getwenzhangList() {
+
+	var getzhuanlanlist = exports.getzhuanlanlist = function getzhuanlanlist() {
 	  return function (dispatch) {
-	    (0, _Index_Async.fetchDataAsyncwenzhangIndex)(function (list) {
-	      dispatch(getwenzhangindex(list));
+	    (0, _Index_Async.fetchDataAsynczhuanlanIndex)(function (list) {
+	      dispatch(gitZhuanlanList_index(list));
 	    });
 	  };
 	};
@@ -28783,7 +28807,11 @@ webpackJsonp([0,1],[
 			var dispatch = _props.dispatch;
 			var url = _props.url;
 
-			dispatch((0, _actionWenzhangcontent.getDataAsyncwenzhangcontent)(url)); //页面加载完成数据拉取
+			dispatch((0, _actionWenzhangcontent.getDataAsyncwenzhangcontent)(url)); //页面加载完成数据拉取;
+			console.log($(".ReactZhuan-box").find(".ReactZhuan-box-text .origin_image"));
+			$(".ReactZhuan-box .ReactZhuan-box-text .origin_image").map(function (index, obj) {
+				console.log(obj);
+			});
 		},
 		render: function render() {
 			var _props2 = this.props;
@@ -28800,7 +28828,7 @@ webpackJsonp([0,1],[
 			return _React2.default.createElement(
 				'div',
 				{ className: 'ReactZhuan-box' },
-				_React2.default.createElement('img', { src: g_data.titleImage, className: 'ReactZhuan-box-pagetip' }),
+				_React2.default.createElement('img', { src: 'http://127.0.0.1:3000/geturl?q=' + g_data.titleImage, className: 'ReactZhuan-box-pagetip' }),
 				_React2.default.createElement(
 					'h1',
 					{ className: 'ReactZhuan-box-multiline2' },
@@ -28809,7 +28837,7 @@ webpackJsonp([0,1],[
 				_React2.default.createElement(
 					'div',
 					{ className: 'ReactZhuan-box-meta' },
-					_React2.default.createElement('img', { src: avatar }),
+					_React2.default.createElement('img', { src: 'http://127.0.0.1:3000/geturl?q=' + avatar }),
 					_React2.default.createElement(
 						'span',
 						null,
@@ -32448,7 +32476,7 @@ webpackJsonp([0,1],[
 						"div",
 						{ className: "ReactGood-box-votespeople" },
 						this.props.GoodDate.lastestLikers.map(function (alist, index) {
-							return _React2.default.createElement("img", { src: alist.avatar });
+							return _React2.default.createElement("img", { src: "http://127.0.0.1:3000/geturl?q=" + alist.avatar });
 						})
 					)
 				)
@@ -32551,7 +32579,7 @@ webpackJsonp([0,1],[
 						return _React2.default.createElement(
 							"div",
 							{ className: "re-comments-box-comment-listone" },
-							_React2.default.createElement("img", { src: alist.author.avatar }),
+							_React2.default.createElement("img", { src: "http://127.0.0.1:3000/geturl?q=" + alist.author.avatar }),
 							_React2.default.createElement(
 								"span",
 								null,
@@ -32625,7 +32653,7 @@ webpackJsonp([0,1],[
 	});
 	exports.actionrecommendations = exports.getwenzhangShoulu = exports.getfasycwenzhangcomment = exports.getDataAsyncwenzhangcontent = undefined;
 
-	var _Index_Async = __webpack_require__(283);
+	var _Index_Async = __webpack_require__(277);
 
 	//获取文章主体内容
 	function getwenzhangcontent(content) {
@@ -32772,7 +32800,7 @@ webpackJsonp([0,1],[
 							_React2.default.createElement(
 								"p",
 								{ className: "ReactIncluded-box-header" },
-								_React2.default.createElement("img", { src: alist.sourceColumn.image_url })
+								_React2.default.createElement("img", { src: "http://127.0.0.1:3000/geturl?q=" + alist.sourceColumn.image_url })
 							),
 							_React2.default.createElement(
 								"p",
@@ -32885,7 +32913,7 @@ webpackJsonp([0,1],[
 						return _react2.default.createElement(
 							'div',
 							{ className: 'Reactrecommend-box-listone' },
-							_react2.default.createElement('img', { src: alist.image_url }),
+							_react2.default.createElement('img', { src: 'http://127.0.0.1:3000/geturl?q=' + alist.image_url }),
 							_react2.default.createElement(
 								'div',
 								{ className: 'Reactrecommend-box-listone-isolate' },
@@ -33037,7 +33065,7 @@ webpackJsonp([0,1],[
 				_React2.default.createElement(
 					'div',
 					{ className: 're-userinfo-box-headerlink' },
-					_React2.default.createElement('img', { src: UserInfo.avatar })
+					_React2.default.createElement('img', { src: 'http://127.0.0.1:3000/geturl?q=' + UserInfo.avatar })
 				),
 				_React2.default.createElement(
 					'div',
@@ -33126,7 +33154,7 @@ webpackJsonp([0,1],[
 	});
 	exports.getwenzhangwenzhangfn = exports.getwenzhangList = undefined;
 
-	var _Index_Async = __webpack_require__(283);
+	var _Index_Async = __webpack_require__(277);
 
 	//获取专栏信息
 	function getzhuanlanoneinfo(content) {
@@ -33236,7 +33264,7 @@ webpackJsonp([0,1],[
 						return _React2.default.createElement(
 							'div',
 							{ className: 're-zhuanlanlist-listone' },
-							_React2.default.createElement('img', { src: alist.titleImage, className: 're-zhuanlanlist-listone-titleimg' }),
+							_React2.default.createElement('img', { src: 'http://127.0.0.1:3000/geturl?q=' + alist.titleImage, className: 're-zhuanlanlist-listone-titleimg' }),
 							_React2.default.createElement(
 								'h1',
 								null,
