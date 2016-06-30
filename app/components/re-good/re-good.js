@@ -30,7 +30,7 @@ var ReactGood = React.createClass({
 					</div>
 					<div className = "ReactGood-box-votespeople">
 						{this.props.GoodDate.lastestLikers.map((alist,index) =>
-							<img src = {alist.avatar} />
+							<img src = {`http://127.0.0.1:3000/geturl?q=${alist.avatar}`} />
 						)}
 					</div>
 				</div>

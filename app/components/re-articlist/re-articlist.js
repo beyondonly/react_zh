@@ -8,7 +8,9 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { Router, Route, Link } from 'react-router'
+import { Router, Route, Link } from 'react-router';
+import { connect } from 'react-redux';
+
 
 
 /**
@@ -22,7 +24,18 @@ import Stylesheet from './re-articlist.less'
 
 import ReactchangeButton from "../re-changebuttn/re-changebuttn.js";
 
+/**
+ * 导入业务模块
+ */
+
+import { getzhuanlanlist } from "../../actions/action-zhuanlan.js";
+
 export default class Reactariticlist extends Component {
+  componentDidMount() {
+		const { dispatch } = this.props;
+		dispatch(getzhuanlanlist()) //页面加载完成数据拉取
+  }
+
   render() {
     return (
 			<div className = "re-articlist-box">
@@ -31,7 +44,7 @@ export default class Reactariticlist extends Component {
 					{this.props.zhuanlanarray.map((alist, index) =>
 				        <Link to = {`/zhuanlan/${alist.slug}`}>
 					        <div className = "re-articlist-box-listone" key={index}>
-								<p className = "re-articlist-box-header"><img src={alist.avatar} /></p>
+								<p className = "re-articlist-box-header"><img src={`http://127.0.0.1:3000/geturl?q=${alist.avatar}`} /></p>
 								<p className = "re-articlist-box-title">{alist.name}</p>
 								<p className = "re-articlist-box-description">{alist.description}</p>
 								<p className = "re-articlist-box-link ">
@@ -47,5 +60,14 @@ export default class Reactariticlist extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    zhuanlanarray: state.ReIndexzhuanlan.ZHUANLANDATE?state.ReIndexzhuanlan.ZHUANLANDATE:[]
+  };
+}
+
+export default connect(
+  mapStateToProps
+)(Reactariticlist);
 
 

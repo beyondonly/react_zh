@@ -8,7 +8,9 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { Router, Route, Link } from 'react-router'
+import { Router, Route, Link } from 'react-router';
+import { connect } from 'react-redux';
+
 
 
 /**
@@ -22,7 +24,17 @@ import Stylesheet from './re-articlist1.less'
 
 import ReactchangeButton from "../re-changebuttn/re-changebuttn.js";
 
+/**
+ * 导入业务模块
+ */
+
+import { getwenzhangList } from "../../actions/action-wenzhang.js";
+
 var Reactariticlist1 = React.createClass({
+	componentDidMount: function(){
+		const { dispatch } = this.props;
+		dispatch(getwenzhangList()) //页面加载完成数据拉取
+  	},
 	render: function() {
 		return (
 			<div className = "re-articlist1-box">
@@ -31,7 +43,7 @@ var Reactariticlist1 = React.createClass({
 					{this.props.wenzhangarray.map((alist, index) =>
 						<Link to = {`/wenzhang/${alist.url_token}`}>
 							<div className = "re-articlist1-box-listone" key={index}>
-								<p className = "re-articlist1-box-header"><img src= {alist.column.image_url} /></p>
+								<p className = "re-articlist1-box-header"><img src={`http://127.0.0.1:3000/geturl?q=${alist.column.image_url}`}/></p>
 								<p className = "re-articlist1-box-title">{alist.title}</p>
 								<p className = "re-articlist1-box-description">
 									<span className="re-articlist1-box-author">{alist.author.name}</span>
@@ -48,4 +60,12 @@ var Reactariticlist1 = React.createClass({
 	}
 })
 
-module.exports = Reactariticlist1;
+function mapStateToProps(state) {
+  return {
+    wenzhangarray: state.ReIndexwenzhang.WENZHANG?state.ReIndexwenzhang.WENZHANG:[],
+  };
+}
+
+export default connect(
+  mapStateToProps
+)(Reactariticlist1);

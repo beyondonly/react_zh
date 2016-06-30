@@ -36,7 +36,7 @@ var ReactIncluded = React.createClass({
 					{Shoulu.map((alist,index) =>
 						<div className = "ReactIncluded-box-listbox" key={index}>
 							<p className = "ReactIncluded-box-header">
-							  <img src = {alist.sourceColumn.image_url} />
+							  <img src = {`http://127.0.0.1:3000/geturl?q=${alist.sourceColumn.image_url}`} />
 							</p>
 							<p className = "ReactIncluded-box-title">
 								{alist.sourceColumn.name}

@@ -33,7 +33,11 @@ import { getDataAsyncwenzhangcontent } from "../../actions/action-wenzhangconten
 var Reactwenzhang = React.createClass({
 	componentDidMount: function(){
 		const {dispatch,url} = this.props;
-		dispatch(getDataAsyncwenzhangcontent(url)) //页面加载完成数据拉取
+		dispatch(getDataAsyncwenzhangcontent(url)) //页面加载完成数据拉取;
+		console.log($(".ReactZhuan-box").find(".ReactZhuan-box-text .origin_image"))
+		$(".ReactZhuan-box .ReactZhuan-box-text .origin_image").map(function(index,obj) {
+			console.log(obj)
+		})
 	},
 	render: function() {
 		const { WenzhangContent,url } = this.props;
@@ -46,10 +50,10 @@ var Reactwenzhang = React.createClass({
 		var avatar = g_data.author?g_data.author.avatar:"";
 		return (
 			<div className = "ReactZhuan-box">
-				<img src= {g_data.titleImage} className = "ReactZhuan-box-pagetip"/>
+				<img src= {`http://127.0.0.1:3000/geturl?q=${g_data.titleImage}`} className = "ReactZhuan-box-pagetip"/>
 				<h1 className="ReactZhuan-box-multiline2">{g_data.title}</h1>
 				<div className = "ReactZhuan-box-meta">
-					<img src={avatar}/>
+					<img src={`http://127.0.0.1:3000/geturl?q=${avatar}`}/>
 					<span>{author}</span>
 					<span>{g_data.publishedTime}</span>
 				</div>

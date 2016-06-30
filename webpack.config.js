@@ -15,7 +15,7 @@ module.exports = {
     loaders:[
       { test: /\.js$/, exclude:/node_modules/,loader: 'babel',query: {presets: ['react', 'es2015']}},
       {test: /\.less$/, loader: ExtractTextPlugin.extract("style-loader","css-loader!less-loader")},
-      { test: /\.png|.svg$/, loader: "file-loader?name=./aster/[hash:8].[name].[ext]" }
+      { test: /\.png|.svg$/, loader: "file-loader?name=/aster/[hash:8].[name].[ext]" }
     ]
   },
   plugins: [

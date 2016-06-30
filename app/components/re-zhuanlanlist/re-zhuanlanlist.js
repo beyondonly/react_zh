@@ -34,7 +34,7 @@ var ReactZhuanlanlist = React.createClass({
 				<div className = "re-zhuanlanlist-list">
 					{wenzhanglist.map((alist,index) =>
 						<div className = "re-zhuanlanlist-listone">
-							<img src ={alist.titleImage} className = "re-zhuanlanlist-listone-titleimg"/>
+							<img src ={`http://127.0.0.1:3000/geturl?q=${alist.titleImage}`} className = "re-zhuanlanlist-listone-titleimg"/>
 							<h1>{alist.title}</h1>
 							<p className="re-zhuanlanlist-listone-post">
 								<p max="truncateMax" dangerouslySetInnerHTML={{__html: alist.content}}></p>
