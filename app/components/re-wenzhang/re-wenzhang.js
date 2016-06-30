@@ -34,7 +34,6 @@ var Reactwenzhang = React.createClass({
 	componentDidMount: function(){
 		const {dispatch,url} = this.props;
 		dispatch(getDataAsyncwenzhangcontent(url)) //页面加载完成数据拉取;
-		console.log(this.refs.test)
 	},
 	render: function() {
 		const { WenzhangContent,url } = this.props;
@@ -46,7 +45,7 @@ var Reactwenzhang = React.createClass({
 		var gooddata = {likesCount:likesCount,lastestLikers:lastestLikers}
 		var avatar = g_data.author?g_data.author.avatar:"";
 		return (
-			<div className = "ReactZhuan-box">
+			<div className = "ReactZhuan-box"> 
 				<img src= {`http://127.0.0.1:3000/geturl?q=${g_data.titleImage}`} className = "ReactZhuan-box-pagetip"/>
 				<h1 className="ReactZhuan-box-multiline2">{g_data.title}</h1>
 				<div className = "ReactZhuan-box-meta">
@@ -54,7 +53,7 @@ var Reactwenzhang = React.createClass({
 					<span>{author}</span>
 					<span>{g_data.publishedTime}</span>
 				</div>
-				<div  className = "ReactZhuan-box-text"  ref="test" dangerouslySetInnerHTML={{__html: g_data.content}}/>
+				<div  className = "ReactZhuan-box-text"  dangerouslySetInnerHTML={{__html: g_data.content}}/>
 				<div className = "ReactZhuan-box-target">
 					{topics.map((alist, index) =>
 						<span key={index}>{alist.name}</span>
