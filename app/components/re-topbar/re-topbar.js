@@ -14,6 +14,7 @@
  */
 import React , { Component } from 'react';
 import { Link } from 'react-router';
+import classnames from 'classnames'
 
 /**
  * 引入对应less
@@ -31,16 +32,46 @@ import Stylesheets from './re-topbar.less';
 export default class ReactTopbar extends Component {
 	constructor(props) {
 	    super(props)
-	    this.state = {showMuen: false};
+	    this.state = {
+	    	showBell: false, //导航是否显示
+	    	fixed: false,//是否固定顶部
+	    	showbar: true //是否显示顶部
+	    }; 
 	}
     
-    handleClick() {
-		this.setState({showMuen: !this.state.showMuen})
+    handleClick(e) {
+    	e.stopPropagation();
+		this.setState({showBell: !this.state.showBell})
+	}
+
+	handleHide() {
+		this.setState({showBell: false})
+	}
+
+	handleTopbarfixed() {
+	   this.setState({fixed: true})
+	}
+
+	handleTopbarnofixed() {
+	   this.setState({fixed: false})
+	}
+
+	handleTopbarShow() {
+		this.setState({showbar: true})
+	}
+
+	handleTopbarHide(){
+		this.setState({showbar: false})
 	}
 
     render() {
 		return (
-			<div className = "Rt-topbar">
+			<div className = {classnames({
+					'Rt-topbar':'Rt-topbar',
+					'Rt-topbar-ui-fexd':this.state.fixed,
+					'Rt-topbar-ui-hide':!this.state.showbar,
+					'Rt-topbar-ui-show':this.state.showbar
+				})}>
 				<a className ="logo-link">
 					<i className = "icon-ic_zhihu_logo"></i>
 				</a>
@@ -54,10 +85,10 @@ export default class ReactTopbar extends Component {
 					</div>
 				</div>
 				<div className="slidebox">
-					<p className = "slidebox-icon">
-					   <i className = "icon-ic_nav_more" onClick={this.handleClick}></i>
+					<p className = "slidebox-icon" onClick = {this.handleClick.bind(this)}>
+					   <i className = "icon-ic_nav_more"></i>
 					</p>
-					<ul className = "list-box">
+					<ul className = {classnames({'list-box':'list-box',animation_slidedown:this.state.showBell})}>
 						<li><Link to="/users">草稿</Link></li>
 						<li><Link to="/zhuanlan">我的文章</Link></li>
 					</ul>

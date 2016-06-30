@@ -2,6 +2,7 @@
  * 首页专栏数据接口
  */
 
+var IP = "http://127.0.0.1:3000/";
 //首页文章专栏接口
 export let fetchDataAsynczhuanlanIndex = function(callback) {
     $.getJSON('http://127.0.0.1:3000/indexListgetZhuanlan?limit=8&offset=8',function(json, textStatus) {
@@ -45,15 +46,18 @@ export let ferchDatarecommendations = function(callback) {
 }
 
 //专栏信息获取
-export let getzhuanlaninfo = function(callback) {
-  $.getJSON('http://127.0.0.1:3000/getZhuanlanInfo',function(json, textStatus) {
+export let getzhuanlaninfo = function(slug,callback) {
+  var getlink = IP+"getZhuanlanInfo?slug="+slug;
+  console.log(getlink)
+  $.getJSON(getlink,function(json, textStatus) {
        callback(json);
   });
 }
 
 //获取专栏文章
-export let getzhuanlanwenzhang = function(callback) {
-  $.getJSON('http://127.0.0.1:3000/getZhuanlanposts',function(json, textStatus) {
+export let getzhuanlanwenzhang = function(slug,callback) {
+  var getlink = IP+"getZhuanlanposts?slug="+slug
+  $.getJSON(getlink,function(json, textStatus) {
        callback(json);
   });
 }

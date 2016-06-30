@@ -23,8 +23,8 @@ import { getwenzhangwenzhangfn } from "../../actions/action-zhuanlanone.js";
 
 var ReactZhuanlanlist = React.createClass({
 	componentDidMount: function(){
-		const { dispatch } = this.props;
-		dispatch(getwenzhangwenzhangfn())
+		const { dispatch,slug } = this.props;
+		dispatch(getwenzhangwenzhangfn(slug))
 	},
 	render: function() {
 		const {wenzhanglist} = this.props;

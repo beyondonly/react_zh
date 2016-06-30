@@ -144,7 +144,7 @@ webpackJsonp([0,1],[
 
 	var _reTopbar2 = _interopRequireDefault(_reTopbar);
 
-	var _reset = __webpack_require__(338);
+	var _reset = __webpack_require__(339);
 
 	var _reset2 = _interopRequireDefault(_reset);
 
@@ -179,41 +179,67 @@ webpackJsonp([0,1],[
 
 
 	var App = _react2.default.createClass({
-	  displayName: 'App',
+		displayName: 'App',
 
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(_reTopbar2.default, null),
-	      this.props.children
-	    );
-	  }
+		getInitialState: function getInitialState() {
+			return {
+				windowClient: 0
+			};
+		},
+		componentDidMount: function componentDidMount() {
+			window.addEventListener('scroll', this.handleronSroll);
+		},
+		handlerclick: function handlerclick() {
+			this.refs.Topbar.handleHide();
+		},
+		handleronSroll: function handleronSroll() {
+			var Topbar = document.body.scrollTop;
+			if (Topbar < 60) {
+				//小于60
+				this.refs.Topbar.handleTopbarnofixed();
+				this.refs.Topbar.handleTopbarShow();
+				return;
+			};
+
+			this.refs.Topbar.handleTopbarfixed();
+			if (Topbar > this.state.windowClient) {
+				//大于上一次
+				this.refs.Topbar.handleTopbarHide();
+			} else {
+				//小于上一次
+				this.refs.Topbar.handleTopbarShow();
+			}
+
+			this.setState({ windowClient: Topbar });
+		},
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ onClick: this.handlerclick },
+				_react2.default.createElement(_reTopbar2.default, { ref: 'Topbar' }),
+				this.props.children
+			);
+		}
 	});
 
 	/**
 	 * 全局路由
 	 * 针对项目不同可手动配置
 	 */
-
 	_reactDom2.default.render(_react2.default.createElement(
-	  _reactRedux.Provider,
-	  { store: _storesConfigureStore2.default },
-	  _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      _reactRouter.Router,
-	      { history: _reactRouter.hashHistory },
-	      _react2.default.createElement(
-	        _reactRouter.Route,
-	        { path: '/', component: App },
-	        _react2.default.createElement(_reactRouter.IndexRoute, { component: _index2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: 'zhuanlan', component: _zhuanlan2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: 'wenzhang', component: _wenzhang2.default })
-	      )
-	    )
-	  )
+		_reactRedux.Provider,
+		{ store: _storesConfigureStore2.default },
+		_react2.default.createElement(
+			_reactRouter.Router,
+			{ history: _reactRouter.hashHistory },
+			_react2.default.createElement(
+				_reactRouter.Route,
+				{ path: '/', component: App },
+				_react2.default.createElement(_reactRouter.IndexRoute, { component: _index2.default }),
+				_react2.default.createElement(_reactRouter.Route, { path: 'zhuanlan/:slug', component: _zhuanlan2.default }),
+				_react2.default.createElement(_reactRouter.Route, { path: 'wenzhang/:url', component: _wenzhang2.default })
+			)
+		)
 	), rootElement);
 
 /***/ },
@@ -28180,68 +28206,95 @@ webpackJsonp([0,1],[
 
 	'use strict';
 
+	var _react = __webpack_require__(4);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(193);
+
+	var _reArticlist = __webpack_require__(271);
+
+	var _reArticlist2 = _interopRequireDefault(_reArticlist);
+
+	var _reChangebuttn = __webpack_require__(273);
+
+	var _reChangebuttn2 = _interopRequireDefault(_reChangebuttn);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * 导入样式
+	 */
 	/**
 	 * 文章列表 by fengchuatao 
 	 */
 
-	var React = __webpack_require__(4);
-	__webpack_require__(271);
-	var ReactchangeButton = __webpack_require__(273);
+	/**
+	 * 导入业务基础模块
+	 */
 
-	var Reactariticlist1 = React.createClass({
+	var Reactariticlist1 = _react2.default.createClass({
 		displayName: 'Reactariticlist1',
 
 		render: function render() {
-			return React.createElement(
+			return _react2.default.createElement(
 				'div',
 				{ className: 're-articlist1-box' },
-				React.createElement(
+				_react2.default.createElement(
 					'h2',
 					null,
-					React.createElement(
+					_react2.default.createElement(
 						'span',
 						null,
 						'文章 · 发现'
 					)
 				),
-				React.createElement(
+				_react2.default.createElement(
 					'div',
 					{ className: 're-articlist1-box-list' },
 					this.props.wenzhangarray.map(function (alist, index) {
-						return React.createElement(
-							'div',
-							{ className: 're-articlist1-box-listone', key: index },
-							React.createElement(
-								'p',
-								{ className: 're-articlist1-box-header' },
-								React.createElement('img', { src: alist.column.image_url })
-							),
-							React.createElement(
-								'p',
-								{ className: 're-articlist1-box-title' },
-								alist.title
-							),
-							React.createElement(
-								'p',
-								{ className: 're-articlist1-box-description' },
-								React.createElement(
-									'span',
-									{ className: 're-articlist1-box-author' },
-									alist.author.name
+						return _react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/wenzhang/' + alist.url_token },
+							_react2.default.createElement(
+								'div',
+								{ className: 're-articlist1-box-listone', key: index },
+								_react2.default.createElement(
+									'p',
+									{ className: 're-articlist1-box-header' },
+									_react2.default.createElement('img', { src: alist.column.image_url })
 								),
-								React.createElement(
-									'span',
-									{ className: 're-articlist1-box-source ' },
-									alist.author.bio
+								_react2.default.createElement(
+									'p',
+									{ className: 're-articlist1-box-title' },
+									alist.title
+								),
+								_react2.default.createElement(
+									'p',
+									{ className: 're-articlist1-box-description' },
+									_react2.default.createElement(
+										'span',
+										{ className: 're-articlist1-box-author' },
+										alist.author.name
+									),
+									_react2.default.createElement(
+										'span',
+										{ className: 're-articlist1-box-source ' },
+										alist.author.bio
+									)
 								)
 							)
 						);
 					})
 				),
-				React.createElement(ReactchangeButton, null)
+				_react2.default.createElement(_reChangebuttn2.default, null)
 			);
 		}
 	});
+
+	/**
+	 * 导入业务组件
+	 */
 
 	module.exports = Reactariticlist1;
 
@@ -28363,6 +28416,16 @@ webpackJsonp([0,1],[
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(193);
+
+	var _reArticlist = __webpack_require__(280);
+
+	var _reArticlist2 = _interopRequireDefault(_reArticlist);
+
+	var _reChangebuttn = __webpack_require__(273);
+
+	var _reChangebuttn2 = _interopRequireDefault(_reChangebuttn);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28370,12 +28433,21 @@ webpackJsonp([0,1],[
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 文章列表 by fengchuatao 
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 专栏列表 by fengchuatao 
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
-	var ReactchangeButton = __webpack_require__(273);
+	/**
+	 * 导入业务基础模块
+	 */
 
-	__webpack_require__(280);
+	/**
+	 * 导入样式
+	 */
+
+
+	/**
+	 * 导入业务组件
+	 */
 
 	var Reactariticlist = function (_Component) {
 		_inherits(Reactariticlist, _Component);
@@ -28387,9 +28459,6 @@ webpackJsonp([0,1],[
 		}
 
 		_createClass(Reactariticlist, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {}
-		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -28409,36 +28478,40 @@ webpackJsonp([0,1],[
 						{ className: 're-articlist-box-list' },
 						this.props.zhuanlanarray.map(function (alist, index) {
 							return _react2.default.createElement(
-								'div',
-								{ className: 're-articlist-box-listone', key: index },
+								_reactRouter.Link,
+								{ to: '/zhuanlan/' + alist.slug },
 								_react2.default.createElement(
-									'p',
-									{ className: 're-articlist-box-header' },
-									_react2.default.createElement('img', { src: alist.avatar })
-								),
-								_react2.default.createElement(
-									'p',
-									{ className: 're-articlist-box-title' },
-									alist.name
-								),
-								_react2.default.createElement(
-									'p',
-									{ className: 're-articlist-box-description' },
-									alist.description
-								),
-								_react2.default.createElement(
-									'p',
-									{ className: 're-articlist-box-link ' },
+									'div',
+									{ className: 're-articlist-box-listone', key: index },
 									_react2.default.createElement(
-										'a',
-										null,
-										'进入专栏'
+										'p',
+										{ className: 're-articlist-box-header' },
+										_react2.default.createElement('img', { src: alist.avatar })
+									),
+									_react2.default.createElement(
+										'p',
+										{ className: 're-articlist-box-title' },
+										alist.name
+									),
+									_react2.default.createElement(
+										'p',
+										{ className: 're-articlist-box-description' },
+										alist.description
+									),
+									_react2.default.createElement(
+										'p',
+										{ className: 're-articlist-box-link ' },
+										_react2.default.createElement(
+											'a',
+											null,
+											'进入专栏'
+										)
 									)
 								)
 							);
 						})
 					),
-					_react2.default.createElement(ReactchangeButton, null)
+					_react2.default.createElement(_reChangebuttn2.default, null)
 				);
 			}
 		}]);
@@ -28500,6 +28573,7 @@ webpackJsonp([0,1],[
 	 * 首页专栏数据接口
 	 */
 
+	var IP = "http://127.0.0.1:3000/";
 	//首页文章专栏接口
 	var fetchDataAsynczhuanlanIndex = exports.fetchDataAsynczhuanlanIndex = function fetchDataAsynczhuanlanIndex(callback) {
 	  $.getJSON('http://127.0.0.1:3000/indexListgetZhuanlan?limit=8&offset=8', function (json, textStatus) {
@@ -28543,15 +28617,18 @@ webpackJsonp([0,1],[
 	};
 
 	//专栏信息获取
-	var getzhuanlaninfo = exports.getzhuanlaninfo = function getzhuanlaninfo(callback) {
-	  $.getJSON('http://127.0.0.1:3000/getZhuanlanInfo', function (json, textStatus) {
+	var getzhuanlaninfo = exports.getzhuanlaninfo = function getzhuanlaninfo(slug, callback) {
+	  var getlink = IP + "getZhuanlanInfo?slug=" + slug;
+	  console.log(getlink);
+	  $.getJSON(getlink, function (json, textStatus) {
 	    callback(json);
 	  });
 	};
 
 	//获取专栏文章
-	var getzhuanlanwenzhang = exports.getzhuanlanwenzhang = function getzhuanlanwenzhang(callback) {
-	  $.getJSON('http://127.0.0.1:3000/getZhuanlanposts', function (json, textStatus) {
+	var getzhuanlanwenzhang = exports.getzhuanlanwenzhang = function getzhuanlanwenzhang(slug, callback) {
+	  var getlink = IP + "getZhuanlanposts?slug=" + slug;
+	  $.getJSON(getlink, function (json, textStatus) {
 	    callback(json);
 	  });
 	};
@@ -32874,11 +32951,13 @@ webpackJsonp([0,1],[
 		displayName: 'Zhuanlan',
 
 		render: function render() {
+			var params = this.props.params;
+
 			return _react2.default.createElement(
 				'div',
 				{ className: 'Reactzhuanlan' },
-				_react2.default.createElement(_reUserinfo2.default, null),
-				_react2.default.createElement(_reZhuanlanlist2.default, null)
+				_react2.default.createElement(_reUserinfo2.default, { slug: params.slug }),
+				_react2.default.createElement(_reZhuanlanlist2.default, { slug: params.slug })
 			);
 		}
 	});
@@ -32926,9 +33005,11 @@ webpackJsonp([0,1],[
 		displayName: 'ReactUserinfo',
 
 		componentDidMount: function componentDidMount() {
-			var dispatch = this.props.dispatch;
+			var _props = this.props;
+			var dispatch = _props.dispatch;
+			var slug = _props.slug;
 
-			dispatch((0, _actionZhuanlanone.getwenzhangList)());
+			dispatch((0, _actionZhuanlanone.getwenzhangList)(slug));
 		},
 		render: function render() {
 			var UserInfo = this.props.UserInfo;
@@ -33052,18 +33133,18 @@ webpackJsonp([0,1],[
 	}
 
 	//获取专栏信息
-	var getwenzhangList = exports.getwenzhangList = function getwenzhangList() {
+	var getwenzhangList = exports.getwenzhangList = function getwenzhangList(slug) {
 	  return function (dispatch) {
-	    (0, _Index_Async.getzhuanlaninfo)(function (content) {
+	    (0, _Index_Async.getzhuanlaninfo)(slug, function (content) {
 	      dispatch(getzhuanlanoneinfo(content));
 	    });
 	  };
 	};
 
 	//获取专栏文章
-	var getwenzhangwenzhangfn = exports.getwenzhangwenzhangfn = function getwenzhangwenzhangfn() {
+	var getwenzhangwenzhangfn = exports.getwenzhangwenzhangfn = function getwenzhangwenzhangfn(slug) {
 	  return function (dispatch) {
-	    (0, _Index_Async.getzhuanlanwenzhang)(function (content) {
+	    (0, _Index_Async.getzhuanlanwenzhang)(slug, function (content) {
 	      dispatch(getwenzhangwenzhangaction(content));
 	    });
 	  };
@@ -33110,9 +33191,11 @@ webpackJsonp([0,1],[
 		displayName: 'ReactZhuanlanlist',
 
 		componentDidMount: function componentDidMount() {
-			var dispatch = this.props.dispatch;
+			var _props = this.props;
+			var dispatch = _props.dispatch;
+			var slug = _props.slug;
 
-			dispatch((0, _actionZhuanlanone.getwenzhangwenzhangfn)());
+			dispatch((0, _actionZhuanlanone.getwenzhangwenzhangfn)(slug));
 		},
 		render: function render() {
 			var wenzhanglist = this.props.wenzhanglist;
@@ -33225,7 +33308,11 @@ webpackJsonp([0,1],[
 
 	var _reactRouter = __webpack_require__(193);
 
-	var _reTopbar = __webpack_require__(336);
+	var _classnames = __webpack_require__(336);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _reTopbar = __webpack_require__(337);
 
 	var _reTopbar2 = _interopRequireDefault(_reTopbar);
 
@@ -33272,21 +33359,56 @@ webpackJsonp([0,1],[
 
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ReactTopbar).call(this, props));
 
-			_this.state = { showMuen: false };
+			_this.state = {
+				showBell: false, //导航是否显示
+				fixed: false, //是否固定顶部
+				showbar: true //是否显示顶部
+			};
 			return _this;
 		}
 
 		_createClass(ReactTopbar, [{
 			key: 'handleClick',
-			value: function handleClick() {
-				this.setState({ showMuen: !this.state.showMuen });
+			value: function handleClick(e) {
+				e.stopPropagation();
+				this.setState({ showBell: !this.state.showBell });
+			}
+		}, {
+			key: 'handleHide',
+			value: function handleHide() {
+				this.setState({ showBell: false });
+			}
+		}, {
+			key: 'handleTopbarfixed',
+			value: function handleTopbarfixed() {
+				this.setState({ fixed: true });
+			}
+		}, {
+			key: 'handleTopbarnofixed',
+			value: function handleTopbarnofixed() {
+				this.setState({ fixed: false });
+			}
+		}, {
+			key: 'handleTopbarShow',
+			value: function handleTopbarShow() {
+				this.setState({ showbar: true });
+			}
+		}, {
+			key: 'handleTopbarHide',
+			value: function handleTopbarHide() {
+				this.setState({ showbar: false });
 			}
 		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					{ className: 'Rt-topbar' },
+					{ className: (0, _classnames2.default)({
+							'Rt-topbar': 'Rt-topbar',
+							'Rt-topbar-ui-fexd': this.state.fixed,
+							'Rt-topbar-ui-hide': !this.state.showbar,
+							'Rt-topbar-ui-show': this.state.showbar
+						}) },
 					_react2.default.createElement(
 						'a',
 						{ className: 'logo-link' },
@@ -33324,12 +33446,12 @@ webpackJsonp([0,1],[
 						{ className: 'slidebox' },
 						_react2.default.createElement(
 							'p',
-							{ className: 'slidebox-icon' },
-							_react2.default.createElement('i', { className: 'icon-ic_nav_more', onClick: this.handleClick })
+							{ className: 'slidebox-icon', onClick: this.handleClick.bind(this) },
+							_react2.default.createElement('i', { className: 'icon-ic_nav_more' })
 						),
 						_react2.default.createElement(
 							'ul',
-							{ className: 'list-box' },
+							{ className: (0, _classnames2.default)({ 'list-box': 'list-box', animation_slidedown: this.state.showBell }) },
 							_react2.default.createElement(
 								'li',
 								null,
@@ -33361,13 +33483,67 @@ webpackJsonp([0,1],[
 
 /***/ },
 /* 336 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+
+	(function () {
+		'use strict';
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames () {
+			var classes = [];
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+
+			return classes.join(' ');
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
+
+/***/ },
+/* 337 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 337 */,
-/* 338 */
+/* 338 */,
+/* 339 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

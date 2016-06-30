@@ -39,33 +39,57 @@ import Basecss from "./iframe/public/reset.less"
 let rootElement = document.getElementById('zh-react')
 
 let App = React.createClass({
+	getInitialState:function(){
+		return {
+			windowClient:0
+		};
+	},
+	componentDidMount: function(){
+		window.addEventListener('scroll', this.handleronSroll);
+	},
+	handlerclick: function() {
+		this.refs.Topbar.handleHide()
+	},
+	handleronSroll:function(){
+		var Topbar = document.body.scrollTop;
+		if(Topbar<60) { //小于60
+			this.refs.Topbar.handleTopbarnofixed();
+			this.refs.Topbar.handleTopbarShow();
+			return
+		};
+
+		this.refs.Topbar.handleTopbarfixed()
+		if(Topbar > this.state.windowClient) { //大于上一次
+			this.refs.Topbar.handleTopbarHide()
+		}else { //小于上一次
+			this.refs.Topbar.handleTopbarShow()
+		}
+
+		this.setState({windowClient:Topbar});
+	},
 	render: function() {
 		return (
-			<div>
-				<Topbar />
+			<div onClick = {this.handlerclick} >
+				<Topbar ref="Topbar"/>
 				{this.props.children}
 			</div>
 		)
 	}
 })
 
-
 /**
  * 全局路由
  * 针对项目不同可手动配置
  */
-
 ReactDOM.render(
   <Provider store={store}>
- 	<div>
  	  <Router history={hashHistory}>
 	    <Route path="/" component={App}>
-	      <IndexRoute component={IndexPage} />
-	      <Route path="zhuanlan" component={Zhuanlan} />
-		  <Route path="wenzhang" component={Wenzhang} />
+	      <IndexRoute component={IndexPage}/>
+	      <Route path="zhuanlan/:slug" component={Zhuanlan} />
+		  <Route path="wenzhang/:url" component={Wenzhang} />
 	    </Route>
 	  </Router>
-	</div>
   </Provider>,
   rootElement
 )

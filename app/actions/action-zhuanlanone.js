@@ -22,18 +22,18 @@ function getwenzhangwenzhangaction(list) {
 }
 
 //获取专栏信息
-export let getwenzhangList = function() {
+export let getwenzhangList = function(slug) {
   return dispatch => {
-    getzhuanlaninfo(content => {
+    getzhuanlaninfo(slug,content => {
       dispatch(getzhuanlanoneinfo(content))
     })
   }
 }
 
 //获取专栏文章
-export let getwenzhangwenzhangfn = function() {
+export let getwenzhangwenzhangfn = function(slug) {
   return dispatch => {
-    getzhuanlanwenzhang(content => {
+    getzhuanlanwenzhang(slug,content => {
       dispatch(getwenzhangwenzhangaction(content))
     })
   }
