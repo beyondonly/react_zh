@@ -24,7 +24,7 @@ import { actionrecommendations } from "../../actions/action-wenzhangcontent.js";
 
 var Reactrecommend = React.createClass({
 	componentDidMount: function(){
-		const { dispatch } = this.props;
+		const { dispatch} = this.props;
 		dispatch(actionrecommendations())
 	},
 	render: function() {

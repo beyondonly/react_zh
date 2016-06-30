@@ -25,29 +25,17 @@ import Reactrecommend from "../components/re-recommend/re-recommend.js";
 import { getDataAsyncwenzhangcontent } from "../actions/action-wenzhangcontent.js";
 
 var Wenzhang = React.createClass({
-	componentDidMount: function(){
-		const {dispatch } = this.props;
-		dispatch(getDataAsyncwenzhangcontent()) //页面加载完成数据拉取
-	},
 	render: function() {
-		const {WenzhangContent } = this.props;
+		const {params} = this.props;
 		return (
 			<div>
-			 	<Reactwenzhang WenzhangContent = {WenzhangContent}/>
-			 	<ReactIncluded />
-			 	<Reactrecommend />
+			 	<Reactwenzhang url = {params.url}/>
+			 	<ReactIncluded url = {params.url}/>
+			 	<Reactrecommend url = {params.url}/>
 			</div>
 	    )
 	}
 })
 
-//获取全局state
-function getWenzhangConten(state) {
-	console.log(state)
-	return {
-		 WenzhangContent: state.ReWenzhangContent.WENZHANG?state.ReWenzhangContent.WENZHANG:{},
-	}
-}
-
-export default connect(getWenzhangConten)(Wenzhang);
+module.exports = Wenzhang;
 
