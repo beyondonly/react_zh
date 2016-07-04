@@ -26,6 +26,7 @@ import IndexPage from './containers/index.js';
 import Wenzhang from './containers/wenzhang.js';
 import Zhuanlan from './containers/zhuanlan.js';
 import Topbar from "./components/re-topbar/re-topbar.js";
+import Login from "./containers/login.js"
 
 /**
  * 导入base样式表
@@ -88,6 +89,7 @@ ReactDOM.render(
 	      <IndexRoute component={IndexPage}/>
 	      <Route path="zhuanlan/:slug" component={Zhuanlan} />
 		  <Route path="wenzhang/:url" component={Wenzhang} />
+		  <Route path="login" component={Login} />
 	    </Route>
 	  </Router>
   </Provider>,

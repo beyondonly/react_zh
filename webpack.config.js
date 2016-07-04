@@ -9,7 +9,7 @@ module.exports = {
     filename: './dist/bundle.js'
   },
   resolve: {
-    extensions: ['','.js', '.less','.css'],
+    extensions: ['','.js', '.less','.css',".json"],
   },
   module: {
     loaders:[
