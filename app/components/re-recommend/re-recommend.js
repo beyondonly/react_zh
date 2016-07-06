@@ -35,7 +35,7 @@ var Reactrecommend = React.createClass({
 				<div className = "Reactrecommend-box-list">
 					{RECOMMENT.map((alist, index) =>
 						<div className = "Reactrecommend-box-listone">
-							<img src = {alist.image_url} />
+							<img src = {`http://127.0.0.1:3000/geturl?q=${alist.image_url}`} />
 							<div className = "Reactrecommend-box-listone-isolate">
 								<h1 className = "Reactrecommend-box-listone-isolate-title">
 									{alist.title}

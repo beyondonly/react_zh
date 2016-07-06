@@ -20,19 +20,8 @@ import Reactariticlist1 from "../components/re-articlist1/re-articlist1.js";
 import Indexfooter from "../components/index_footer/index_footer.js";
 import Reactariticlist from '../components/re-articlist/re-articlist';
 
-/**
- * 导入业务模块
- */
-
-import { getzhuanlanlist } from "../actions/action-zhuanlan.js";
-import { getwenzhangList } from "../actions/action-wenzhang.js";
 
 var IndexPage = React.createClass({
-	componentDidMount: function(){
-		const { dispatch } = this.props;
-		dispatch(getzhuanlanlist()) //页面加载完成数据拉取
-		dispatch(getwenzhangList()) //页面加载完成数据拉取
-	},
 	render: function() {
 		const {zhuanlanarray,wenzhangarray } = this.props;
 		return (
@@ -46,17 +35,7 @@ var IndexPage = React.createClass({
 	}
 })
 
-
-function mapStateToProps(state) {
-  return {
-    wenzhangarray: state.ReIndexwenzhang.WENZHANG?state.ReIndexwenzhang.WENZHANG:[],
-    zhuanlanarray: state.ReIndexzhuanlan.ZHUANLANDATE?state.ReIndexzhuanlan.ZHUANLANDATE:[]
-  };
-}
-
-export default connect(
-  mapStateToProps
-)(IndexPage);
+module.exports = IndexPage;
 
 
 

@@ -32,7 +32,7 @@ var ReactUserinfo = React.createClass({
 		return (
 			<div className = "re-userinfo-box">
 				<div className = "re-userinfo-box-headerlink">
-					<img src= {UserInfo.avatar} />
+					<img src= {`http://127.0.0.1:3000/geturl?q=${UserInfo.avatar}`} />
 				</div>
 				<div className = "re-userinfo-box-title">
 					{UserInfo.name}

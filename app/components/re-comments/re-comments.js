@@ -41,7 +41,7 @@ var Reactcomment = React.createClass({
 				<div className = "re-comments-box-comment-list">
 					{this.props.Commlist.map((alist, index) =>
 						<div className = "re-comments-box-comment-listone">
-							<img src= {alist.author.avatar} />
+							<img src= {`http://127.0.0.1:3000/geturl?q=${alist.author.avatar}`} />
 							<span>{alist.author.name}</span>
 							<div className = "re-comments-box-comment-listone-text">
 								<p dangerouslySetInnerHTML={{__html: alist.content}}></p>
